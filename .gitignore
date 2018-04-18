@@ -1,9 +1,9 @@
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+TowerDef/[Ll]ibrary/
+TowerDef/[Tt]emp/
+TowerDef/[Oo]bj/
+TowerDef/[Bb]uild/
+TowerDef/[Bb]uilds/
+TowerDef/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f9aa8ec117a4049b656dd78a358cac, type: 3}
+  m_Name: Frozen
+  m_EditorClassIdentifier: 
+  name: Frozen
+  elementType: {fileID: 11400000, guid: 877c93918185b20489161b424bdb3730, type: 2}
+  particleEffectPrefab: {fileID: 198063435746206264, guid: 46041e76ec263394abc0bd0b130b0db9,
+    type: 2}
+  reapplyCooldown: 2
+  possibleCombonations: []
+  effectLifeTime: 5
+  intervalAmount: 1
+  attributeEnum: 3
+  percentageChange: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb38ee5686c46d42993eb0b5e4f9ef0, type: 3}
+  m_Name: Spawner 1
+  m_EditorClassIdentifier: 
+  spawnList:
+  - timeAfterWave: 60
+    timeBetweenSpawn: 0.5
+    amount: 1
+    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+      type: 2}
+  - timeAfterWave: 60
+    timeBetweenSpawn: 0.5
+    amount: 1
+    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+      type: 2}
+  - timeAfterWave: 60
+    timeBetweenSpawn: 0.5
+    amount: 1
+    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+      type: 2}
