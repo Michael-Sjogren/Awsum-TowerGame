@@ -40,26 +40,11 @@ namespace UserInput {
                 return;
             }
 
-            if(InputManager._instance != null)
-            {
-                InputManager._instance.enabled = false;
-            }
-
             InputManager._instance = instance;
         }
         private bool _dontDestroyOnLoad = true;
 
-        public virtual bool isEnabled
-        {
-            get
-            {
-                return this.isActiveAndEnabled;
-            }
-            set
-            {
-                this.enabled = value;
-            }
-        }
+
 
         public bool isMouseMoving
         {
@@ -83,13 +68,13 @@ namespace UserInput {
             }
         }
 
-        public abstract float GetAxis(int playerId, InputAction action);
+        public abstract float GetAxis( InputAction action);
 
-        public abstract float GetAxisRaw(int playerId, InputAction action);
-        public abstract bool GetButton(int playerId, InputAction action);
+        public abstract float GetAxisRaw( InputAction action);
+        public abstract bool GetButton( InputAction action);
 
-        public abstract bool GetButtonDown(int playerId, InputAction action);
+        public abstract bool GetButtonDown( InputAction action);
 
-        public abstract bool GetButtonUp(int playerId, InputAction action);
+        public abstract bool GetButtonUp( InputAction action);
     }
 }

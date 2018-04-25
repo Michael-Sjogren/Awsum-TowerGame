@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Name: Wet
   m_EditorClassIdentifier: 
   name: Wet
+  reapplyCooldown: 1
   elementType: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
   particleEffectPrefab: {fileID: 198063435746206264, guid: 166a4f30d7b8bec4b91b36aba8f3f6a2,
     type: 2}
   possibleCombonations:
-  - effectB: {fileID: 11400000, guid: 61311d744ab88f144a959150ca6e6cdf, type: 2}
-    resultEffect: {fileID: 11400000, guid: 5f445ef57060f4c4b84e1c28e08eb8d6, type: 2}
-  effectLifeTime: 15
-  intervalAmount: 10
+  - effectB: {fileID: 11400000, guid: c98816fe971f8e749b3ed387aed365e9, type: 2}
+    resultEffect: {fileID: 11400000, guid: 07a486d261c8da64fb9d28d873574957, type: 2}
+  effect:
+    name: Wet
+    reapplyCooldown: 0
+  effectLifeTime: 5
+  reapplyCooldown: 0.5
+  tickAmount: 1
   type: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
-  totalDamage: 1
+  totalDamage: 5

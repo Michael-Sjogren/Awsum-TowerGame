@@ -21,8 +21,8 @@ public class RTSCamera : MonoBehaviour {
 
 	void Move()
 	{
-		float xAxis = input.GetAxisRaw(0 , InputAction.MainHorizontal);
-		float zAxis = input.GetAxisRaw(0 , InputAction.MainVertical);
+		float xAxis = input.GetAxisRaw( InputAction.MainHorizontal);
+		float zAxis = input.GetAxisRaw( InputAction.MainVertical);
 		Vector3 pos = this.transform.position;
         Vector3 newPos = new Vector3( pos.x + (xAxis * speed * Time.deltaTime)
 									, pos.y 

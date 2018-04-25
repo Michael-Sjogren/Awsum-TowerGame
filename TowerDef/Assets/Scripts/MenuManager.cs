@@ -78,7 +78,7 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input.GetButtonDown(0, InputAction.WheelMenu) && !radialMenu.activeSelf)
+        if (input.GetButtonDown(InputAction.WheelMenu) && !radialMenu.activeSelf)
         {
             ShowMenu();
             GameManager.instance.DisableCameraRotation();
@@ -112,7 +112,7 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        if(input.GetButtonUp(0 , InputAction.WheelMenu)) 
+        if(input.GetButtonUp(InputAction.WheelMenu)) 
         {
             RadialMenuItem current = items[i];
             GameManager.instance.EnableCameraRotation();

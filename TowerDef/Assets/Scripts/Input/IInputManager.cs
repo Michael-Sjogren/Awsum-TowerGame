@@ -5,13 +5,12 @@ namespace UserInput {
     {
         bool isUsingKeyboardAndMouse {get; set;}
         bool isUsingController {get; set;}
-        bool isEnabled { get; set; }
         bool isMouseMoving {get ; set;}
-        bool GetButton(int playerId, InputAction action);
-        bool GetButtonDown(int playerId, InputAction action);
-        bool GetButtonUp(int playerId, InputAction action);
-        float GetAxis(int playerId, InputAction action);
-        float GetAxisRaw(int playerId, InputAction action);
+        bool GetButton(InputAction action);
+        bool GetButtonDown( InputAction action);
+        bool GetButtonUp(InputAction action);
+        float GetAxis( InputAction action);
+        float GetAxisRaw( InputAction action);
     }
 
 }

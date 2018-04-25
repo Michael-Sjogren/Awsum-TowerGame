@@ -3,30 +3,29 @@ using UnityEngine;
 using TMPro;
 using UserInput;
 using System;
+using System.Collections;
 
 public class Player : MonoBehaviour , IDamagable
 {
-
-    public int playerHealth = 0;
     public int playerMoney = 0;
     private Vector3 playerCursor;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI healthText;
     private IInputManager input;
-    public float buildRange = 4f;
-
-    public Attributes attributes;
-    public Attributes Attributes{ get; set;}
-
     public bool IsAlive{get;set;}
+
+    public float Health{get{return health;} set{health = value;}}
+    public float MaxHealth { get; set; }
+
+    public float health;
 
     void Start()
     {
         input = InputManager.Instance;
         if(moneyText != null)
-            moneyText.SetText(playerMoney.ToString());
+            moneyText.SetText(((int)Health).ToString());
         if(healthText != null)
-            healthText.SetText(playerHealth.ToString());
+            healthText.SetText(((int)Health).ToString());
     }
 
 
@@ -39,14 +38,13 @@ public class Player : MonoBehaviour , IDamagable
     {
 
         float cellSize = 1;
-        float y = 0f;
         float offset = (cellSize / 2f);
     
         Vector3 direction;
         if (input.isUsingController)
         {
-            float xAxis = input.GetAxisRaw(0, InputAction.SubHorizontal);
-            float zAxis = input.GetAxisRaw(0, InputAction.SubVertical);
+            float xAxis = input.GetAxisRaw( InputAction.SubHorizontal);
+            float zAxis = input.GetAxisRaw( InputAction.SubVertical);
             playerCursor = playerCursor + Vector3.forward / cellSize;
             direction = new Vector3( this.transform.right.x * xAxis , 0f , this.transform.forward.z * zAxis).normalized / cellSize;
             playerCursor += direction;
@@ -90,12 +88,12 @@ public class Player : MonoBehaviour , IDamagable
         {
             if (Input.GetMouseButtonDown(1))
             {
-                return input.GetAxis(0, InputAction.SubHorizontal);
+                return input.GetAxis(InputAction.SubHorizontal);
             }
         }
         else
         {
-            return input.GetAxis(0, InputAction.SubHorizontal);
+            return input.GetAxis(InputAction.SubHorizontal);
         }
         return 0;
     }
@@ -107,8 +105,8 @@ public class Player : MonoBehaviour , IDamagable
 
         if (input.isUsingController)
         {
-            y = input.GetAxisRaw(0, InputAction.SubVertical);
-            x = input.GetAxisRaw(0, InputAction.SubHorizontal);
+            y = input.GetAxisRaw( InputAction.SubVertical);
+            x = input.GetAxisRaw( InputAction.SubHorizontal);
         }
         if (input.isUsingKeyboardAndMouse)
         {
@@ -126,8 +124,13 @@ public class Player : MonoBehaviour , IDamagable
 
     public void TakeDamage(float amount)
     {
-        playerHealth--;
-        if (playerHealth <= 0) GameManager.instance.gameOver = true;
-        healthText.SetText(playerHealth.ToString());
+        Health -= (int) amount;
+        if ( (int) Health <= 0) GameManager.instance.gameOver = true;
+        healthText.SetText(( (int)Health).ToString());
+    }
+
+    public IEnumerator Die(float delay)
+    {
+        throw new NotImplementedException();
     }
 }

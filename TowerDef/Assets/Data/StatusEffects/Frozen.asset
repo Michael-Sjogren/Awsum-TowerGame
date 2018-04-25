@@ -8,16 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f9aa8ec117a4049b656dd78a358cac, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e8bed2ff1cf4b94c97c55915d8023d0, type: 3}
   m_Name: Frozen
   m_EditorClassIdentifier: 
   name: Frozen
+  reapplyCooldown: 2
   elementType: {fileID: 11400000, guid: 877c93918185b20489161b424bdb3730, type: 2}
   particleEffectPrefab: {fileID: 198063435746206264, guid: 46041e76ec263394abc0bd0b130b0db9,
     type: 2}
-  reapplyCooldown: 2
   possibleCombonations: []
-  effectLifeTime: 5
-  intervalAmount: 1
-  attributeEnum: 3
-  percentageChange: 0
+  effect:
+    name: Frozen
+  attributeEnum: 1
+  Amount: 3
+  duration: 3
+  isPersistent: 0

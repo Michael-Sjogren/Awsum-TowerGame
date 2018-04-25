@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 491468}
   - component: {fileID: 3338162}
   - component: {fileID: 2319096}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 450010}
   - component: {fileID: 3327652}
   - component: {fileID: 2345950}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Woods
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 409546}
   - component: {fileID: 3386264}
   - component: {fileID: 2373996}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Banners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 458352}
   - component: {fileID: 3328912}
   - component: {fileID: 2327856}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Blocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 472130}
   - component: {fileID: 3303460}
   - component: {fileID: 2319822}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Enterance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 440698}
   - component: {fileID: 3380440}
   - component: {fileID: 2396884}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,8 @@ GameObject:
   - component: {fileID: 411524}
   - component: {fileID: 114630679160011844}
   - component: {fileID: 65446257448804660}
-  m_Layer: 8
+  - component: {fileID: 114762419938859544}
+  m_Layer: 14
   m_Name: Tower Mage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +483,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4639997183533868}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,8 +526,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e035ef710995154faf895b336805bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFocused: 0
+  selectionCiricle: {fileID: 0}
   data: {fileID: 11400000, guid: 84670476219bc6f4fa7e7be80cbd3395, type: 2}
   bulletPrefab: {fileID: 1555346860139770, guid: f960cd627d64f1742a00cd2901430c42,
     type: 2}
   firePoint: {fileID: 4639997183533868}
+  fireRate: 0
+  buyCost: 0
+  range: 0
+  sellPrice: 0
+--- !u!114 &114762419938859544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd2e869e74efe348a253a9becf8df9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theta_scale: 0.005
+  size: 16
+  radius: 6
+  startWidth: 0.03
+  endtWidth: 0.03

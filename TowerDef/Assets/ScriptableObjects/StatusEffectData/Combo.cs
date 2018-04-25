@@ -2,7 +2,7 @@ using System;
 using ScriptableObjects.Enums;
 using UnityEngine;
 
-namespace EffectData 
+namespace Assets.ScriptableObjects.StatusEffectData 
     {
         [Serializable]
         public struct Combo 

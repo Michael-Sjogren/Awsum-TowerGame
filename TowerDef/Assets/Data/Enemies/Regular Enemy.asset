@@ -14,7 +14,7 @@ MonoBehaviour:
   name: Regular Enemy
   icon: {fileID: 0}
   health: 100
-  moveSpeed: 1
+  moveSpeed: 3
   armor: 2
   magicArmor: 2
   dropReward: 2

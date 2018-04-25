@@ -8,18 +8,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f9aa8ec117a4049b656dd78a358cac, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e8bed2ff1cf4b94c97c55915d8023d0, type: 3}
   m_Name: Chilled
   m_EditorClassIdentifier: 
   name: Chilled
+  reapplyCooldown: 0
   elementType: {fileID: 11400000, guid: 877c93918185b20489161b424bdb3730, type: 2}
   particleEffectPrefab: {fileID: 198096083116222500, guid: d83f80ac9d29ce04b9dc42fe0b05bbdf,
     type: 2}
-  reapplyCooldown: 0.5
   possibleCombonations:
   - effectB: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}
-    resultEffect: {fileID: 11400000, guid: 5f445ef57060f4c4b84e1c28e08eb8d6, type: 2}
-  effectLifeTime: 15
-  intervalAmount: 1
-  attributeEnum: 3
-  percentageChange: 0.509
+    resultEffect: {fileID: 11400000, guid: 07a486d261c8da64fb9d28d873574957, type: 2}
+  effect:
+    name: Chilled
+    reapplyCooldown: 0
+  attributeEnum: 1
+  reappllyCooldown: 0.5
+  Amount: 1
+  duration: 5
+  isPersistent: 0

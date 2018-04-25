@@ -24,6 +24,10 @@ public class EnemySpawner : MonoBehaviour {
 		{
 			throw new System.Exception("Please add elements to the spawnlist in the enemy spawner data object");
 		}
+
+		if(goal == null) {
+			throw new System.Exception("Goal not set on spawner");
+		}
 		totalWaves = spawnData.spawnList.Length;
 	}
 	

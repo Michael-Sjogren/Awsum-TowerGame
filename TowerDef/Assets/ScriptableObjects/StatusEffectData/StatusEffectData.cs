@@ -1,85 +1,50 @@
-
-using System.Collections.Generic;
+using System;
+using Effects;
 using ScriptableObjects.Enums;
 using UnityEngine;
-using System;
 
-namespace EffectData {
+namespace Assets.ScriptableObjects.StatusEffectData {
     public abstract class StatusEffectData : ScriptableObject
     {
         [Header("Basic Info")]
         public new string name = "New Effect";
+
+        [Tooltip("The time before the next status effect of the same type can be applied")]
+        public float reapplyCooldown;
         
         [Tooltip("This can be unassigned , it will count as nothing")]
         public ElementType elementType;
 
         [Tooltip("Particle effect prefab")]
         public ParticleSystem particleEffectPrefab;
-        [Tooltip("The time before the next status effect of the same type can be applied")]
-        public float reapplyCooldown = .5f;
-
         public EffectCombonation [] possibleCombonations;
+        [HideInInspector]
+        public StatusEffect effect = null;
 
-        public abstract void BeginEffect(Enemy e , ParticleSystem particleSystem );
-        public virtual void EndEffect(Enemy e)
-        {
-            RemoveSelf(e);
-        }
-        public abstract void UpdateEffect(Enemy e , float deltaTime );
+        public abstract void Initialize(Enemy e);
 
-        public virtual void RemoveSelf(Enemy e)
+        public StatusEffectData TryCombiningEffects(Enemy enemy)
         {
-            e.RemoveEffect(this);
-        }
-        public virtual void Initialize(Enemy e) 
-        {
-            var system = Instantiate
-            ( 
-                particleEffectPrefab ,
-                e.transform.position ,
-                particleEffectPrefab.transform.rotation ,
-                e.transform
-            );
-            system.Play(true);
-            BeginEffect( e , system );
-        }
-
-        public StatusEffectData TryCombiningEffects(Enemy e )  
-        {
-
-            if(possibleCombonations.Length <= 0) 
+            if (this.possibleCombonations.Length <= 0)
             {
                 Debug.Log("No Combinable effects for this effect was found");
             }
-            else 
-            {   
+            else
+            {
                 // check if the enemy has any of the other possible effects on him
-                StatusEffectData effectA = this;
-                for (int i = e.effects.Count - 1; i >= 0 ; i--)
+                foreach (EffectCombonation effectCombo in this.possibleCombonations)
                 {
-                    StatusEffectData effect = e.effects[i];
-                    foreach(EffectCombonation effectCombo  in possibleCombonations) 
+                    foreach (var effect in enemy.statusEffects)
                     {
-                        if(effectCombo.effectB == effect) 
+                        if (effectCombo.effectB.name == effect.name)
                         {
-                            // terminate effect A and effect
-                            effect.EndEffect(e);
-                            effectA.EndEffect(e);
-                            // initialize the combined effect
-                            Debug.Log("Creating combined effect: " + effectCombo.resultEffect.name + "\n   From: " + effectA.name + " And "+ effect.name  );
+                            Debug.Log(effectCombo.resultEffect.name);
                             return effectCombo.resultEffect;
                         }
                     }
                 }
             }
             return null;
-        }
-
-        [Serializable]
-        public class EffectCombonation 
-        {
-            public StatusEffectData effectB;
-            public StatusEffectData resultEffect;
         }
     }
 

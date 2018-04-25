@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: Spawner 1
   m_EditorClassIdentifier: 
   spawnList:
-  - timeAfterWave: 60
+  - timeAfterWave: 15
     timeBetweenSpawn: 0.5
     amount: 1
-    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+    enemyPrefab: {fileID: 1552751253317014, guid: 840f72e501f10c443a113c7e7a4d4261,
       type: 2}
-  - timeAfterWave: 60
+  - timeAfterWave: 15
     timeBetweenSpawn: 0.5
     amount: 1
-    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+    enemyPrefab: {fileID: 1552751253317014, guid: 840f72e501f10c443a113c7e7a4d4261,
       type: 2}
-  - timeAfterWave: 60
+  - timeAfterWave: 15
     timeBetweenSpawn: 0.5
     amount: 1
-    enemyPrefab: {fileID: 1689463673665390, guid: 840f72e501f10c443a113c7e7a4d4261,
+    enemyPrefab: {fileID: 1552751253317014, guid: 840f72e501f10c443a113c7e7a4d4261,
       type: 2}

@@ -5,24 +5,20 @@ using UnityEngine;
 public class EnemyData : UnitData
 {   
 
-    [Header("Enemy Attributes")]
+    [Header("Enemy Stuff")]
     public float health;
     public float moveSpeed;
     public float armor;
     public float magicArmor;
-    [Header("Other")]
     public int dropReward;
     public List<ElementType> weaknesses;
 
-    public delegate void OnAttrbuteChanged();
-    public OnAttrbuteChanged healthChanged;
-    public OnAttrbuteChanged armorChanged;
-    public OnAttrbuteChanged magicArmorChanged;
-    public OnAttrbuteChanged moveSpeedChanged;
-    
-    public void Initialize(Enemy enemy)
+    public override void Initialize(Entity entity)
     {
-        enemy.attributes = new Attributes(health , armor , magicArmor , moveSpeed , dropReward );
+        base.Initialize(entity);
+        Enemy e = entity as Enemy;
+        e.health = health;
+        e.MaxHealth = health;
+        e.MovementSpeed = moveSpeed;
     }
-
 }

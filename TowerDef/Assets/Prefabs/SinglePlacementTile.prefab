@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319067346469736}
   - component: {fileID: 114469000316501750}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SinglePlacementTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4398756636449270}
   - component: {fileID: 23701684998687998}
   - component: {fileID: 33382034289161100}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

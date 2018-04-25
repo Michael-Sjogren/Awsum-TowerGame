@@ -5,10 +5,9 @@ using TMPro;
 using TowerDefense.Buildings.Placement;
 using UnityEngine;
 namespace Buildings {
-public class Tower : Unit {
+public class Tower : Entity {
 		
 		[Header("Tower Attributes")]
-		public TowerData data;
 		private float reloadCooldown = 0;
 		private GameObject currentTarget = null;
 
@@ -22,6 +21,15 @@ public class Tower : Unit {
 		public Transform firePoint;
 		private GameObject stand;
         public Vector2Int dimensions { get; set; }
+		[HideInInspector]
+		public float fireRate;
+		[HideInInspector]
+		public int buyCost;
+		[HideInInspector]
+		public float range;
+		[HideInInspector]
+        public int sellPrice;
+
 
         // Use this for initialization
         private void Shoot()
@@ -31,21 +39,22 @@ public class Tower : Unit {
 			{
 				GameObject projectile = Instantiate ( bulletPrefab , firePoint.transform.position , firePoint.rotation ) as GameObject;
 				projectile.GetComponent<Projectile>().SetTarget( currentTarget );
-				reloadCooldown = 1f / data.fireRate;
+				reloadCooldown = 1f / fireRate;
 			}
 			else 
 			{
 				currentTarget = null;
 			}
 		}
-		void Start () 
+		public override void Initialize()
 		{
+			UnitData.Initialize(this);
 			Transform s = this.transform.Find("Stand");
 			if(s != null)
 				stand = s.gameObject;
 			this.name = data.name;
 		}
-		
+	
 		// Update is called once per frame
 		public void Update () 
 		{
@@ -81,7 +90,7 @@ public class Tower : Unit {
 		private bool CheckIfInRange(Vector3 a , Vector3 b)
 		{
 			float distance = Vector3.Distance(a , b);
-			if(distance <= data.range)
+			if(distance <= range)
 			{
 				return true;
 			}
@@ -91,12 +100,14 @@ public class Tower : Unit {
 		GameObject GetClosestEnemy()
 		{
 			GameObject closestEnemy = null;
-			float minDist = data.range;
+			float minDist = range;
 			Vector3 currentPos = transform.position;
 
-			for (int i = 0; i < EnemySpawner.enemies.Count; i++)
+			for (int i = EnemySpawner.enemies.Count -1; i >= 0; i--)
 			{
-				GameObject o = EnemySpawner.enemies[i].gameObject;
+				Enemy e = EnemySpawner.enemies[i];
+				if(e == null) return null;
+				GameObject o = e.gameObject;
 				float dist = Vector3.Distance(o.transform.position, currentPos);
 				if (dist < minDist)
 				{

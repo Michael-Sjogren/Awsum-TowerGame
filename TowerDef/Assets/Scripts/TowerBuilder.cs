@@ -141,7 +141,7 @@ public class TowerBuilder : Singleton<TowerBuilder>
         if (m_CurrentArea == null)
         {
             Debug.LogError("There is not an IPlacementArea attached to the collider found on the m_PlacementAreaMask");
-            return;
+
         }
         m_GridPosition = m_CurrentArea.WorldToGrid(raycast.point, ghostTower.dimensions);
         TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, ghostTower.dimensions);
@@ -154,7 +154,7 @@ public class TowerBuilder : Singleton<TowerBuilder>
     {
         Player player = PlayerManager.Instance.player;
         Tower tower = _visualTower.GetComponent<Tower>();
-        int buyCost = tower.data.buyCost;
+        int buyCost = tower.buyCost;
         return player.playerMoney >= buyCost;
     }
 
@@ -204,15 +204,16 @@ public class TowerBuilder : Singleton<TowerBuilder>
             GameManager.instance.DisableCameraRotation();
             GameManager.instance.isInBuildMode = true;
             Vector3 pos = PlayerManager.Instance.player.GetPlayerCursor();
-            Tower tower = (Instantiate(towerPrefab , pos, Quaternion.identity) as GameObject).GetComponent<Tower>();
-
-            int x = (int)tower.GetComponent<Collider>().bounds.size.x;
-            int z = (int)tower.GetComponent<Collider>().bounds.size.z;
+            GameObject towerObj = (Instantiate(towerPrefab , pos, Quaternion.identity) as GameObject);
+            Debug.Log(option);
+            Tower tower = towerObj.GetComponent<Tower>();
+            int x = (int)towerObj.GetComponent<Collider>().bounds.size.x;
+            int z = (int)towerObj.GetComponent<Collider>().bounds.size.z;
 
             tower.enabled = false;
-            tower.GetComponent<Tower>().dimensions = new Vector2Int(x , z);
+            towerObj.GetComponent<Tower>().dimensions = new Vector2Int(x , z);
             _visualTower = tower.gameObject;
-            UnitSelectionSystem.instance.SetFocus(tower.gameObject);
+        //    UnitSelectionSystem.instance.SetFocus(tower.gameObject);
         }
     }
 
@@ -221,7 +222,7 @@ public class TowerBuilder : Singleton<TowerBuilder>
         if (isPlacingTower && _visualTower != null)
         {
             MoveGhost();
-            if (input.GetButtonDown(0, InputAction.Submit) || input.GetButtonDown(0, InputAction.Interact))
+            if (input.GetButtonDown( InputAction.Submit) || input.GetButtonDown(InputAction.Interact))
             {
                 if (IsGhostAtValidPosition())
                 {
@@ -233,13 +234,13 @@ public class TowerBuilder : Singleton<TowerBuilder>
             }
         }
 
-        if (input.GetButtonDown(0, InputAction.Jump) ||
-        input.GetButtonDown(0, InputAction.WheelMenu) ||
-        input.GetButtonDown(0, InputAction.Cancel)
+        if (input.GetButtonDown( InputAction.Jump) ||
+        input.GetButtonDown( InputAction.WheelMenu) ||
+        input.GetButtonDown( InputAction.Cancel)
         )
         {
             isPlacingTower = false;
-            UnitSelectionSystem.instance.UnFocus();
+        //    UnitSelectionSystem.instance.UnFocus();
             Destroy(_visualTower);
             GameManager.instance.EnableCameraRotation();
             GameManager.instance.isInBuildMode = false;

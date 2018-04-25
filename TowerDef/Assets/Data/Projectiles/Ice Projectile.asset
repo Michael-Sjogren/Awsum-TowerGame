@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a049a451afa2844ea123d38678e8412, type: 3}
   m_Name: Ice Projectile
   m_EditorClassIdentifier: 
-  damage: 0
-  speed: 16
+  damage: 2
+  speed: 12
   projectileEffect: {fileID: 198491445716000840, guid: 7b44e69e5808a804981e1aa5c03af315,
     type: 2}
-  effectData: {fileID: 11400000, guid: 61311d744ab88f144a959150ca6e6cdf, type: 2}
+  effectData: {fileID: 11400000, guid: c98816fe971f8e749b3ed387aed365e9, type: 2}

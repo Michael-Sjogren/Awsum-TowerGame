@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
 	void Move()
 	{
 		// left / right
-        float xAxis = input.GetAxis(0, InputAction.MainHorizontal);
+        float xAxis = input.GetAxis( InputAction.MainHorizontal);
 		// foward
-        float zAxis = input.GetAxis(0, InputAction.MainVertical);
+        float zAxis = input.GetAxis( InputAction.MainVertical);
 
 		Vector3 forward =this.transform.forward;
 		Vector3 right = this.transform.right;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 			animator.SetFloat("Forward" , zAxis );
 			currentVel = controller.velocity;
             movementVector.y = 0f;
-            if (input.GetButtonDown(0 , InputAction.Jump)) 
+            if (input.GetButtonDown( InputAction.Jump)) 
 			{
 				movementVector.y = jumpForce;
 		//		animator.SetFloat("Jump" , movementVector.y );
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 	void Turn()
     {
 
-		lookX += input.GetAxis(0 , InputAction.SubHorizontal);	
+		lookX += input.GetAxis( InputAction.SubHorizontal);	
 		//lookY += input.GetAxis(0 , InputAction.SubVertical);
 		//animator.SetFloat("Turn" , controller.velocity.x * Time.deltaTime);
 		

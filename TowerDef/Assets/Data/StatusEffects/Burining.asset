@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Name: Burining
   m_EditorClassIdentifier: 
   name: Burning
+  reapplyCooldown: 0.5
   elementType: {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}
   particleEffectPrefab: {fileID: 198063435746206264, guid: 743138c36614faf4cbb0573d00603c12,
     type: 2}
-  effectLifeTime: 10
-  intervalAmount: 50
+  possibleCombonations: []
+  effect:
+    name: Burning
+  effectLifeTime: 5
+  tickAmount: 30
   type: {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}
-  totalDamage: 50
+  totalDamage: 100

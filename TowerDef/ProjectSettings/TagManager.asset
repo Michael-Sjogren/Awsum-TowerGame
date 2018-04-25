@@ -19,13 +19,13 @@ TagManager:
   - UI
   - 
   - 
-  - Tower
+  - 
   - Ground
   - Player
   - Stairs
   - Highground
   - Placable
-  - 
+  - Selectable
   - 
   - 
   - 

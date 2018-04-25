@@ -1,141 +1,152 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.ScriptableObjects.StatusEffectData;
+using Effects;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using UnityStandardAssets.Characters.ThirdPerson;
-using EffectData;
 
-public class Enemy : MonoBehaviour , IDamagable
+public class Enemy : LivingEntity
 {
-    [Header("UI")]
     // create delegeate that the hp bar can listen to a damagable and be updated
 
+    [Header("Enemy")]
     [Header("Pathfinding")]
     // TODO move this to an interface?
     public Transform target;
-    private MoveAgentToTarget agentMover;
-    // status effects
-    public List<StatusEffectData> effects;
-    // particle effect fire - test
-    public Attributes attributes;
-    public EnemyData enemyData;
-    public bool IsAlive { get; set;}
 
-    public void Start()
+    [Header("Effects")]
+    [SerializeField]
+    public List<StatusEffect> statusEffects;
+    public Dictionary< string , Cooldown > coolDowns;
+    private bool reachedGoal = false;
+
+    public override void Initialize()
     {
-        enemyData.Initialize(this);
-        agentMover = GetComponent<MoveAgentToTarget>();
-        agentMover.target = target;
-        agentMover.agent.speed = attributes.moveSpeed;
-        // buffs and debuffs
-        effects = new List<StatusEffectData>(5);
-        agentMover.OnReachedDestination += ReachedGoal;
+        Debug.Log("Initialize enemy");
+        UnitData.Initialize(this);
+        statusEffects = new List<StatusEffect>();
+        coolDowns = new Dictionary<string, Cooldown >();
+        Controller = GetComponent<AgentController>();
+        Controller.OnReachedDestination += ReachedGoal;
     }
     // Hurt the player and die
     private void ReachedGoal()
     {
-        PlayerManager.Instance.player.TakeDamage(1);
-        StartCoroutine(Die());
-        Debug.Log("ReachedGoal");
-    }
-
-    public void Update()
-    {
-        UpdateEffects();
-         
-    }
-
-    // updates debuffs and buffs
-    public void UpdateEffects()
-    {
-        if(effects.Count > 0) 
-        {
-            for(int i = 0; i < effects.Count; i++) 
-            {
-                StatusEffectData effect = effects[i];
-                effect.UpdateEffect( this , Time.deltaTime );
-            }
+        if(!reachedGoal) 
+        {   
+            reachedGoal = true;
+            StartCoroutine(Die(0));
+            PlayerManager.Instance.player.TakeDamage(1);
+            Debug.Log("ReachedGoal");
         }
     }
 
-    public void TakeDamage(float damage)
-    {
-        if(damage <= 0 ) 
-        {
-            Debug.Log("Damage value is less or equal to zero");
-        }
-        attributes.health -= damage;
-
-        if(enemyData.healthChanged != null)
-            enemyData.healthChanged();
-
-        if (attributes.health <= 0)
-        {
-            PlayerManager.Instance.player.ReciveMoney(attributes.dropReward);
-            StartCoroutine(Die());
-        }
-    }
-    // Update is called once per frame
     private void Attack(IDamagable target, float amount)
     {
         target.TakeDamage(amount);
     }
 
-    public IEnumerator Die( float delay = 0 )
+    public void AddEffect(StatusEffectData effectData)
     {
-        EnemySpawner.enemies.Remove(this);
-        yield return new WaitForSeconds( delay );
-        Destroy(this.gameObject);
-    }
-
-    public void AddEffect(StatusEffectData statusEffect)
-    {
-        if(statusEffect == null) return;
-
-        for (int i = effects.Count - 1; i >= 0 ; i--)
+        if(effectData == null) return;
+        StatusEffectData resultEffectData = effectData.TryCombiningEffects(this); 
+        StatusEffectData newEffectData;
+        if(resultEffectData != null)
         {
-            StatusEffectData effect = effects[i];
-            if(statusEffect.name == effect.name)
+            newEffectData = resultEffectData;
+        }else 
+        {
+            newEffectData = effectData;
+        }
+     
+        foreach(StatusEffect e in statusEffects) 
+        {
+            if(e.name == newEffectData.name) 
             {
-                Debug.Log("Tried to add existing effect");
                 return;
             }
         }
-        
 
-        StatusEffectData resultEffect = statusEffect.TryCombiningEffects(this); 
-        StatusEffectData newEffect = resultEffect != null ? resultEffect : statusEffect;
-        
-        effects.Add(newEffect);
-        newEffect.Initialize(this);
-        UpdateAttributes();
+        if(IsEffectOnCooldown(newEffectData.name)) 
+        {
+            Debug.Log(newEffectData.name + " is on cooldown");
+            return;
+        }
+
+        newEffectData.Initialize(this);
+
+        StatusEffect effect = newEffectData.effect;
+        statusEffects.Add( effect );
+        effect.BeginEffect();
     }
 
-    
-    public void RemoveEffect(StatusEffectData statusEffect)
+    void Update()
     {
-        if(effects.Remove(statusEffect))
+       for (int i = coolDowns.Values.Count - 1; i >= 0 ; i--)
+       {
+           KeyValuePair<string , Cooldown> kv = coolDowns.ElementAt(i);
+           if(kv.Value != null)
+            kv.Value.UpdateCooldown(Time.deltaTime);
+       }
+
+       MoveTo(target.position);
+    }
+    
+    public void RemoveEffect(StatusEffect statusEffect)
+    {
+        if(statusEffects.Remove(statusEffect))
         {
-            Debug.Log("Removed effect: " + statusEffect.name);
+        //    Debug.Log("Removed effect: " + statusEffect.name);
         }
         else 
         {
-            Debug.Log("Couldnt remove effect , didnt exist");
+        //    Debug.Log("Couldnt remove effect , didnt exist");
         }
         UpdateAttributes();
     }
 
-    void OnDisable()
+    public void RegisterCooldown(string name , Cooldown cooldown)
     {
-        agentMover.OnReachedDestination -= ReachedGoal;
-      
+        if (coolDowns.ContainsKey(name))
+        {
+            coolDowns[name] = cooldown;
+        }
+        else
+        {
+            coolDowns.Add( name, cooldown );
+        }
     }
 
-    private void UpdateAttributes()
+    private bool IsEffectOnCooldown(string name)
     {
-        agentMover.agent.speed = attributes.moveSpeed;
+        if(!coolDowns.ContainsKey(name))
+        {
+            coolDowns.Add( name, null );
+            return false;
+        }
+        else 
+        {
+            return coolDowns[name] != null;
+        }
     }
 
+    public void UpdateAttributes()
+    {
+        
+    }
+    private void OnDisable()
+    {
+        Debug.Log(Controller);
+        Controller.OnReachedDestination -= ReachedGoal;
+    }
+
+    public override IEnumerator Die(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        EnemySpawner.enemies.Remove(this);
+        Destroy(this.gameObject);
+    }
 }
