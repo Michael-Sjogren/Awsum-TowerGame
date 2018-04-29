@@ -17,7 +17,7 @@ public class EnemyData : UnitData
     {
         base.Initialize(entity);
         Enemy e = entity as Enemy;
-        e.health = health;
+        e.Health = health;
         e.MaxHealth = health;
         e.MovementSpeed = moveSpeed;
     }

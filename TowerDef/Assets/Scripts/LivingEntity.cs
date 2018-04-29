@@ -5,14 +5,17 @@ using UnityEngine;
 // a living entity can die and move
 public abstract class LivingEntity : Entity , IDamagable  , IMoveable
 {
-    public bool IsAlive { get; set; }
+    public bool IsAlive { get { return isAlive;} set{ isAlive = value;}}
     [HideInInspector]
-    public float health;
+    private float health;
+    private float maxHealth;
+    private float movementSpeed;
+    private bool isAlive = true;
     public float Health {get {return health;} set { health = value; } }
-    public float MaxHealth { get; set; }
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public AgentController Controller {get;set;}
 
-    public float MovementSpeed { get; set; }
+    public float MovementSpeed { get {return movementSpeed; } set{movementSpeed = value;} }
 
     public delegate void AttributesChanged();
 
@@ -27,12 +30,15 @@ public abstract class LivingEntity : Entity , IDamagable  , IMoveable
 
     public virtual void TakeDamage(float amount)
     {
-        IsAlive = false;
-        Health -= amount;
-        if(Health <= 0) 
+        if(Health - amount <= 0) 
         {
+            Health = 0;
+            IsAlive = false;
             StartCoroutine(Die(0));
-        } 
+            OnHealthChanged();
+            return;
+        }
+        Health -= amount; 
         OnHealthChanged();
     }
 

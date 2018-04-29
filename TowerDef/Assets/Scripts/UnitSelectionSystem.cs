@@ -1,130 +1,109 @@
 
 using UnityEngine;
 using Buildings;
+using System;
 
 [RequireComponent(typeof(Camera))]
 public class UnitSelectionSystem : MonoBehaviour
 {
     [HideInInspector]
-    public Entity entitySelected = null;
+    public LivingEntity entitySelected = null;
+    // todo
+    public Tower buildingSelected = null;
     public LayerMask selectablesLayermask;
 
-    public delegate void UnitEventHandler(IUnit unit);
-    public event UnitEventHandler OnUnitChanged = delegate{};
+    public delegate void UnitEventHandler(LivingEntity unit);
+    public delegate void BuildingEventHandler(Tower unit);
+    public event UnitEventHandler OnUnitChanged = delegate { };
+    public event BuildingEventHandler OnBuildingChanged = delegate { };
     private Camera cam;
 
     void Start()
     {
-       cam = this.GetComponent<Camera>(); 
+        cam = this.GetComponent<Camera>();
     }
     public void Update()
     {
-        if(UnityEngine.Input.GetMouseButtonDown(0)) 
-		{
-			RaycastHit raycastHit;
-            Vector2 upperLeft = Input.mousePosition;
-           
-            Ray ray =  cam.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray , out raycastHit , 500f , selectablesLayermask , QueryTriggerInteraction.Collide))
+        GetSelection();
+    }
+
+    private void GetSelectedBuilding()
+    {
+
+    }
+
+    private void GetSelection()
+    {
+        
+        IsDead(entitySelected);
+        if (UnityEngine.Input.GetMouseButtonDown(0))
+        {
+            RaycastHit raycastHit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out raycastHit, 500f, selectablesLayermask))
             {
-                Entity entity = raycastHit.transform.GetComponent<Entity>();
-                if(entity == null) 
+                LivingEntity entity = raycastHit.transform.GetComponent<LivingEntity>();
+                Tower tower = raycastHit.transform.GetComponent<Tower>();
+                if (tower != null)
                 {
-                    Debug.Log("it hit a selectable but The unit was null!!?");
-                    return; 
+                    UpdateTowerSelection(tower);
                 }
-                if(entity == entitySelected) return;
-                
-                Debug.Log("Unit hit: " + entity.name );
-                if(entitySelected != null)
-                    entitySelected.UpdateSelectionCiricle(false);
-                    
-                entity.UpdateSelectionCiricle(true);
-                entitySelected = entity;
-                OnUnitChanged(entity);  
+                else if (entity != null)
+                {
+                    UpdateUnitSelection(entity);
+                }
+
             }
         }
-        else if(UnityEngine.Input.GetMouseButtonDown(1) && entitySelected != null)
+        else if (UnityEngine.Input.GetMouseButtonDown(1))
         {
-            entitySelected.UpdateSelectionCiricle(false);
-            entitySelected = null;
-            OnUnitChanged(null);
+            //entitySelected.UpdateSelectionCiricle(false);
+            //entitySelected = null;
+            //OnUnitChanged(null);
+            if(buildingSelected != null)
+            {
+                OnBuildingChanged(null);
+                buildingSelected.UpdateSelectionCiricle(false);
+                buildingSelected = null;
+            }
         }
     }
-    public void SetFocus(Entity unit)
+
+    private void UpdateTowerSelection(Tower tower)
     {
-    /*
-        if(o == null ) return;
- 		if(unitFocused != null) 
-            UnFocus();
-        this.unitFocused = o;
-        displayUnitInfo();
-        DrawCircleAroundUnit(o);
-    */
+        if (buildingSelected != null)
+            buildingSelected.UpdateSelectionCiricle(false);
+
+        buildingSelected = tower;
+        buildingSelected.UpdateSelectionCiricle(true);
+        OnBuildingChanged(tower);
     }
 
-    private void displayUnitInfo()
-    {   
-       
-        //if(t != null) panelInfoManager.ShowUnitSelectionPanel(t.data);
+    private void UpdateUnitSelection(LivingEntity entity)
+    {
+        if (IsDead(entity))
+        {
+            return;
+        }
+
+        if (entitySelected != null)
+            entitySelected.UpdateSelectionCiricle(false);
+
+        entitySelected = entity;
+        entitySelected.UpdateSelectionCiricle(true);
+        OnUnitChanged(entity);
     }
 
-    private void hideUnitInfo()
-    {   
-    //    panelInfoManager.HideSelectionPanel();
-    //    panelInfoManager.HideBuyPanel();
+    private bool IsDead(LivingEntity entity)
+    {
+        if (entity == null) return true;
+        if (!entity.IsAlive)
+        {
+            Debug.Log("selected Unit was dead");
+            OnUnitChanged(null);
+            return true;
+        }
+        OnUnitChanged(entity);
+        return false;
     }
-
-    public void UnFocus()
-    {
-    //    if(unitFocused == null) return;
-    //    unitFocused.GetComponent<Unit>().isFocused = false;
-    //    RemoveCircleRendererFromUnit(unitFocused);
-    //    hideUnitInfo();
-    }
-
-    
-	public void UpgradeTower() 
-    {
-    //    Debug.Log("Upgrade tower");
-	}
-
-	public void SellTower()
-    {
-	//	Debug.Log("Sell tower");
-    //    Bounds bounds = unitFocused.GetComponent<Collider>().bounds;
-    //    unitFocused.transform.Translate(new Vector3( 0 , -100f  , 0));
-    //    Tower t = unitFocused.GetComponent<Tower>();
-    //    t.placementArea.Clear(t.gridPosition , t.dimensions);
-    //    UnFocus();
-    //    Destroy(unitFocused);
-
-	}
-
-    public void DrawCircleAroundUnit(GameObject o)
-    {
-        /* 
-        float radius = 1.25f;
-        if(o.GetComponent<CircleRenderer>() == null)
-        	o.AddComponent(typeof( CircleRenderer));
-
-        Tower t = o.GetComponent<Tower>();
-        if(t != null) 
-			radius = t.data.range;
-
-        o.GetComponent<CircleRenderer>().radius = radius;
-        o.GetComponent<CircleRenderer>().DoRenderer();
-        */
-    }
-
-    public void RemoveCircleRendererFromUnit(GameObject o)
-    {
-        /*
-        LineRenderer lineRend = unitFocused.GetComponent<LineRenderer>();
-        CircleRenderer rend = unitFocused.GetComponent<CircleRenderer>();
-        Destroy(rend);
-        Destroy(lineRend);
-        */
-    }
-    
 }

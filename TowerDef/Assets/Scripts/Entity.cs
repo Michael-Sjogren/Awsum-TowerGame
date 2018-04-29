@@ -3,15 +3,14 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour , IUnit
 {
-    public GameObject selectionCiricle;
-    public GameObject SelectionCiricle {get {return selectionCiricle;} set{ selectionCiricle = value; } }
+    public UnitSelectionCircle selectionCiricle;
+    public UnitSelectionCircle SelectionCiricle {get {return selectionCiricle;} set{ selectionCiricle = value; } }
     public bool IsSelected { get; set; }
     public UnitData UnitData { get {return data;} set{ data = value; } }
     public UnitData data;
 
     public virtual void Start()
     {
-        UpdateSelectionCiricle(false);
         Initialize();
     }
     public virtual void Initialize()
@@ -25,12 +24,12 @@ public abstract class Entity : MonoBehaviour , IUnit
         if(IsSelected)
         {
             if(selectionCiricle != null)
-                SelectionCiricle.SetActive(true); 
+                SelectionCiricle.EnableCiricle();
         }
         else 
         {
             if(selectionCiricle != null)
-                SelectionCiricle.SetActive(false);
+                SelectionCiricle.DisableCiricle();
         }
     }
     

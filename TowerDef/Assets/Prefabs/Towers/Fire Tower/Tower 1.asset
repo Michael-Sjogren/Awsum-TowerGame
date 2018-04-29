@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Tower 1
   m_EditorClassIdentifier: 
   name: Fire Tower
-  icon: {fileID: 0}
+  unitIcon: {fileID: 0}
   fireRate: 0.8
   buyCost: 2
   sellPrice: 2
-  range: 7
+  range: 9

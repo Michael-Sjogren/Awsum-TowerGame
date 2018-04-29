@@ -27,6 +27,7 @@ public class Enemy : LivingEntity
     {
         Debug.Log("Initialize enemy");
         UnitData.Initialize(this);
+        IsAlive = true;
         statusEffects = new List<StatusEffect>();
         coolDowns = new Dictionary<string, Cooldown >();
         Controller = GetComponent<AgentController>();
@@ -145,6 +146,7 @@ public class Enemy : LivingEntity
 
     public override IEnumerator Die(float delay)
     {
+        IsAlive = false;
         yield return new WaitForSeconds(delay);
         EnemySpawner.enemies.Remove(this);
         Destroy(this.gameObject);

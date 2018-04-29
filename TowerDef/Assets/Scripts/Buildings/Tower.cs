@@ -58,7 +58,7 @@ public class Tower : Entity {
 		// Update is called once per frame
 		public void Update () 
 		{
-			if(currentTarget == null) SearchForTarget();
+			SearchForTarget();
 			if(currentTarget != null) {
 				AimAtTarget();
 				if(reloadCooldown <= 0) 

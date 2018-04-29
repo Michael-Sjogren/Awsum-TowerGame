@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 411524}
   - component: {fileID: 114630679160011844}
   - component: {fileID: 65446257448804660}
-  - component: {fileID: 114762419938859544}
+  - component: {fileID: 114558793183211222}
   m_Layer: 14
   m_Name: Tower Mage
   m_TagString: Untagged
@@ -515,6 +515,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2, z: 1}
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &114558793183211222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fa2d63fd7111a4c87161b70b0908af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  fieldOfView: 90
+  farClipRange: 5
+  nearClipRange: 0.1
+  heightOffset: 1.5
+  circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 4294966783
 --- !u!114 &114630679160011844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e035ef710995154faf895b336805bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionCiricle: {fileID: 0}
+  selectionCiricle: {fileID: 114558793183211222}
   data: {fileID: 11400000, guid: 84670476219bc6f4fa7e7be80cbd3395, type: 2}
   bulletPrefab: {fileID: 1555346860139770, guid: f960cd627d64f1742a00cd2901430c42,
     type: 2}
@@ -535,19 +555,3 @@ MonoBehaviour:
   buyCost: 0
   range: 0
   sellPrice: 0
---- !u!114 &114762419938859544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 187918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e869e74efe348a253a9becf8df9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theta_scale: 0.005
-  size: 16
-  radius: 6
-  startWidth: 0.03
-  endtWidth: 0.03

@@ -18,5 +18,7 @@ public class TowerData : UnitData
 		tower.range = range;
 		tower.buyCost = buyCost;
 		tower.sellPrice = sellPrice;
+		tower.selectionCiricle.radius = range;
+		tower.selectionCiricle.UpdateCircle();
 	}
 }
