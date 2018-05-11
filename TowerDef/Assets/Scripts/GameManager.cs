@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		if(gameOver) 
 		{
-			SceneManager.LoadScene("Lose");
+			//SceneManager.LoadScene("Lose");
 		}
 	}
 

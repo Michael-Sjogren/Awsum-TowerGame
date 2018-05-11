@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: Regular Enemy
   m_EditorClassIdentifier: 
   name: Regular Enemy
-  icon: {fileID: 0}
+  unitIcon: {fileID: 0}
   health: 100
   moveSpeed: 3
   armor: 2
   magicArmor: 2
-  dropReward: 2
+  dropReward: 5
   weaknesses:
   - {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}

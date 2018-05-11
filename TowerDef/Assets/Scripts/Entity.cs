@@ -9,6 +9,10 @@ public abstract class Entity : MonoBehaviour , IUnit
     public UnitData UnitData { get {return data;} set{ data = value; } }
     public UnitData data;
 
+    public delegate void StatsChanged();
+
+    public StatsChanged OnStatChanged = delegate{};
+
     public virtual void Start()
     {
         Initialize();

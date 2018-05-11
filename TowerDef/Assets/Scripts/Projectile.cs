@@ -9,9 +9,11 @@ public class Projectile : MonoBehaviour
     private float speed;
     private ParticleSystem projectileEffect;
     public ProjectileData projectileData;
-    public void SetTarget(GameObject t )
+    
+    private Vector3 lastTargetPos;
+    public void Launch(GameObject t , Tower owner )
     {
-        projectileDmg = projectileData.damage;
+        projectileDmg = owner.Damage.Value;
         speed = projectileData.speed;
         projectileEffect = Instantiate(projectileData.projectileEffect);
         projectileEffect.transform.SetParent(this.transform);
@@ -22,19 +24,21 @@ public class Projectile : MonoBehaviour
     }
     void Update()
     {
-        if(target == null) { 
-            Destroy(this.gameObject); 
-            return; 
-        }
-        
-        Vector3 dir =   target.transform.position - transform.position ;
+
+        if(target != null)
+            lastTargetPos = target.transform.position;
+        Vector3 dir =   lastTargetPos - transform.position;
         float distThisFrame = speed * Time.deltaTime;
         if(dir.magnitude <= distThisFrame) 
         {
-            Enemy enemy = target.GetComponent<Enemy>();
-            enemy.TakeDamage(projectileDmg);
-            enemy.AddEffect(projectileData.effectData);
+            if(target != null) 
+            {
+                Enemy enemy = target.GetComponent<Enemy>();
+                enemy.TakeDamage(projectileDmg);
+                enemy.AddEffect(projectileData.effectData);
+            }
             projectileEffect.Stop(true , ParticleSystemStopBehavior.StopEmittingAndClear);
+           
             Destroy(this.gameObject);
             return;
         }

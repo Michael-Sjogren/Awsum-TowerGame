@@ -6,19 +6,34 @@ using UnityEngine;
 [CreateAssetMenu(fileName="New Tower" , menuName="Tower")]
 public class TowerData : UnitData 
 {
-	public float fireRate; 
 	public int buyCost; 
 	public int sellPrice;
-	public float range;
-
+	[HideInInspector]
+	public int maxLevel; 
+	[Header("Tower Stats")]
+	public float Damage;
+	public float FireRate;
+	public float Range;
+	[Header("Level Data")]
+	public TowerLevelData towerLevelData;
+	public TowerPerkTreeData towerPerkTreeData;
+	public AuidoEvent towerFireAudioEvent;
 	public override void Initialize(Entity entity)
 	{
 		Tower tower = entity as Tower;
-		tower.fireRate = fireRate;
-		tower.range = range;
+		tower.maxLevel = towerLevelData.levelData.Length;
+		tower.levelData = towerLevelData.levelData;
+		tower.perkTreeData = towerPerkTreeData;
+		tower.FireRate.BaseValue = FireRate;
+		tower.Range.BaseValue = Range;
+		tower.Damage.BaseValue = Damage;
+
 		tower.buyCost = buyCost;
 		tower.sellPrice = sellPrice;
-		tower.selectionCiricle.radius = range;
+		tower.selectionCiricle.radius = Range;
+
+		tower.fireProjectileAudioEvent = towerFireAudioEvent;
 		tower.selectionCiricle.UpdateCircle();
+		tower.selectionCiricle.EnableCiricle();
 	}
 }

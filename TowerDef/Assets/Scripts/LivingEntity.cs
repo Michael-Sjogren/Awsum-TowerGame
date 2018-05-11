@@ -7,21 +7,15 @@ public abstract class LivingEntity : Entity , IDamagable  , IMoveable
 {
     public bool IsAlive { get { return isAlive;} set{ isAlive = value;}}
     [HideInInspector]
-    private float health;
+
     private float maxHealth;
-    private float movementSpeed;
     private bool isAlive = true;
-    public float Health {get {return health;} set { health = value; } }
-    public float MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+    [HideInInspector]
+    public float Health {get; set;}
+    public float MaxHealth { get { return maxHealth; } set { maxHealth = value;} }
     public AgentController Controller {get;set;}
-
-    public float MovementSpeed { get {return movementSpeed; } set{movementSpeed = value;} }
-
-    public delegate void AttributesChanged();
-
-    public event AttributesChanged OnAttributeChanged = delegate{};
-    public event AttributesChanged OnHealthChanged = delegate{};
-
+    [HideInInspector]
+    public Stat MovementSpeed;
     public virtual IEnumerator Die(float delay)
     {
        yield return new WaitForSeconds(delay);
@@ -32,14 +26,13 @@ public abstract class LivingEntity : Entity , IDamagable  , IMoveable
     {
         if(Health - amount <= 0) 
         {
-            Health = 0;
             IsAlive = false;
             StartCoroutine(Die(0));
-            OnHealthChanged();
+            OnStatChanged();
             return;
         }
-        Health -= amount; 
-        OnHealthChanged();
+        Health -= amount;
+        OnStatChanged();
     }
 
     public virtual void MoveTo(Vector3 position)
@@ -51,5 +44,20 @@ public abstract class LivingEntity : Entity , IDamagable  , IMoveable
     {
         IsAlive = true;
         Controller = GetComponent<AgentController>();
+    }
+
+    public float GetHealth()
+    {
+        return Health;
+    }
+
+    public Stat GetMovementSpeed()
+    {
+        return MovementSpeed;
+    }
+
+    public void UpdateStats()
+    {
+        OnStatChanged();
     }
 }

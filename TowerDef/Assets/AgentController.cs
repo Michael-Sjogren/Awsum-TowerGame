@@ -12,7 +12,7 @@ public class AgentController : MonoBehaviour
 
 	// Subscribe to this if you want to get a callback when the ai has reached its destination
 	public event AgentTargetHandler OnReachedDestination = delegate{};
-	private IMoveable movableEntity;
+	private LivingEntity movableEntity;
 	private NavMeshAgent agent;
 
 	public float maxStoppingDistanceFromGoal;
@@ -20,13 +20,19 @@ public class AgentController : MonoBehaviour
     // Use this for initialization
     void Start () {
 		agent = GetComponent<NavMeshAgent>();
-		movableEntity = GetComponent<IMoveable>();
+		movableEntity = GetComponent<LivingEntity>();
+		movableEntity.OnStatChanged += OnMovementSpeedUpdated;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		
+	}
 
+	public void OnMovementSpeedUpdated()
+	{
+		agent.speed = movableEntity.GetMovementSpeed().Value;
 	}
 
 	public void Move(Vector3 target)
@@ -41,5 +47,10 @@ public class AgentController : MonoBehaviour
 					OnReachedDestination();
 			}
 		}
+	}
+
+	void OnDisable()
+	{
+		movableEntity.OnStatChanged -= OnMovementSpeedUpdated;
 	}
 }

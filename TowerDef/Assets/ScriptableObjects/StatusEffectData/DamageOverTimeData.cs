@@ -6,7 +6,6 @@ namespace Assets.ScriptableObjects.StatusEffectData {
     public class DamageOverTimeData : TimedEffectData
     {
         [Header("Damage Settings")] 
-        public ElementType type;
         public float totalDamage;
 
         public override void Initialize(Enemy e)

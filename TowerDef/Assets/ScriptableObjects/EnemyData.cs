@@ -19,6 +19,6 @@ public class EnemyData : UnitData
         Enemy e = entity as Enemy;
         e.Health = health;
         e.MaxHealth = health;
-        e.MovementSpeed = moveSpeed;
+        e.MovementSpeed.BaseValue = moveSpeed;
     }
 }

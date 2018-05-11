@@ -15,6 +15,7 @@ public class TimedAttributeEffect : StatusEffect
     protected float duration;
     protected bool isPersistent;
     protected float cooldown;
+    protected StatModType type;
     public TimedAttributeEffect(TimedAttributeEffectData data, Enemy e) : base(data, e)
     {
         attriEnum = data.attributeEnum;
@@ -22,6 +23,7 @@ public class TimedAttributeEffect : StatusEffect
         isPersistent = data.isPersistent;
         duration = data.duration;
         cooldown = data.reapplyCooldown;
+        type = data.type;
     }
 
     public override void BeginEffect()
@@ -32,31 +34,42 @@ public class TimedAttributeEffect : StatusEffect
     
     public IEnumerator ApplyAttributeEffect()
     {
-        switch (attriEnum)
+        var modifer = new StatModifer(Value , type ,this);
+        switch(attriEnum) 
         {
             case AttributeEnum.MovementSpeed:
-                if (this.data.name == "Frozen") {
-                    oldValue = enemy.MovementSpeed;
-                    enemy.MovementSpeed = 0;
-                }
-                break;
-            default: break;
-        }
-        enemy.UpdateAttributes();
-        if (isPersistent)
-            yield return null;
+                enemy.MovementSpeed.AddModifer(modifer);
+            break;
+            case AttributeEnum.MagicArmor:
+                //enemy.MovementSpeed.AddModifer(modifer);
+            break;
+            case AttributeEnum.Armor:
 
-        yield return new WaitForSeconds(duration);
-        switch (attriEnum)
-        {
-            case AttributeEnum.MovementSpeed:
-                if (this.data.name == "Frozen") 
-                {
-                    enemy.MovementSpeed = oldValue;
-                }
-                break;
+            break;
+            case AttributeEnum.Health:
+             
+            break;
             default: break;
         }
+        enemy.UpdateStats();
+        yield return new WaitForSeconds(duration);
+        switch(attriEnum) 
+        {
+            case AttributeEnum.MovementSpeed:
+                enemy.MovementSpeed.RemoveModifer(modifer);
+            break;
+            case AttributeEnum.MagicArmor:
+                //enemy.MovementSpeed.AddModifer(modifer);
+            break;
+            case AttributeEnum.Armor:
+
+            break;
+            case AttributeEnum.Health:
+                
+            break;
+        }
+        enemy.UpdateStats();
+
         system.Stop(true);
 
         Debug.Log("ReapplyCooldown for " + this.name + ".. " + cooldown);
@@ -67,7 +80,6 @@ public class TimedAttributeEffect : StatusEffect
 
     public override void EndEffect()
     {
-        enemy.UpdateAttributes();
         base.EndEffect();
     }
 }

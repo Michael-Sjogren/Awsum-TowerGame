@@ -15,10 +15,11 @@ public class UIUnitSelectionPanel : UIUnitSelection
         if(entity == null) 
         {
             mainPanel.SetActive(false);
+            return;
         }
         else 
         {
-            unitNameText.SetText(entity.data.name);
+            unitNameText.SetText(entity.name);
             mainPanel.SetActive(true);
         }
     }

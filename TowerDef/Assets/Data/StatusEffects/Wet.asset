@@ -19,11 +19,11 @@ MonoBehaviour:
   possibleCombonations:
   - effectB: {fileID: 11400000, guid: c98816fe971f8e749b3ed387aed365e9, type: 2}
     resultEffect: {fileID: 11400000, guid: 07a486d261c8da64fb9d28d873574957, type: 2}
+  - effectB: {fileID: 11400000, guid: f5b20bbc4d7775c4faa947b091b81016, type: 2}
+    resultEffect: {fileID: 11400000, guid: b883bdd3031bc8746b8d6ec7a56a48f8, type: 2}
   effect:
     name: Wet
-    reapplyCooldown: 0
   effectLifeTime: 5
-  reapplyCooldown: 0.5
   tickAmount: 1
   type: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
   totalDamage: 5

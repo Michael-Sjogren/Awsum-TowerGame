@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
 	
 	// make a delegate that is called every time wavtime variable gets updated
-	public TMPro.TextMeshPro waveTime;
+	public TextMeshPro waveTime;
 	// make a enemySpawnData scriptable object that holds witch enemies should be spawned
 	[SerializeField]
 	private EnemySpawnData spawnData;
@@ -42,7 +43,7 @@ public class EnemySpawner : MonoBehaviour {
 			}
 			else 
 			{
-				Debug.Log("No more waves left , kill remaining enemies to win!");
+				
 			}
 		}
 

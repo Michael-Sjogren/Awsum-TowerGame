@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def77e938788a2847896a85c6a59c507, type: 3}
+  m_Name: Lightning Tower
+  m_EditorClassIdentifier: 
+  name: Lightning Tower
+  unitIcon: {fileID: 0}
+  buyCost: 2
+  sellPrice: 2
+  maxLevel: 0
+  Damage: 14
+  FireRate: 1.1
+  Range: 6
+  towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
+  towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
+  towerFireAudioEvent: {fileID: 0}

@@ -7,10 +7,12 @@ public class Healthbar : MonoBehaviour
 {
     public Image healthBar;
     public LivingEntity entity;
+
     void Start()
     {
-        entity.OnHealthChanged += UpdateHealth;
+        entity.OnStatChanged += UpdateHealth;
     }
+
     public void UpdateHealth()
     {
         healthBar.fillAmount = entity.Health / entity.MaxHealth;
@@ -18,6 +20,6 @@ public class Healthbar : MonoBehaviour
 
     void OnDisable()
     {
-        entity.OnHealthChanged -= UpdateHealth;
+        entity.OnStatChanged -= UpdateHealth;
     }
 }

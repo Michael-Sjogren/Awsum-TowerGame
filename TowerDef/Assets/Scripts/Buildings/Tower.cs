@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using TowerDefense.Buildings.Placement;
 using UnityEngine;
+
 namespace Buildings {
 public class Tower : Entity {
 		
@@ -17,36 +18,34 @@ public class Tower : Entity {
 		/// Gets the grid position for this tower on the <see cref="placementArea"/>
 		/// </summary>
 		public Vector2Int gridPosition { get; private set; }
-		public GameObject bulletPrefab;
+		public Projectile projectile;
 		public Transform firePoint;
 		private GameObject stand;
         public Vector2Int dimensions { get; set; }
 		[HideInInspector]
-		public float fireRate;
+		public Stat FireRate;
+		[HideInInspector]
+		public Stat Range;
+		[HideInInspector]
+		public Stat Damage;
 		[HideInInspector]
 		public int buyCost;
 		[HideInInspector]
-		public float range;
-		[HideInInspector]
         public int sellPrice;
-
-
-        // Use this for initialization
-        private void Shoot()
-		{
-			bool isInRange = CheckIfInRange( currentTarget.transform.position , transform.position);
-			if(isInRange) 
-			{
-				GameObject projectile = Instantiate ( bulletPrefab , firePoint.transform.position , firePoint.rotation ) as GameObject;
-				projectile.GetComponent<Projectile>().SetTarget( currentTarget );
-				reloadCooldown = 1f / fireRate;
-			}
-			else 
-			{
-				currentTarget = null;
-			}
-		}
-		public override void Initialize()
+		[HideInInspector]
+        public int maxLevel;
+		[HideInInspector]
+		private int level = 1;
+		[HideInInspector]
+		public int Level {get {return level;} private set { level = value;}}
+		[HideInInspector]
+		public Dictionary<int , PerkOption> perksSelected = new Dictionary<int, PerkOption>();
+		public TowerPerkTreeData perkTreeData;
+		public TowerLevel[] levelData;
+		public AudioSource fireProjectileAudioSource;
+		[HideInInspector]
+		public AuidoEvent fireProjectileAudioEvent;
+        public override void Initialize()
 		{
 			UnitData.Initialize(this);
 			Transform s = this.transform.Find("Stand");
@@ -54,8 +53,27 @@ public class Tower : Entity {
 				stand = s.gameObject;
 			this.name = data.name;
 		}
+
+
+        private void Shoot()
+		{
+			bool isInRange = CheckIfInRange( currentTarget.transform.position , transform.position);
+			if(isInRange) 
+			{
+				Projectile p = Instantiate ( projectile , firePoint.transform.position , firePoint.rotation );
+				p.Launch( currentTarget , this );
+
+				if(fireProjectileAudioEvent != null)
+					fireProjectileAudioEvent.Play(fireProjectileAudioSource);
+
+				reloadCooldown = 1f / FireRate.Value;
+			}
+			else 
+			{
+				currentTarget = null;
+			}
+		}
 	
-		// Update is called once per frame
 		public void Update () 
 		{
 			SearchForTarget();
@@ -90,17 +108,17 @@ public class Tower : Entity {
 		private bool CheckIfInRange(Vector3 a , Vector3 b)
 		{
 			float distance = Vector3.Distance(a , b);
-			if(distance <= range)
+			if(distance <= Range.Value)
 			{
 				return true;
 			}
 			return false;
 		}
 
-		GameObject GetClosestEnemy()
+		public GameObject GetClosestEnemy()
 		{
 			GameObject closestEnemy = null;
-			float minDist = range;
+			float minDist = Range.Value;
 			Vector3 currentPos = transform.position;
 
 			for (int i = EnemySpawner.enemies.Count -1; i >= 0; i--)
@@ -118,6 +136,40 @@ public class Tower : Entity {
 			return closestEnemy;
 		}
 
+		public void Upgrade()
+		{
+			Player player = PlayerManager.Instance.player;
+			if( (level + 1 <= maxLevel) ) 
+			{
+				if(player.CanAfford(GetUpgradePrice())) 
+				{
+					TowerLevel data = levelData[level-1];
+					level++;
+					player.BuyItem(GetUpgradePrice());
+
+					Range.AddModifer(data.RangeIncrease);
+					Damage.AddModifer(data.DamageIncrease);
+					FireRate.AddModifer(data.FireRateIncrease);
+					OnStatChanged();
+				}
+			}
+		}
+
+        private int GetUpgradePrice()
+        {	
+			int upgradePrice = 0;
+			upgradePrice = levelData[level -1].upgradePrice;
+            return upgradePrice;
+        }
+
+        public void Sell()
+		{
+			Player player = PlayerManager.Instance.player;
+			player.ReciveMoney(this.sellPrice);
+			placementArea.Clear(gridPosition , dimensions);
+			Destroy(this.gameObject);
+		}
+
 		public virtual void Initialize(IPlacementArea targetArea, Vector2Int destination)
         {
 			placementArea = targetArea;
@@ -126,9 +178,22 @@ public class Tower : Entity {
 			{
 				transform.position = placementArea.GridToWorld(destination, dimensions);
 				transform.rotation = placementArea.transform.rotation;
+				Initialize();
 				targetArea.Occupy(destination, dimensions);
 			}else {
 				Debug.Log("Target area was null");
+			}
+		}
+
+
+		public void AddPerk(PerkOption perk)
+		{
+			Damage.AddModifer(perk.DamageIncrease);
+			Range.AddModifer(perk.RangeIncrease);
+			FireRate.AddModifer(perk.FireRateIncrease);
+			if(perk.newProjectile != null) 
+			{
+				projectile = perk.newProjectile;
 			}
 		}
 		

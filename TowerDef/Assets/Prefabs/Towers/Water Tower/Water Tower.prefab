@@ -177,6 +177,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: b94315f27b35c6b4d9836c61ba3cc0e8, type: 2}
   m_StaticBatchInfo:
@@ -211,6 +212,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: b94315f27b35c6b4d9836c61ba3cc0e8, type: 2}
   m_StaticBatchInfo:
@@ -245,6 +247,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: b94315f27b35c6b4d9836c61ba3cc0e8, type: 2}
   m_StaticBatchInfo:
@@ -332,10 +335,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114241714035465650}
   data: {fileID: 11400000, guid: 7210c00295626214aa6de8c9143f7fbe, type: 2}
-  bulletPrefab: {fileID: 1555346860139770, guid: 483cf83eaa36ece46a89e8a981d3b814,
+  stats: []
+  projectile: {fileID: 114914028492495442, guid: 483cf83eaa36ece46a89e8a981d3b814,
     type: 2}
   firePoint: {fileID: 4849973337685782}
-  fireRate: 0
+  FireRate:
+    BaseValue: 0
+  Range:
+    BaseValue: 0
+  Damage:
+    BaseValue: 0
   buyCost: 0
-  range: 0
   sellPrice: 0
+  maxLevel: 0
+  towerLevelData: []

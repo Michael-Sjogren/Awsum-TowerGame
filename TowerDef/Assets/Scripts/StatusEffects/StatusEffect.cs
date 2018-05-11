@@ -1,6 +1,7 @@
 
 using System;
 using Assets.ScriptableObjects.StatusEffectData;
+using ScriptableObjects.Enums;
 using UnityEngine;
 
 namespace Effects
@@ -13,6 +14,8 @@ namespace Effects
         protected Coroutine routine;
         protected float reapplyCooldown;
         protected Enemy enemy;
+        public ElementType elementType;
+        public ElementType oppositeType;
         public readonly StatusEffectData data;
         public StatusEffect(StatusEffectData data, Enemy e)
         {
@@ -20,6 +23,8 @@ namespace Effects
             this.name = data.name;
             this.enemy = e;
             this.reapplyCooldown = data.reapplyCooldown;
+            this.elementType = data.elementType;
+            this.oppositeType = data.oppositeType;
         }
         public virtual void BeginEffect()
         {

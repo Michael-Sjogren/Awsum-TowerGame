@@ -21,9 +21,8 @@ MonoBehaviour:
     resultEffect: {fileID: 11400000, guid: 07a486d261c8da64fb9d28d873574957, type: 2}
   effect:
     name: Chilled
-    reapplyCooldown: 0
   attributeEnum: 1
-  reappllyCooldown: 0.5
-  Amount: 1
+  Amount: -0.45
   duration: 5
+  type: 300
   isPersistent: 0

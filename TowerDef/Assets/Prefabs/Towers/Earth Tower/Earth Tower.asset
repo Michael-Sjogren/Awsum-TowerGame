@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def77e938788a2847896a85c6a59c507, type: 3}
+  m_Name: Earth Tower
+  m_EditorClassIdentifier: 
+  name: Earth Tower
+  unitIcon: {fileID: 0}
+  buyCost: 20
+  sellPrice: 5
+  maxLevel: 0
+  towerLevelData:
+  - upgradePrice: 0
+    sellPrice: 0
+    projectile: {fileID: 0}
+    perkPoint: 1
+  Damage: 22
+  FireRate: 0.6
+  Range: 7

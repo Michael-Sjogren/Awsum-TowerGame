@@ -14,8 +14,8 @@ public class UnitSelectionSystem : MonoBehaviour
 
     public delegate void UnitEventHandler(LivingEntity unit);
     public delegate void BuildingEventHandler(Tower unit);
-    public event UnitEventHandler OnUnitChanged = delegate { };
-    public event BuildingEventHandler OnBuildingChanged = delegate { };
+    public UnitEventHandler OnUnitChanged = delegate {};
+    public BuildingEventHandler OnBuildingChanged = delegate {};
     private Camera cam;
 
     void Start()

@@ -13,17 +13,15 @@ public class Player : MonoBehaviour , IDamagable
     public TextMeshProUGUI healthText;
     private IInputManager input;
     public bool IsAlive{get;set;}
-
-    public float Health{get{return health;} set{health = value;}}
+    public int health;
+    public float Health {get{return health;} set {health = (int)value;}}
     public float MaxHealth { get; set; }
-
-    public float health;
 
     void Start()
     {
         input = InputManager.Instance;
         if(moneyText != null)
-            moneyText.SetText(((int)Health).ToString());
+            moneyText.SetText(((int)playerMoney).ToString());
         if(healthText != null)
             healthText.SetText(((int)Health).ToString());
     }
@@ -124,13 +122,28 @@ public class Player : MonoBehaviour , IDamagable
 
     public void TakeDamage(float amount)
     {
-        Health -= (int) amount;
-        if ( (int) Health <= 0) GameManager.instance.gameOver = true;
+        
+        if ( ((int) Health - amount) <= 0) 
+        {
+         GameManager.instance.gameOver = true;
+        }
+        Health -= amount;
         healthText.SetText(( (int)Health).ToString());
+            
     }
 
     public IEnumerator Die(float delay)
     {
         throw new NotImplementedException();
+    }
+
+    public bool CanAfford(int price)
+    {
+        return playerMoney >= price;
+    }
+
+    public float GetHealth()
+    {
+        return Health;
     }
 }

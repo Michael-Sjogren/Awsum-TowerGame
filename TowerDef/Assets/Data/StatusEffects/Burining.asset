@@ -16,10 +16,12 @@ MonoBehaviour:
   elementType: {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}
   particleEffectPrefab: {fileID: 198063435746206264, guid: 743138c36614faf4cbb0573d00603c12,
     type: 2}
-  possibleCombonations: []
+  possibleCombonations:
+  - effectB: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}
+    resultEffect: {fileID: 11400000, guid: b883bdd3031bc8746b8d6ec7a56a48f8, type: 2}
   effect:
     name: Burning
   effectLifeTime: 5
   tickAmount: 30
   type: {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}
-  totalDamage: 100
+  totalDamage: 35

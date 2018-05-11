@@ -14,7 +14,7 @@ public class UIUnitSelectionStats : UIUnitSelection
     public override void UpdateUI(LivingEntity entity)
     {
 		if(entity == null) return;
-        movementSpeedText.SetText(entity.MovementSpeed.ToString());
+        movementSpeedText.SetText(entity.MovementSpeed.Value.ToString());
 		// TODO 
         damageText.SetText("1");
 		// TODO
