@@ -42,10 +42,11 @@ public class AgentController : MonoBehaviour
 			float distance = Vector3.Distance(transform.position , target);
 			if(distance <= maxStoppingDistanceFromGoal ) 
 			{
-				agent.isStopped = true;
 				if(OnReachedDestination != null)
 					OnReachedDestination();
 			}
+		}else {
+			Debug.Log("Cant go there");
 		}
 	}
 
