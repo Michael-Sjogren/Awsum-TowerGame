@@ -21,7 +21,8 @@ public class Enemy : LivingEntity
     [Header("Effects")]
     [SerializeField]
     public List<StatusEffect> statusEffects;
-    public Dictionary< string , Cooldown > coolDowns;
+    public List<Cooldown> cooldowns;
+    public GameObject coinPrefab;
     private bool reachedGoal = false;
     private int goldDropReward;
 
@@ -31,8 +32,10 @@ public class Enemy : LivingEntity
         UnitData.Initialize(this);
         goldDropReward = (UnitData as EnemyData).dropReward;
         IsAlive = true;
-        statusEffects = new List<StatusEffect>();
-        coolDowns = new Dictionary<string, Cooldown >();
+
+        statusEffects = new List<StatusEffect>(10);
+        cooldowns = new List<Cooldown>(10);
+
         Controller = GetComponent<AgentController>();
         Controller.OnReachedDestination += ReachedGoal;
     }
@@ -65,8 +68,9 @@ public class Enemy : LivingEntity
             newEffectData = absorbedEffect;
         }
 
-        foreach(StatusEffect e in statusEffects) 
+        for (int i = 0; i < statusEffects.Count; i++) 
         {
+            StatusEffect e = statusEffects[i];
             if(e.name == newEffectData.name) 
             {
                 return;
@@ -93,12 +97,15 @@ public class Enemy : LivingEntity
 
     void Update()
     {
-       for (int i = coolDowns.Values.Count - 1; i >= 0 ; i--)
+       if(cooldowns.Count > 0) 
        {
-           KeyValuePair<string , Cooldown> kv = coolDowns.ElementAt(i);
-           if(kv.Value != null)
-            kv.Value.UpdateCooldown(Time.deltaTime);
-       }
+           float deltaTime = Time.deltaTime;
+           for( int i = 0; i < cooldowns.Count; i++)
+           {
+                Cooldown cd = cooldowns[i];
+                cd.UpdateCooldown(deltaTime);
+           }
+       } 
 
        MoveTo(target.position);
     }
@@ -115,31 +122,39 @@ public class Enemy : LivingEntity
         }
     }
 
-    public void RegisterCooldown(string name , Cooldown cooldown)
+    public void RegisterCooldown( Cooldown cooldown)
     {
-        if (coolDowns.ContainsKey(name))
+        if(!CheckIfCooldownExists(cooldown.effectName)) 
         {
-            coolDowns[name] = cooldown;
-        }
-        else
-        {
-            coolDowns.Add( name, cooldown );
+            cooldowns.Add( cooldown );
         }
     }
 
-    private bool IsEffectOnCooldown(string name)
+    private bool IsEffectOnCooldown(string effectName)
     {
-        if(!coolDowns.ContainsKey(name))
+
+        if(CheckIfCooldownExists(effectName))
         {
-            coolDowns.Add( name, null );
-            return false;
+            return true;
         }
         else 
         {
-            return coolDowns[name] != null;
+            return false;
         }
     }
 
+    public bool CheckIfCooldownExists(string effectName)
+    {
+        for(int i = 0; i < cooldowns.Count; i++) 
+        {
+            Cooldown cd = cooldowns[i];
+            if(cd.effectName == effectName) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void OnDisable()
     {
@@ -154,6 +169,10 @@ public class Enemy : LivingEntity
         EnemySpawner.enemies.Remove(this);
         if(!reachedGoal) 
         {
+            for(int i = 0; i < goldDropReward; i++) 
+            {
+                Instantiate( coinPrefab , this.transform.position + Vector3.up * 1.5f , Quaternion.identity );
+            }
             PlayerManager.Instance.player.ReciveMoney(goldDropReward);
         }
         Destroy(this.gameObject);

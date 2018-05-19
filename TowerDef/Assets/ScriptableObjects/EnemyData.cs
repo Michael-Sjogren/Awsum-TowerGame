@@ -16,7 +16,7 @@ public class EnemyData : UnitData
     public override void Initialize(Entity entity)
     {
         base.Initialize(entity);
-        Enemy e = entity as Enemy;
+        var e = entity as LivingEntity;
         e.Health = health;
         e.MaxHealth = health;
         e.MovementSpeed.BaseValue = moveSpeed;

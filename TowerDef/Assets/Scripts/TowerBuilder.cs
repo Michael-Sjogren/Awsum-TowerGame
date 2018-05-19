@@ -78,9 +78,8 @@ public class TowerBuilder : Singleton<TowerBuilder>
         {
             
             Tower createdTower = _visualTower.GetComponent<Tower>();
-
+            createdTower.enabled = false;
             createdTower.Initialize(m_CurrentArea, m_GridPosition);
-            createdTower.enabled = true;
         }
         else 
         {
@@ -201,15 +200,11 @@ public class TowerBuilder : Singleton<TowerBuilder>
             }
      
             isPlacingTower = true;
-            GameManager.instance.DisableCameraRotation();
-            GameManager.instance.isInBuildMode = true;
             Vector3 pos = PlayerManager.Instance.player.GetPlayerCursor();
             GameObject towerObj = (Instantiate(towerPrefab , pos, Quaternion.identity) as GameObject);
-            Debug.Log(option);
             Tower tower = towerObj.GetComponent<Tower>();
             int x = (int)towerObj.GetComponent<Collider>().bounds.size.x;
             int z = (int)towerObj.GetComponent<Collider>().bounds.size.z;
-
             tower.enabled = false;
             towerObj.GetComponent<Tower>().dimensions = new Vector2Int(x , z);
             _visualTower = tower.gameObject;

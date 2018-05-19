@@ -16,11 +16,9 @@ MonoBehaviour:
   buyCost: 20
   sellPrice: 5
   maxLevel: 0
-  towerLevelData:
-  - upgradePrice: 0
-    sellPrice: 0
-    projectile: {fileID: 0}
-    perkPoint: 1
   Damage: 22
   FireRate: 0.6
   Range: 7
+  towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
+  towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
+  towerFireAudioEvent: {fileID: 0}

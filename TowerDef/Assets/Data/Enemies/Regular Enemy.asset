@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Regular Enemy
   unitIcon: {fileID: 0}
-  health: 100
-  moveSpeed: 3
+  health: 65
+  moveSpeed: 1.5
   armor: 2
   magicArmor: 2
   dropReward: 5

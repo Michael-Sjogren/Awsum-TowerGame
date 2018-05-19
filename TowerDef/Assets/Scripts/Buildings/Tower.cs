@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using TowerDefense.Buildings.Placement;
 using UnityEngine;
@@ -11,16 +12,12 @@ public class Tower : Entity {
 		[Header("Tower Attributes")]
 		private float reloadCooldown = 0;
 		private GameObject currentTarget = null;
-
 		public IPlacementArea placementArea { get; private set; }
 
 		/// <summary>
 		/// Gets the grid position for this tower on the <see cref="placementArea"/>
 		/// </summary>
 		public Vector2Int gridPosition { get; private set; }
-		public Projectile projectile;
-		public Transform firePoint;
-		private GameObject stand;
         public Vector2Int dimensions { get; set; }
 		[HideInInspector]
 		public Stat FireRate;
@@ -41,31 +38,30 @@ public class Tower : Entity {
 		[HideInInspector]
 		public Dictionary<int , PerkOption> perksSelected = new Dictionary<int, PerkOption>();
 		public TowerPerkTreeData perkTreeData;
-		public TowerLevel[] levelData;
-		public AudioSource fireProjectileAudioSource;
 		[HideInInspector]
-		public AuidoEvent fireProjectileAudioEvent;
+		public TowerLevel[] levelData;
+		[HideInInspector]
+		private Stopwatch watch = new Stopwatch();
+		public float upgradeTime = 5;
+		public float buildTime = 5;
+
+		// projectile launcher
+		private ILauncher launcher;
+
+		// change naming 
         public override void Initialize()
 		{
 			UnitData.Initialize(this);
-			Transform s = this.transform.Find("Stand");
-			if(s != null)
-				stand = s.gameObject;
 			this.name = data.name;
+			launcher = GetComponent<ILauncher>();
 		}
-
 
         private void Shoot()
 		{
 			bool isInRange = CheckIfInRange( currentTarget.transform.position , transform.position);
 			if(isInRange) 
 			{
-				Projectile p = Instantiate ( projectile , firePoint.transform.position , firePoint.rotation );
-				p.Launch( currentTarget , this );
-
-				if(fireProjectileAudioEvent != null)
-					fireProjectileAudioEvent.Play(fireProjectileAudioSource);
-
+				launcher.Launch( currentTarget );
 				reloadCooldown = 1f / FireRate.Value;
 			}
 			else 
@@ -78,7 +74,7 @@ public class Tower : Entity {
 		{
 			SearchForTarget();
 			if(currentTarget != null) {
-				AimAtTarget();
+				//AimAtTarget();
 				if(reloadCooldown <= 0) 
 				{
 					Shoot();
@@ -96,6 +92,7 @@ public class Tower : Entity {
 		}
 		private void AimAtTarget()
 		{
+			/* 
 			if(stand != null) 
 			{
 				Vector3 dir = currentTarget.transform.position - transform.position;
@@ -103,6 +100,7 @@ public class Tower : Entity {
 				Vector3 rotation = Quaternion.Lerp( stand.transform.rotation , lookRotation , Time.deltaTime ).eulerAngles;
 				stand.transform.rotation = Quaternion.Euler(-90f , rotation.y , 0 );
 			}
+			*/
 		}
 
 		private bool CheckIfInRange(Vector3 a , Vector3 b)
@@ -170,6 +168,7 @@ public class Tower : Entity {
 			Destroy(this.gameObject);
 		}
 
+		// change naming
 		public virtual void Initialize(IPlacementArea targetArea, Vector2Int destination)
         {
 			placementArea = targetArea;
@@ -178,22 +177,55 @@ public class Tower : Entity {
 			{
 				transform.position = placementArea.GridToWorld(destination, dimensions);
 				transform.rotation = placementArea.transform.rotation;
-				Initialize();
+				//Initialize();
 				targetArea.Occupy(destination, dimensions);
+				StartCoroutine(BuildTower());
 			}else {
-				Debug.Log("Target area was null");
+				UnityEngine.Debug.Log("Target area was null");
 			}
 		}
 
+        private IEnumerator BuildTower()
+        {
+            watch.Reset();
+			watch.Start();
+			this.enabled = false;
+			while(watch.Elapsed.TotalSeconds < buildTime )
+			{
+				float fillAmount = (float)watch.Elapsed.TotalSeconds / buildTime;
+				UpdateProgressbar(fillAmount);
+				yield return null;
+			}
+			UnityEngine.Debug.Log("Tower built");
+			Initialize();
+			this.enabled = true;
+        }
 
-		public void AddPerk(PerkOption perk)
+        private void UpdateProgressbar(float fillAmount)
+        {
+            if(fillAmount >= 1) 
+			{
+				// hide the progressbar
+			}
+			else // update the bar
+			{
+				// chekc if progress bar is hidden
+					// show it
+					
+			}
+
+        }
+
+        public void AddPerk(PerkOption perk)
 		{
 			Damage.AddModifer(perk.DamageIncrease);
 			Range.AddModifer(perk.RangeIncrease);
 			FireRate.AddModifer(perk.FireRateIncrease);
+			// give a new launcher instead
 			if(perk.newProjectile != null) 
 			{
-				projectile = perk.newProjectile;
+				// add component / remove
+				//projectile = perk.newProjectile;
 			}
 		}
 		

@@ -92,7 +92,9 @@ GameObject:
   - component: {fileID: 114359889811254598}
   - component: {fileID: 114484425116786042}
   - component: {fileID: 65267387638605418}
+  - component: {fileID: 114091194284707986}
   - component: {fileID: 82874400346933100}
+  - component: {fileID: 208216317735655028}
   m_Layer: 14
   m_Name: Frost Tower
   m_TagString: Tower
@@ -412,11 +414,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359780231959118}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2.625, z: 2}
-  m_Center: {x: 0, y: 1.3125, z: 0}
+  m_Center: {x: 0, y: 1.3, z: 0}
 --- !u!82 &82874400346933100
 AudioSource:
   m_ObjectHideFlags: 1
@@ -427,7 +429,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -13633,6 +13635,21 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114091194284707986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359780231959118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f28cd1e50a7c9e41a1a2feaa5ca789c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireAudioEvent: {fileID: 0}
+  projectilePrefab: {fileID: 1555346860139770, guid: 53d0e4967d3fa9e4dbc7d36c35588776,
+    type: 2}
+  firePoint: {fileID: 1350147536410440}
 --- !u!114 &114359889811254598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13646,9 +13663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114484425116786042}
   data: {fileID: 11400000, guid: 739349b8f6af508469daf6d88923d17e, type: 2}
-  projectile: {fileID: 114914028492495442, guid: 53d0e4967d3fa9e4dbc7d36c35588776,
-    type: 2}
-  firePoint: {fileID: 4860498889723810}
   FireRate:
     BaseValue: 0
   Range:
@@ -13716,8 +13730,8 @@ MonoBehaviour:
       Value: 0.1
       Type: 100
       Order: 0
-  fireProjectileAudioSource: {fileID: 82874400346933100}
-  fireProjectileAudioEvent: {fileID: 0}
+  upgradeTime: 5
+  buildTime: 5
 --- !u!114 &114468184305509226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13749,7 +13763,7 @@ MonoBehaviour:
   circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294960638
 --- !u!114 &114828838956376676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42286,3 +42300,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208216317735655028
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359780231959118}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1.3125, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.3, z: 0}
+  m_TimeToStationary: 0.5

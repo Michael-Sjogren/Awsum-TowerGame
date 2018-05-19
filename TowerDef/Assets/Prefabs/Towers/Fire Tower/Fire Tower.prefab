@@ -108,7 +108,9 @@ GameObject:
   - component: {fileID: 114059590254471068}
   - component: {fileID: 114847508959201670}
   - component: {fileID: 65309585760255710}
+  - component: {fileID: 114533929968980170}
   - component: {fileID: 82701790281600374}
+  - component: {fileID: 208505902547525494}
   m_Layer: 14
   m_Name: Fire Tower
   m_TagString: Tower
@@ -397,11 +399,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586372451974962}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0523825, y: 3.9582667, z: 2.037419}
-  m_Center: {x: 0, y: 1.0311334, z: -0.00000011920929}
+  m_Size: {x: 2, y: 4, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &82701790281600374
 AudioSource:
   m_ObjectHideFlags: 1
@@ -510,9 +512,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114847508959201670}
   data: {fileID: 11400000, guid: 84670476219bc6f4fa7e7be80cbd3395, type: 2}
-  projectile: {fileID: 114914028492495442, guid: f960cd627d64f1742a00cd2901430c42,
-    type: 2}
-  firePoint: {fileID: 4475895863153762}
   FireRate:
     BaseValue: 0
   Range:
@@ -580,8 +579,8 @@ MonoBehaviour:
       Value: 0.2
       Type: 100
       Order: 0
-  fireProjectileAudioSource: {fileID: 82701790281600374}
-  fireProjectileAudioEvent: {fileID: 0}
+  upgradeTime: 5
+  buildTime: 5
 --- !u!114 &114355024433364782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14796,6 +14795,21 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114533929968980170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586372451974962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f28cd1e50a7c9e41a1a2feaa5ca789c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireAudioEvent: {fileID: 11400000, guid: cd8b2370b3a2a504a921e4380efc8692, type: 2}
+  projectilePrefab: {fileID: 1555346860139770, guid: f960cd627d64f1742a00cd2901430c42,
+    type: 2}
+  firePoint: {fileID: 1161050244093152}
 --- !u!114 &114847508959201670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14815,7 +14829,7 @@ MonoBehaviour:
   circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294960638
 --- !u!198 &198238004473762380
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -37751,3 +37765,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208505902547525494
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586372451974962}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 2, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

@@ -73,7 +73,7 @@ public class TimedAttributeEffect : StatusEffect
         system.Stop(true);
 
         Debug.Log("ReapplyCooldown for " + this.name + ".. " + cooldown);
-        enemy.RegisterCooldown( this.name , new Cooldown(reapplyCooldown , this.data.name , enemy ) );
+        enemy.RegisterCooldown( new Cooldown(reapplyCooldown , this.data.name , enemy ) );
         EndEffect();
         yield return null;
     }

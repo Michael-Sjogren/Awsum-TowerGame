@@ -2,6 +2,7 @@
 using UnityEngine;
 using Buildings;
 using System;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Camera))]
 public class UnitSelectionSystem : MonoBehaviour
@@ -40,7 +41,7 @@ public class UnitSelectionSystem : MonoBehaviour
         {
             RaycastHit raycastHit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out raycastHit, 500f, selectablesLayermask))
+            if (Physics.Raycast(ray, out raycastHit, 500f, selectablesLayermask) && !IsOverUI() )
             {
                 LivingEntity entity = raycastHit.transform.GetComponent<LivingEntity>();
                 Tower tower = raycastHit.transform.GetComponent<Tower>();
@@ -67,6 +68,11 @@ public class UnitSelectionSystem : MonoBehaviour
                 buildingSelected = null;
             }
         }
+    }
+
+    private bool IsOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     private void UpdateTowerSelection(Tower tower)

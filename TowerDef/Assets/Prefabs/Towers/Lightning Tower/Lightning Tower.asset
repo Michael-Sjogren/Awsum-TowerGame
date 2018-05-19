@@ -21,4 +21,5 @@ MonoBehaviour:
   Range: 6
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
-  towerFireAudioEvent: {fileID: 0}
+  towerFireAudioEvent: {fileID: 11400000, guid: 34b02a1aca4508e48a382360589513b1,
+    type: 2}

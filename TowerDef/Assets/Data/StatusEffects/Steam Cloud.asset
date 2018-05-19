@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Name: Steam Cloud
   m_EditorClassIdentifier: 
   name: Steam Cloud
-  reapplyCooldown: 0
+  reapplyCooldown: 1
   elementType: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
+  oppositeType: {fileID: 0}
   particleEffectPrefab: {fileID: 198839032662198346, guid: 0a63407c1ad02d943ab0bc639c104152,
     type: 2}
-  possibleCombonations: []
+  applySoundEffect: {fileID: 11400000, guid: 827ac7b56522f0243be81cfe6d8081a9, type: 2}
   effect:
-    name: 
+    name: Steam Cloud
+    elementType: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
+    oppositeType: {fileID: 0}
   effectLifeTime: 5
   tickAmount: 9
-  type: {fileID: 11400000, guid: 69702c9c14bde5b44a81302ffedd835f, type: 2}
   totalDamage: 5

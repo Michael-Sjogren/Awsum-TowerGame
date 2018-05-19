@@ -18,6 +18,8 @@ namespace Assets.ScriptableObjects.StatusEffectData {
 
         [Tooltip("Particle effect prefab")]
         public ParticleSystem particleEffectPrefab;
+        [Tooltip("Sound effect to play when the effect is applied")]
+        public AuidoEvent applySoundEffect;
 
         [HideInInspector]
         public StatusEffect effect = null;

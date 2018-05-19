@@ -17,7 +17,6 @@ public class TowerData : UnitData
 	[Header("Level Data")]
 	public TowerLevelData towerLevelData;
 	public TowerPerkTreeData towerPerkTreeData;
-	public AuidoEvent towerFireAudioEvent;
 	public override void Initialize(Entity entity)
 	{
 		Tower tower = entity as Tower;
@@ -32,8 +31,6 @@ public class TowerData : UnitData
 		tower.sellPrice = sellPrice;
 		tower.selectionCiricle.radius = Range;
 
-		tower.fireProjectileAudioEvent = towerFireAudioEvent;
 		tower.selectionCiricle.UpdateCircle();
-		tower.selectionCiricle.EnableCiricle();
 	}
 }
