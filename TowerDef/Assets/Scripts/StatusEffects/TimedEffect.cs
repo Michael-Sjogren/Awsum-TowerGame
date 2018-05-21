@@ -7,7 +7,7 @@ using Effects;
 using UnityEngine;
 
 namespace Effects {
-    public abstract class TimedEffect : StatusEffect
+    public abstract class TimedEffect : Debuff
     {
         protected float effectLifeTime;
         protected float timeTickGap;

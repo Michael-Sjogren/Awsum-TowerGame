@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.ScriptableObjects.StatusEffectData
 {
     [CreateAssetMenu(menuName="StatusEffects/Timed Effects/New Attribute effect")]
-    public class TimedAttributeEffectData : StatusEffectData 
+    public class TimedAttributeEffectData : DebuffData 
     {
         public AttributeEnum attributeEnum;
         public float Amount;
@@ -28,5 +28,9 @@ public enum AttributeEnum
         Health,
         MovementSpeed,
         Armor,
-        MagicArmor
+        LightningResistance,
+        EarthResitance,
+        FrostResistance,
+        WaterResistance,
+        FireResistance
 }

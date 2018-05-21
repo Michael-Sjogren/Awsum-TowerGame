@@ -6,5 +6,5 @@ public class ProjectileData : ScriptableObject {
     public float speed;
     public ParticleSystem projectileEffect;
     public ParticleSystem projectileHitEffect;
-    public StatusEffectData effectData;
+    public DebuffData debuffData;
 }

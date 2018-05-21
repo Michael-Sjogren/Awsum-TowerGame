@@ -15,6 +15,4 @@ MonoBehaviour:
   projectileEffect: {fileID: 198917885394116816, guid: 0768e6f6b3300c143a9ab03b219dc2eb,
     type: 2}
   projectileHitEffect: {fileID: 0}
-  launchProjectileAudio: {fileID: 11400000, guid: cd8b2370b3a2a504a921e4380efc8692,
-    type: 2}
-  effectData: {fileID: 11400000, guid: f5b20bbc4d7775c4faa947b091b81016, type: 2}
+  debuffData: {fileID: 11400000, guid: f5b20bbc4d7775c4faa947b091b81016, type: 2}

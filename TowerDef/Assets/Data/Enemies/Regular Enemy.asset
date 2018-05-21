@@ -13,10 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Regular Enemy
   unitIcon: {fileID: 0}
+  dropReward: 5
   health: 65
   moveSpeed: 1.5
   armor: 2
-  magicArmor: 2
-  dropReward: 5
-  weaknesses:
-  - {fileID: 11400000, guid: f75f51ce8b7753f408ec1d8cfbe84aa3, type: 2}
+  fireResistance: 100
+  waterResistance: 100
+  lightningResistance: 100
+  frostResistance: 100
+  earthResitance: 100

@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a049a451afa2844ea123d38678e8412, type: 3}
   m_Name: Water Projectile
   m_EditorClassIdentifier: 
-  damage: 1
   speed: 12
   projectileEffect: {fileID: 198352569433953984, guid: bc317a31f39f7664d8c385658f5d9e09,
     type: 2}
-  effectData: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}
+  projectileHitEffect: {fileID: 0}
+  debuffData: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}

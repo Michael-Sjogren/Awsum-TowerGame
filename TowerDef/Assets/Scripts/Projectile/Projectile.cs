@@ -54,9 +54,9 @@ public class Projectile : MonoBehaviour
             {
                 Enemy enemy = target.GetComponent<Enemy>();
                 enemy.TakeDamage(damage);
-                if(projectileData.effectData != null) 
+                if(projectileData.debuffData != null) 
                 {
-                    enemy.AddEffect(projectileData.effectData);
+                    enemy.AddDebuff(projectileData.debuffData);
                 }
                 projectileEffect.Stop(true , ParticleSystemStopBehavior.StopEmittingAndClear );
             }

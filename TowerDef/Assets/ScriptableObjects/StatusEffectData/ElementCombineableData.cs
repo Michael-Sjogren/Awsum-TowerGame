@@ -1,4 +1,5 @@
 using Assets.ScriptableObjects.StatusEffectData;
+using Effects;
 using ScriptableObjects.Enums;
 using UnityEngine;
 
@@ -21,5 +22,5 @@ public class OppositeGroup
 {
     public string name = "Opposite Element";
     public ElementType oppositeElement;
-    public StatusEffectData resultingEffect;
+    public DebuffData resultingEffect;
 }

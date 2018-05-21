@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class TimedAttributeEffect : StatusEffect
+public class TimedAttributeEffect : Debuff
 {
     protected float Value;
     protected AttributeEnum attriEnum;
@@ -35,45 +35,15 @@ public class TimedAttributeEffect : StatusEffect
     public IEnumerator ApplyAttributeEffect()
     {
         var modifer = new StatModifer(Value , type ,this);
-        switch(attriEnum) 
-        {
-            case AttributeEnum.MovementSpeed:
-                enemy.MovementSpeed.AddModifer(modifer);
-            break;
-            case AttributeEnum.MagicArmor:
-                //enemy.MovementSpeed.AddModifer(modifer);
-            break;
-            case AttributeEnum.Armor:
 
-            break;
-            case AttributeEnum.Health:
-             
-            break;
-            default: break;
-        }
-        enemy.UpdateStats();
+        enemy.AddStatModifer(modifer , attriEnum);
         yield return new WaitForSeconds(duration);
-        switch(attriEnum) 
-        {
-            case AttributeEnum.MovementSpeed:
-                enemy.MovementSpeed.RemoveModifer(modifer);
-            break;
-            case AttributeEnum.MagicArmor:
-                //enemy.MovementSpeed.AddModifer(modifer);
-            break;
-            case AttributeEnum.Armor:
-
-            break;
-            case AttributeEnum.Health:
-                
-            break;
-        }
-        enemy.UpdateStats();
+        enemy.RemoveStatModifer(modifer , attriEnum);
 
         system.Stop(true);
 
         Debug.Log("ReapplyCooldown for " + this.name + ".. " + cooldown);
-        enemy.RegisterCooldown( new Cooldown(reapplyCooldown , this.data.name , enemy ) );
+        enemy.RegisterDebuffCooldown( new Cooldown(reapplyCooldown , this.data.name , enemy ) );
         EndEffect();
         yield return null;
     }

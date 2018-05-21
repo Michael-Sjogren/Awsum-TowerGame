@@ -30,10 +30,10 @@ public class RadialMenuItem : MonoBehaviour
         float fillAmount = image.fillAmount * 360f;
         float degrees = (fillAmount / 2f) - (fillAmount - 90f);  
         float angle = ( degrees ) * Mathf.Deg2Rad;
-        float radius = MenuManager.Instance.radius;
+        float radius = MenuManager.instance.radius;
 
-        float x = Mathf.Cos(angle) * radius - MenuManager.Instance.iconOffsetDistance;
-        float y = Mathf.Sin(angle) * radius - MenuManager.Instance.iconOffsetDistance;
+        float x = Mathf.Cos(angle) * radius - MenuManager.instance.iconOffsetDistance;
+        float y = Mathf.Sin(angle) * radius - MenuManager.instance.iconOffsetDistance;
 
         icon.transform.localPosition = new Vector3( x , y ,0f);
         icon.transform.rotation = Quaternion.identity;
@@ -41,7 +41,7 @@ public class RadialMenuItem : MonoBehaviour
     public void DoAction()
     {
         // do action or go to another nested menu
-        MenuManager.Instance.PickMenuItem(option);
+        MenuManager.instance.PickMenuItem(option);
         SetToNormalColor();
     }
 

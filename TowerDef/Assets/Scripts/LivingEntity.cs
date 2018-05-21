@@ -16,6 +16,8 @@ public abstract class LivingEntity : Entity , IDamagable  , IMoveable
     public AgentController Controller {get;set;}
     [HideInInspector]
     public Stat MovementSpeed;
+
+    
     public virtual IEnumerator Die(float delay)
     {
        yield return new WaitForSeconds(delay);

@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+public class LevelManager : Singleton<LevelManager> 
+{
+	[HideInInspector]
+	public float percentage = 0;
+	public void ChangeLevel(string name)
+	{
+		percentage = 0;
+		AsyncOperation operation = SceneManager.LoadSceneAsync(name);
+		percentage = operation.progress;
 	}
 }

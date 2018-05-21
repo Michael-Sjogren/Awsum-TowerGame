@@ -5,20 +5,8 @@ using UnityEngine;
 using UserInput;
 using DG.Tweening;
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : Singleton<MenuManager>
 {
-	public static MenuManager Instance { get; private set; }
-
-    public void Awake()
-	{
-		if(Instance == null)
-		{
-			Instance = this;
-		}else 
-		{
-			Destroy(gameObject);
-		}
-	}
 
     public GameObject radialMenu;
     public float radius = 0f;
