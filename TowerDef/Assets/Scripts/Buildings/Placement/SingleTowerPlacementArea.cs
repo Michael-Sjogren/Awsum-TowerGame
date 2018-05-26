@@ -17,7 +17,7 @@ namespace TowerDefense.Buildings.Placement
         /// <summary>
         /// Visualisation prefab to instantiate on mobile platforms
         /// </summary>
-        public PlacementTile placementTilePrefabMobile;
+        //public PlacementTile placementTilePrefabMobile;
 
         /// <summary>
         /// <see cref="PlacementTile"/> we've spawned on our spot
@@ -35,11 +35,7 @@ namespace TowerDefense.Buildings.Placement
         protected void Awake()
         {
             PlacementTile tileToUse;
-#if UNITY_STANDALONE
             tileToUse = placementTilePrefab;
-#else
-			tileToUse = placementTilePrefabMobile;
-#endif
 
             if (tileToUse != null)
             {
@@ -77,6 +73,11 @@ namespace TowerDefense.Buildings.Placement
         public TowerFitStatus Fits(Vector2Int gridPos, Vector2Int size)
         {
             return m_IsOccupied ? TowerFitStatus.Overlaps : TowerFitStatus.Fits;
+        }
+
+        public bool IsOccupied()
+        {
+            return m_IsOccupied;
         }
 
         /// <summary>
@@ -120,8 +121,8 @@ namespace TowerDefense.Buildings.Placement
 
             Matrix4x4 originalMatrix = Gizmos.matrix;
             Gizmos.matrix = transform.localToWorldMatrix;
-            Vector3 size = new Vector3(2 , 0f , 2);
-            Gizmos.DrawWireCube( Vector3.zero , size);
+            Vector3 size = new Vector3(2.4f , 0f , 2.4f);
+            Gizmos.DrawWireSphere( Vector3.zero , size.x / 2 );
 
             Gizmos.matrix = originalMatrix;
             Gizmos.color = prevCol;

@@ -37,7 +37,7 @@ public class UnitSelectionSystem : MonoBehaviour
     {
         
         IsDead(entitySelected);
-        if (UnityEngine.Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             RaycastHit raycastHit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -56,7 +56,7 @@ public class UnitSelectionSystem : MonoBehaviour
 
             }
         }
-        else if (UnityEngine.Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
             //entitySelected.UpdateSelectionCiricle(false);
             //entitySelected = null;

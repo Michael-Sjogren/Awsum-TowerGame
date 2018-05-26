@@ -15,4 +15,4 @@ MonoBehaviour:
   projectileEffect: {fileID: 198491445716000840, guid: 7b44e69e5808a804981e1aa5c03af315,
     type: 2}
   projectileHitEffect: {fileID: 0}
-  debuffData: {fileID: 11400000, guid: c98816fe971f8e749b3ed387aed365e9, type: 2}
+  effectData: {fileID: 11400000, guid: c98816fe971f8e749b3ed387aed365e9, type: 2}

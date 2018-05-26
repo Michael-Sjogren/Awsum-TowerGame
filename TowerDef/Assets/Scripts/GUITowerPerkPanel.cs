@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Buildings;
 using UnityEngine;
 
-public class GUITowerPerkPanel : GUITowerSelectPanel 
+public abstract class GUITowerPerkPanel : GUITowerSelectPanel 
 {
+    /*
 	public GUITowerPerkLevel perkOptionGuiPrefab;
 	private List<GUITowerPerkLevel> perks = new List<GUITowerPerkLevel>(5);
 	private Tower currentTower;
@@ -13,7 +14,6 @@ public class GUITowerPerkPanel : GUITowerSelectPanel
 		currentTower = tower;
 		if(tower != null) 
 		{
-			if(currentTower.perkTreeData == null) tower.Initialize();
 			int length = currentTower.perkTreeData.perkLevels.Length;
 			for (int i = length -1; i >= 0 ; i--)
 			{
@@ -61,4 +61,5 @@ public class GUITowerPerkPanel : GUITowerSelectPanel
 			}
 		}
 	}
+    */
 }

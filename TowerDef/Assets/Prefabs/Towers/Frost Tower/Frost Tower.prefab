@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4188583252960880}
   - component: {fileID: 198741926656451176}
   - component: {fileID: 199256970612171882}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Fire_ADD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 23867152368190492}
   - component: {fileID: 33446163540305804}
   - component: {fileID: 114854644710131272}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Goblet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4985366344615224}
   - component: {fileID: 198656082572404560}
   - component: {fileID: 199315601213712182}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Fire_ALPHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4860498889723810}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 114091194284707986}
   - component: {fileID: 82874400346933100}
   - component: {fileID: 208216317735655028}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Frost Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4918052694302114}
   - component: {fileID: 198691309223648540}
   - component: {fileID: 199769359609062736}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Frozen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4812349123874456}
   - component: {fileID: 198173438919454712}
   - component: {fileID: 199895759668719526}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 114828838956376676}
   - component: {fileID: 64933299404618468}
   - component: {fileID: 114468184305509226}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13665,14 +13665,18 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 739349b8f6af508469daf6d88923d17e, type: 2}
   FireRate:
     BaseValue: 0
+    value: 0
   Range:
     BaseValue: 0
+    value: 0
   Damage:
     BaseValue: 0
+    value: 0
   buyCost: 0
   sellPrice: 0
   maxLevel: 0
   perkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
+  hasPickedPerk: 0
   levelData:
   - name: Level1
     upgradePrice: 25
@@ -13732,6 +13736,9 @@ MonoBehaviour:
       Order: 0
   upgradeTime: 5
   buildTime: 5
+  progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
+    type: 2}
+  distanceAboveTower: 5
 --- !u!114 &114468184305509226
 MonoBehaviour:
   m_ObjectHideFlags: 1

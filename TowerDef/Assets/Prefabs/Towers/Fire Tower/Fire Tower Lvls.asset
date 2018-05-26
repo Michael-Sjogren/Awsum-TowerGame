@@ -13,142 +13,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelData:
   - name: Level1
-    upgradePrice: 0
+    upgradePrice: 29
     RangeIncrease:
       Value: 0.5
       Type: 100
-      Order: 0
+      Order: 100
     DamageIncrease:
       Value: 2
       Type: 100
-      Order: 0
+      Order: 100
     FireRateIncrease:
       Value: 0.1
       Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
+      Order: 100
+  - name: Level2
+    upgradePrice: 50
     RangeIncrease:
       Value: 0.5
       Type: 100
-      Order: 0
+      Order: 100
     DamageIncrease:
       Value: 2
       Type: 100
-      Order: 0
+      Order: 100
     FireRateIncrease:
       Value: 0.1
       Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
+      Order: 100
+  - name: Level3
+    upgradePrice: 78
+    RangeIncrease:
+      Value: 0.15
+      Type: 100
+      Order: 100
+    DamageIncrease:
+      Value: 2
+      Type: 100
+      Order: 100
+    FireRateIncrease:
+      Value: 0.1
+      Type: 100
+      Order: 100
+  - name: Level4
+    upgradePrice: 120
     RangeIncrease:
       Value: 0.5
       Type: 100
-      Order: 0
+      Order: 100
     DamageIncrease:
       Value: 2
       Type: 100
-      Order: 0
+      Order: 100
     FireRateIncrease:
       Value: 0.1
       Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
+      Order: 100
+  - name: Level5
+    upgradePrice: 145
     RangeIncrease:
-      Value: 0.5
+      Value: 0.1
       Type: 100
-      Order: 0
+      Order: 100
     DamageIncrease:
       Value: 2
       Type: 100
-      Order: 0
+      Order: 100
     FireRateIncrease:
       Value: 0.1
       Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
-  - name: Level1
-    upgradePrice: 0
-    RangeIncrease:
-      Value: 0.5
-      Type: 100
-      Order: 0
-    DamageIncrease:
-      Value: 2
-      Type: 100
-      Order: 0
-    FireRateIncrease:
-      Value: 0.1
-      Type: 100
-      Order: 0
+      Order: 100

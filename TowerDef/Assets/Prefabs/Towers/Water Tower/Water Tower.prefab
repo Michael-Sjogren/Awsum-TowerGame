@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33363521134696188}
   - component: {fileID: 114915086504248710}
   - component: {fileID: 64563112636940544}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33061111632374988}
   - component: {fileID: 114031279518588710}
   - component: {fileID: 64969691452815716}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4603460776894302}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4502841316996640}
   - component: {fileID: 198644219401527216}
   - component: {fileID: 199750550008815802}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Steam_ADD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4011949311861230}
   - component: {fileID: 198114766680453260}
   - component: {fileID: 199556696432936716}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Steam_ALPHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 82087955321955264}
   - component: {fileID: 65926937008580568}
   - component: {fileID: 208481895934024582}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Water Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4717956795216682}
   - component: {fileID: 198357908685351694}
   - component: {fileID: 199589134025628400}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4489249508176138}
   - component: {fileID: 198142745763149334}
   - component: {fileID: 199000600754722768}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3667,10 +3667,13 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 7210c00295626214aa6de8c9143f7fbe, type: 2}
   FireRate:
     BaseValue: 0
+    value: 0
   Range:
     BaseValue: 0
+    value: 0
   Damage:
     BaseValue: 0
+    value: 0
   buyCost: 0
   sellPrice: 0
   maxLevel: 0
@@ -3678,6 +3681,9 @@ MonoBehaviour:
   levelData: []
   upgradeTime: 5
   buildTime: 5
+  progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
+    type: 2}
+  distanceAboveTower: 6
 --- !u!114 &114802953203292264
 MonoBehaviour:
   m_ObjectHideFlags: 1

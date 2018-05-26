@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ScriptableObjects.Enums;
+using UnityEngine;
 
 [System.Serializable]
 public class Stat
@@ -21,7 +22,10 @@ public class Stat
         }
     }
     private bool isDirty = true;
+
+    [SerializeField]
     private float value;
+
     private float lastBaseValue = float.MinValue;
 
     private readonly List<StatModifer> statModifers = new List<StatModifer>();

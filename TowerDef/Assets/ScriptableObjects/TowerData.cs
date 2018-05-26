@@ -8,6 +8,8 @@ public class TowerData : UnitData
 {
 	public int buyCost; 
 	public int sellPrice;
+    [TextArea]
+    public string towerDescription;
 	[HideInInspector]
 	public int maxLevel; 
 	[Header("Tower Stats")]
@@ -17,7 +19,8 @@ public class TowerData : UnitData
 	[Header("Level Data")]
 	public TowerLevelData towerLevelData;
 	public TowerPerkTreeData towerPerkTreeData;
-	public override void Initialize(Entity entity)
+
+    public override void Initialize(Entity entity)
 	{
 		Tower tower = entity as Tower;
 		tower.maxLevel = towerLevelData.levelData.Length;
@@ -29,8 +32,7 @@ public class TowerData : UnitData
 
 		tower.buyCost = buyCost;
 		tower.sellPrice = sellPrice;
-		tower.selectionCiricle.radius = Range;
-
+		tower.selectionCiricle.Radius = Range;
 		tower.selectionCiricle.UpdateCircle();
 	}
 }

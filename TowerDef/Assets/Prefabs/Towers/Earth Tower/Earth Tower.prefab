@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4533333071856444}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 65339740304698224}
   - component: {fileID: 82095306955870734}
   - component: {fileID: 208787520940883590}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Earth Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 33146258381732732}
   - component: {fileID: 114629077872644430}
   - component: {fileID: 64518120769838820}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,10 +285,13 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 30696993754dca34abaa72e8dafe06e5, type: 2}
   FireRate:
     BaseValue: 0
+    value: 0
   Range:
     BaseValue: 0
+    value: 0
   Damage:
     BaseValue: 0
+    value: 0
   buyCost: 0
   sellPrice: 0
   maxLevel: 0
@@ -296,6 +299,9 @@ MonoBehaviour:
   levelData: []
   upgradeTime: 5
   buildTime: 5
+  progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
+    type: 2}
+  distanceAboveTower: 3.5
 --- !u!114 &114441431962398768
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Water Tower
   unitIcon: {fileID: 0}
-  buyCost: 12
+  buyCost: 2
   sellPrice: 2
+  towerDescription: Fires water at the enemy making them wet
   maxLevel: 0
   Damage: 8
   FireRate: 1.2
   Range: 9
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
-  towerFireAudioEvent: {fileID: 0}

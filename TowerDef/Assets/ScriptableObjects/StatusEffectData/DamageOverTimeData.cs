@@ -8,7 +8,7 @@ namespace Assets.ScriptableObjects.StatusEffectData {
         [Header("Damage Settings")] 
         public float totalDamage;
 
-        public override void Initialize(Enemy e)
+        public override void Initialize(LivingEntity e)
         {
             effect = new DamageOverTimeEffect( this , e );
         }

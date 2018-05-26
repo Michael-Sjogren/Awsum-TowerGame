@@ -16,7 +16,9 @@ public class TimedAttributeEffect : Debuff
     protected bool isPersistent;
     protected float cooldown;
     protected StatModType type;
-    public TimedAttributeEffect(TimedAttributeEffectData data, Enemy e) : base(data, e)
+    private Coroutine routine;
+
+    public TimedAttributeEffect(TimedAttributeEffectData data, LivingEntity e) : base(data, e)
     {
         attriEnum = data.attributeEnum;
         Value = data.Amount;
@@ -24,26 +26,23 @@ public class TimedAttributeEffect : Debuff
         duration = data.duration;
         cooldown = data.reapplyCooldown;
         type = data.type;
+        entity = e;
     }
 
     public override void BeginEffect()
     {
-        base.BeginEffect();
-        routine = enemy.StartCoroutine(ApplyAttributeEffect());
+        routine = entity.StartCoroutine(ApplyAttributeEffect());
     }
     
     public IEnumerator ApplyAttributeEffect()
     {
         var modifer = new StatModifer(Value , type ,this);
 
-        enemy.AddStatModifer(modifer , attriEnum);
+        entity.AddStatModifer(modifer , attriEnum);
         yield return new WaitForSeconds(duration);
-        enemy.RemoveStatModifer(modifer , attriEnum);
-
-        system.Stop(true);
-
-        Debug.Log("ReapplyCooldown for " + this.name + ".. " + cooldown);
-        enemy.RegisterDebuffCooldown( new Cooldown(reapplyCooldown , this.data.name , enemy ) );
+        entity.RemoveStatModifer(modifer , attriEnum);
+        StopParticleEffect(ParticleSystemStopBehavior.StopEmitting);
+        entity.RegisterDebuffCooldown( new Cooldown(reapplyCooldown , data.name) );
         EndEffect();
         yield return null;
     }

@@ -22,5 +22,5 @@ public class OppositeGroup
 {
     public string name = "Opposite Element";
     public ElementType oppositeElement;
-    public DebuffData resultingEffect;
+    public StatusEffectData resultingEffect;
 }

@@ -16,7 +16,7 @@ namespace Assets.ScriptableObjects.StatusEffectData
         public StatModType type;
         [Tooltip("If ticked true , this effect will last as long as the enemy is alive")]
         public bool isPersistent;
-        public override void Initialize(Enemy e)
+        public override void Initialize(LivingEntity e)
         {
             effect = new TimedAttributeEffect(this , e);
         }

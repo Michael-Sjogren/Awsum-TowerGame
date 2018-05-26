@@ -1,29 +1,59 @@
 
 using System;
+using System.Collections;
+using System.Diagnostics;
 using Assets.ScriptableObjects.StatusEffectData;
 using Effects;
-public class DamageOverTimeEffect : TimedEffect
+using UnityEngine;
+
+public class DamageOverTimeEffect : StatusEffect , ITimedEffect
 {
     private float damage;
-    public DamageOverTimeEffect(DamageOverTimeData data , Enemy e) : base(data, e)
+    private int ticks;
+    private float tickTimeGap;
+
+    public float EffectLifeTime {get;set;}
+
+    public Stopwatch Timer {get;set;}
+
+    public DamageOverTimeEffect(DamageOverTimeData data , LivingEntity  e) : base(data, e)
     {
-       damage = data.totalDamage;
+        damage = data.totalDamage;
+        ticks = data.tickAmount;
+        EffectLifeTime = data.effectLifeTime;
+        tickTimeGap = EffectLifeTime / ticks;
+        Timer = new Stopwatch();
     }
+
 
     public override void BeginEffect()
     {
-        base.BeginEffect();
+        PlayParticleEffect();
+        coroutine = entity.StartCoroutine(DoEffectOverTime());
     }
 
-    public override void DoEffect()
+    public void DoDamage()
     {
-       float value = damage / (effectLifeTime / timeTickGap);
-       enemy.TakeDamage(value);
+        float value = (damage / ticks );
+        entity.TakeDamage(value);
     }
 
     public override void EndEffect()
     {
-        system.Stop(true);
+        StopParticleEffect();
         base.EndEffect();
+    }
+
+
+    public IEnumerator DoEffectOverTime()
+    {
+        Timer.Start();
+        while (Timer.Elapsed.Seconds <= EffectLifeTime )
+        {
+            DoDamage();
+            yield return new WaitForSeconds(tickTimeGap);
+        }
+        EndEffect();
+        yield return null;
     }
 }

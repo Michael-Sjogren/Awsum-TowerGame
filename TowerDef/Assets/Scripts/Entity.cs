@@ -15,13 +15,8 @@ public abstract class Entity : MonoBehaviour , IUnit
 
     public virtual void Start()
     {
-        Initialize();
-    }
-    public virtual void Initialize()
-    {
         UnitData.Initialize(this);
     }
-
     public virtual void UpdateSelectionCiricle(bool isSelected)
     {
         IsSelected = isSelected;

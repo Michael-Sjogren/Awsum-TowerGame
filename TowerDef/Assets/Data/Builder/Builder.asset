@@ -15,7 +15,9 @@ MonoBehaviour:
   unitIcon: {fileID: 0}
   health: 100
   moveSpeed: 5
-  armor: 5
-  magicArmor: 5
-  dropReward: 0
-  weaknesses: []
+  armor: 20
+  fireResistance: 100
+  waterResistance: 100
+  lightningResistance: 100
+  frostResistance: 100
+  earthResitance: 100

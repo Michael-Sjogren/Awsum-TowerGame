@@ -120,7 +120,7 @@ public class MenuManager : Singleton<MenuManager>
     }
     public void PickMenuItem(MenuOption option)
     {
-        TowerBuilder.instance.StartTowerPlacing(option); 
+        //TowerBuilder.instance.StartTowerPlacing(option); 
     }
 
     public void HideMenu()

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GUITowerPerkLevel : MonoBehaviour
 {
+    /*
 	[HideInInspector]
 	public int requierdTowerLevel = 0;
 	[HideInInspector]
@@ -61,7 +62,6 @@ public class GUITowerPerkLevel : MonoBehaviour
 		currentTower = tower;
 		if(currentTower != null) 
 		{
-			if(currentTower.perkTreeData == null) currentTower.Initialize();
 			if(currentTower.perkTreeData.perkLevels == null) return;
 			if(currentTower.perkTreeData.perkLevels.Length <= 0) return;
 			if(perkIndex >= currentTower.perkTreeData.perkLevels.Length) return;
@@ -149,4 +149,5 @@ public class GUITowerPerkLevel : MonoBehaviour
 	{
 		b.interactable = false;
 	}	
+    */
 }

@@ -5,20 +5,19 @@ using System.Diagnostics;
 using TMPro;
 using TowerDefense.Buildings.Placement;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Buildings {
 public class Tower : Entity {
 		
 		[Header("Tower Attributes")]
-		private float reloadCooldown = 0;
 		private GameObject currentTarget = null;
 		public IPlacementArea placementArea { get; private set; }
-
-		/// <summary>
-		/// Gets the grid position for this tower on the <see cref="placementArea"/>
-		/// </summary>
+		/// Gets the grid position for this tower on the 
 		public Vector2Int gridPosition { get; private set; }
         public Vector2Int dimensions { get; set; }
+
+		private float reloadCooldown = 0;
 		[HideInInspector]
 		public Stat FireRate;
 		[HideInInspector]
@@ -29,32 +28,47 @@ public class Tower : Entity {
 		public int buyCost;
 		[HideInInspector]
         public int sellPrice;
+
 		[HideInInspector]
         public int maxLevel;
 		[HideInInspector]
 		private int level = 1;
 		[HideInInspector]
 		public int Level {get {return level;} private set { level = value;}}
-		[HideInInspector]
-		public Dictionary<int , PerkOption> perksSelected = new Dictionary<int, PerkOption>();
+
 		public TowerPerkTreeData perkTreeData;
+        public bool hasPickedPerk = false;
 		[HideInInspector]
 		public TowerLevel[] levelData;
-		[HideInInspector]
+
 		private Stopwatch watch = new Stopwatch();
-		public float upgradeTime = 5;
+
+		public float upgradeTime = 2;
 		public float buildTime = 5;
 
-		// projectile launcher
 		private ILauncher launcher;
 
-		// change naming 
-        public override void Initialize()
+        [Header("Progress bar stuff")]
+
+        [SerializeField]
+        private GameObject progressbarPrefab;
+
+        [SerializeField]
+        private float distanceAboveTower = 2f;
+        private HUDTowerProgressBar progressBar;
+
+        public delegate void TowerChanged();
+        public event TowerChanged OnTowerChanged = delegate {};
+
+        private UnitSelectionCircle selectionCircle;
+
+        public override void Start()
 		{
-			UnitData.Initialize(this);
-			this.name = data.name;
+			base.Start();
+			name = data.name;
 			launcher = GetComponent<ILauncher>();
-		}
+            selectionCircle = GetComponent<UnitSelectionCircle>();
+        }
 
         private void Shoot()
 		{
@@ -113,7 +127,23 @@ public class Tower : Entity {
 			return false;
 		}
 
-		public GameObject GetClosestEnemy()
+        public PerkLevel GetPerkOptionsForCurrentLevel()
+        {
+            int length = perkTreeData.perkLevels.Length;
+            PerkLevel perkLevel = null;
+            for ( int i = 0; i < length; i++ )
+            {
+                var level = perkTreeData.perkLevels[i];
+                if(level.unlockLevel == Level)
+                {
+                    return level;
+                }
+            }
+            hasPickedPerk = true;
+            return perkLevel;
+        }
+
+        public GameObject GetClosestEnemy()
 		{
 			GameObject closestEnemy = null;
 			float minDist = Range.Value;
@@ -144,16 +174,25 @@ public class Tower : Entity {
 					TowerLevel data = levelData[level-1];
 					level++;
 					player.BuyItem(GetUpgradePrice());
-
 					Range.AddModifer(data.RangeIncrease);
 					Damage.AddModifer(data.DamageIncrease);
 					FireRate.AddModifer(data.FireRateIncrease);
-					OnStatChanged();
-				}
+                    hasPickedPerk = false;
+                    OnTowerChanged();
+                    UpdateSelectionCircleRadius();
+                }
 			}
 		}
+        public TowerLevel GetUpgradeData()
+        {
+            if (level - 1 >= levelData.Length)
+            {
+                return null;
+            }
 
-        private int GetUpgradePrice()
+            return levelData[level - 1];
+        }
+        public int GetUpgradePrice()
         {	
 			int upgradePrice = 0;
 			upgradePrice = levelData[level -1].upgradePrice;
@@ -168,7 +207,6 @@ public class Tower : Entity {
 			Destroy(this.gameObject);
 		}
 
-		// change naming
 		public virtual void Initialize(IPlacementArea targetArea, Vector2Int destination)
         {
 			placementArea = targetArea;
@@ -177,11 +215,14 @@ public class Tower : Entity {
 			{
 				transform.position = placementArea.GridToWorld(destination, dimensions);
 				transform.rotation = placementArea.transform.rotation;
-				//Initialize();
+
 				targetArea.Occupy(destination, dimensions);
-				StartCoroutine(BuildTower());
-			}else {
-				UnityEngine.Debug.Log("Target area was null");
+
+                var obj = Instantiate(progressbarPrefab, this.transform);
+                obj.transform.localPosition = new Vector3(0, distanceAboveTower, 0);
+                progressBar = obj.GetComponent<HUDTowerProgressBar>();
+
+                StartCoroutine(BuildTower());
 			}
 		}
 
@@ -189,31 +230,16 @@ public class Tower : Entity {
         {
             watch.Reset();
 			watch.Start();
-			this.enabled = false;
+			enabled = false;
+            progressBar.ShowProgressBar();
 			while(watch.Elapsed.TotalSeconds < buildTime )
 			{
 				float fillAmount = (float)watch.Elapsed.TotalSeconds / buildTime;
-				UpdateProgressbar(fillAmount);
-				yield return null;
+                progressBar.SetFillAmount(fillAmount);
+                yield return null;
 			}
-			UnityEngine.Debug.Log("Tower built");
-			Initialize();
-			this.enabled = true;
-        }
-
-        private void UpdateProgressbar(float fillAmount)
-        {
-            if(fillAmount >= 1) 
-			{
-				// hide the progressbar
-			}
-			else // update the bar
-			{
-				// chekc if progress bar is hidden
-					// show it
-					
-			}
-
+            progressBar.HideProgressBar();
+            this.enabled = true;
         }
 
         public void AddPerk(PerkOption perk)
@@ -221,13 +247,27 @@ public class Tower : Entity {
 			Damage.AddModifer(perk.DamageIncrease);
 			Range.AddModifer(perk.RangeIncrease);
 			FireRate.AddModifer(perk.FireRateIncrease);
-			// give a new launcher instead
-			if(perk.newProjectile != null) 
+            UpdateSelectionCircleRadius();
+            // give a new launcher instead
+            if (perk.newProjectile != null) 
 			{
 				// add component / remove
 				//projectile = perk.newProjectile;
 			}
-		}
+            OnTowerChanged();
+        }
+
+        public void UpdateSelectionCircleRadius(float range = -1)
+        {
+            if(range <= 0)
+            {
+                selectionCircle.Radius = Range.Value;
+            }
+            else
+            {
+                selectionCircle.Radius = range;
+            }
+        }
 		
     }
 }

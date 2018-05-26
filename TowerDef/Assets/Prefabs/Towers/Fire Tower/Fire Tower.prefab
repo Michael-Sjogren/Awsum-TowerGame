@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4997451713071816}
   - component: {fileID: 198277540676685774}
   - component: {fileID: 199837551890964880}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PS_Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4475895863153762}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4287923572005012}
   - component: {fileID: 198456300188338048}
   - component: {fileID: 199227842568139228}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PS_Fire_ALPHA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4703938538565976}
   - component: {fileID: 198796413576657576}
   - component: {fileID: 199675108542169462}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PS_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4599463386245074}
   - component: {fileID: 198238004473762380}
   - component: {fileID: 199884187131819058}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PS_Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 114533929968980170}
   - component: {fileID: 82701790281600374}
   - component: {fileID: 208505902547525494}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Fire Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4180426923585486}
   - component: {fileID: 198435798394303518}
   - component: {fileID: 199827330164832674}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PS_Fire_ADD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 33938712219544026}
   - component: {fileID: 114355024433364782}
   - component: {fileID: 64422295589957544}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4422880472346262}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Crystals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,10 +514,13 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 84670476219bc6f4fa7e7be80cbd3395, type: 2}
   FireRate:
     BaseValue: 0
+    value: 0
   Range:
     BaseValue: 0
+    value: 0
   Damage:
     BaseValue: 0
+    value: 0
   buyCost: 0
   sellPrice: 0
   maxLevel: 0
@@ -581,6 +584,9 @@ MonoBehaviour:
       Order: 0
   upgradeTime: 5
   buildTime: 5
+  progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
+    type: 2}
+  distanceAboveTower: 5
 --- !u!114 &114355024433364782
 MonoBehaviour:
   m_ObjectHideFlags: 1

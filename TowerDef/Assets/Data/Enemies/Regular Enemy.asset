@@ -13,7 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Regular Enemy
   unitIcon: {fileID: 0}
-  dropReward: 5
   health: 65
   moveSpeed: 1.5
   armor: 2
@@ -22,3 +21,4 @@ MonoBehaviour:
   lightningResistance: 100
   frostResistance: 100
   earthResitance: 100
+  dropReward: 1

@@ -57,9 +57,7 @@ public class Coin : MonoBehaviour
 		}
 		else 
 		{
-	
 			Jump();
-			
 		}
 
 		if(target != null) 
@@ -81,7 +79,6 @@ public class Coin : MonoBehaviour
 		//rend.material.DOFade(1f , 25f);
 		yield return new WaitForSeconds(.25f);
 		//rend.material.DOFade(.15f , .25f);
-
 		routine = null;
 	}
 	
@@ -100,12 +97,6 @@ public class Coin : MonoBehaviour
 		return Vector3.zero.Equals(rb.velocity);
 	}
 
-	private void SleepRigidbody()
-	{
-		Debug.Log("Removed Rigidbody");
-		
-	}
-
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.DrawLine(transform.position , transform.position + (direction * maxDistanceToGround));
@@ -120,7 +111,6 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player") /* || other.CompareTag("Tower") */ )
         {
-            Debug.Log("Player or Tower enterd my radius");
             target = other.gameObject;
         }
     }

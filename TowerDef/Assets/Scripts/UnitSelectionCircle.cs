@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class UnitSelectionCircle : MonoBehaviour {
 
-	public float radius = 1f;
+    [SerializeField]
+	private float radius = 1f;
+    public float Radius {
+        get
+        {
+            return Radius;
+        }
+        set
+        {
+            radius = value;
+            UpdateCircle();
+        }
+    }
 	public float fieldOfView = 90;
 	public float farClipRange = 5f;
 	public float nearClipRange = .1f;

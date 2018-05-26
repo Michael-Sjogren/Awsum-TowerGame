@@ -14,6 +14,8 @@ public class Player : MonoBehaviour , IDamagable
     private IInputManager input;
     public bool IsAlive{get;set;}
     public int health;
+    public float buildRange = 2f;
+
     public float Health {get{return health;} set {health = (int)value;}}
     public float MaxHealth { get; set; }
 
@@ -46,7 +48,6 @@ public class Player : MonoBehaviour , IDamagable
             playerCursor = playerCursor + Vector3.forward / cellSize;
             direction = new Vector3( this.transform.right.x * xAxis , 0f , this.transform.forward.z * zAxis).normalized / cellSize;
             playerCursor += direction;
-
         }
 
         else if (input.isUsingKeyboardAndMouse)

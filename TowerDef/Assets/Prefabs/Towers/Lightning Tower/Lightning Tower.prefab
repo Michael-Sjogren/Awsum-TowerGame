@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4860164620385804}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33679364585034828}
   - component: {fileID: 114050798110044510}
   - component: {fileID: 64913710025246388}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Arch (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 82519580297867744}
   - component: {fileID: 65975083024225370}
   - component: {fileID: 208858599451554666}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Lightning Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 33327792643145532}
   - component: {fileID: 114709438185876498}
   - component: {fileID: 64387927893326612}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4216481617773498}
   - component: {fileID: 108590891876879530}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 33529296336434992}
   - component: {fileID: 114497546269857418}
   - component: {fileID: 64153302943208960}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Arch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 4083525860876478}
   - component: {fileID: 198456785601113288}
   - component: {fileID: 199385126993292480}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: PS_Lightning_Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4558190436516040}
   - component: {fileID: 198398378878002234}
   - component: {fileID: 199059357282249960}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 33215143682171662}
   - component: {fileID: 114714090987707452}
   - component: {fileID: 64240692878253086}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 33308314843856706}
   - component: {fileID: 114758401067543606}
   - component: {fileID: 64760593326034812}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Arch (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11245,10 +11245,13 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 1b99a487398ca374c9ee27b3e1aa0007, type: 2}
   FireRate:
     BaseValue: 0
+    value: 0
   Range:
     BaseValue: 0
+    value: 0
   Damage:
     BaseValue: 0
+    value: 0
   buyCost: 0
   sellPrice: 0
   maxLevel: 0
@@ -11256,6 +11259,9 @@ MonoBehaviour:
   levelData: []
   upgradeTime: 5
   buildTime: 5
+  progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
+    type: 2}
+  distanceAboveTower: 4
 --- !u!198 &198398378878002234
 ParticleSystem:
   m_ObjectHideFlags: 1

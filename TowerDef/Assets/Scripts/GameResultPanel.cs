@@ -27,31 +27,36 @@ public class GameResultPanel : MonoBehaviour
 		{
 			if(GameManager.instance.gameOver) 
 			{
-				GameManager.instance.PauseGame();
 				if(GameManager.instance.won) 
 				{
-					OnGameWin();
-				}
+
+                    StartCoroutine(OnGameWin());
+                    GameManager.instance.PauseGame();
+                }
 				else 
 				{
-					OnGameLost();
-				}
+                    StartCoroutine(OnGameLost());
+                    GameManager.instance.PauseGame();
+                }
+				
 				panelToShow.SetActive(true);
 				displayedResult = true;
 			}
 		}
 	}
-	public void OnGameWin()
+	public IEnumerator OnGameWin()
 	{
 		resultTitle.color = winColor;
 		resultTitle.SetText("Level Completed!");
 		buttonContinue.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
 	}
 
-	public void OnGameLost()
+	public IEnumerator OnGameLost()
 	{
-		resultTitle.color = lostColor;
+        resultTitle.color = lostColor;
 		resultTitle.SetText("You Lost");
 		buttonContinue.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
 	}
 }
