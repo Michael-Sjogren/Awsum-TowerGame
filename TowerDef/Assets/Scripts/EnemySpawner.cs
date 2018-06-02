@@ -16,15 +16,15 @@ public class EnemySpawner : MonoBehaviour {
 	private int totalWaves = 0;
 	private float countdown = .5f;
 	private bool waveInProgress = false;
-	public static List<Enemy> enemies = new List<Enemy>();
-	public static int totalEnemies;
-    public static int enemiesLeft;
+
 	public Transform spawnPoint;
 	public Transform goal;
+    // parent all instantiated enemies to this gameobject , less clutter in scene
 
     void Awake () 
 	{
-		if(spawnData.spawnList == null || spawnData.spawnList.Length <= 0 )
+       
+        if (spawnData.spawnList == null || spawnData.spawnList.Length <= 0 )
 		{
 			throw new System.Exception("Please add elements to the spawnlist in the enemy spawner data object");
 		}
@@ -39,10 +39,8 @@ public class EnemySpawner : MonoBehaviour {
 		{
 			enemyCount += waveDetail.amount;
 		}
-		
-		totalEnemies += enemyCount;
-		Debug.Log("Enemey Count" + enemyCount);
-		enemiesLeft = totalEnemies;
+
+        GameManager.instance.TotalEnemies = enemyCount;
 	}
 	
 	void Update ()
@@ -63,24 +61,8 @@ public class EnemySpawner : MonoBehaviour {
             waveTime.SetText(((int)countdown).ToString());
         }
 
-		if(GameManager.instance.hasGameStarted) 
-		{
-			CheckIfWin();
-		}
-
     }
 
-    private void CheckIfWin()
-    {
-        if (enemiesLeft <= 0 && PlayerManager.Instance.player.Health > 0)
-        {
-            GameManager.instance.GameOver(true);
-        }
-        else if(enemiesLeft > 0 && PlayerManager.Instance.player.Health <= 0)
-        {
-            GameManager.instance.GameOver(false);
-        }
-    }
 
     public IEnumerator SpawnNextWave()
 	{
@@ -101,14 +83,9 @@ public class EnemySpawner : MonoBehaviour {
 		GameObject enemyPrefab = spawnData.spawnList[waveIndex].enemyPrefab;
 		Vector3 pos = spawnPoint.position;
 		Enemy enemy = Instantiate( enemyPrefab  ,  pos , spawnPoint.rotation ).GetComponent<Enemy>();
+        enemy.transform.SetParent(GameManager.instance.enemyContainer.transform);
 		enemy.target = goal;
-		enemy.spawner = this;
-		EnemySpawner.enemies.Add(enemy);
-	}
 
-    public void Remove(Enemy enemy)
-    {
-		enemiesLeft--;
-		EnemySpawner.enemies.Remove(enemy);
-    }
+        GameManager.instance.AddEnemy(enemy);
+	}
 }

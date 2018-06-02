@@ -1,13 +1,8 @@
-﻿using System;
+﻿
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Assets.ScriptableObjects.StatusEffectData;
-using Effects;
-using ScriptableObjects.Enums;
+
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UI;
+
 
 public class Enemy : LivingEntity
 {
@@ -40,7 +35,6 @@ public class Enemy : LivingEntity
             reachedGoal = true;
             StartCoroutine(Die(0));
             PlayerManager.Instance.player.TakeDamage(1);
-            Debug.Log("ReachedGoal");
         }
     }
 
@@ -49,11 +43,12 @@ public class Enemy : LivingEntity
         target.TakeDamage(amount);
     }
 
-    new void Update()
+    private new void Update()
     {
         if(target != null)
             MoveTo(target.position);
     }
+
     public override IEnumerator Die(float delay)
     {
         IsAlive = false;
@@ -67,12 +62,11 @@ public class Enemy : LivingEntity
             }
             PlayerManager.Instance.player.ReciveMoney(goldDropReward);
         }
+        GameManager.instance.RemoveEnemy(this);
         Destroy(this.gameObject);
-        spawner.Remove(this);
     }
     private void OnDisable()
     {
-        Debug.Log(Controller);
         Controller.OnReachedDestination -= ReachedGoal;
     }
 }

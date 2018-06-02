@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f004021cc05998a4f87374196f3404ba, type: 3}
+  m_Name: Hero_Hurt
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 8111f18bc8dd8ee45a6c5e7dd40faf85, type: 3}
+  - {fileID: 8300000, guid: d752cc693b73b894cbd5e17aebf55851, type: 3}
+  - {fileID: 8300000, guid: 3096b78fcf413c54ab44b698d5a0187e, type: 3}
+  - {fileID: 8300000, guid: 24e66dffc618d3d4d994ba0baa4dcc5c, type: 3}
+  - {fileID: 8300000, guid: 77b78a95026a66a42af73ed884fa28e9, type: 3}
+  volume:
+    minValue: 0.21587303
+    maxValue: 0.30476195
+  pitch:
+    minValue: 1.0031747
+    maxValue: 1.0031747

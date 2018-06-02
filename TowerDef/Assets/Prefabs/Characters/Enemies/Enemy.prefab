@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 82199893971622492}
   m_Layer: 14
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -379,11 +379,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114795036652046610}
   data: {fileID: 11400000, guid: 61f1866ef950a4a47864859e41744f37, type: 2}
+  cooldowns: []
   MovementSpeed:
     BaseValue: 0
+    value: 0
+  spawner: {fileID: 0}
+  FireResistance:
+    BaseValue: 0
+    value: 0
+  WaterResistance:
+    BaseValue: 0
+    value: 0
+  LightningResistance:
+    BaseValue: 0
+    value: 0
+  FrostResistance:
+    BaseValue: 0
+    value: 0
+  EarthResitance:
+    BaseValue: 0
+    value: 0
   target: {fileID: 0}
-  statusEffects: []
   coinPrefab: {fileID: 1028146410048964, guid: 915c3da566994f144a613bfbea9cd25d, type: 2}
+  reachedGoal: 0
+  goldDropReward: 0
 --- !u!114 &114665329266613936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,6 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 114928543346941044}
   entity: {fileID: 114618134806552918}
+  healthbarContainer: {fileID: 0}
 --- !u!114 &114795036652046610
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,12 +14,12 @@ public struct Cooldown
     }
 
 
-    public void UpdateCooldown(float deltaTime,  LivingEntity entity)
+    public void UpdateCooldown(float deltaTime,  StatusEffectSystem system)
     {
         elapsed += deltaTime;
         if(elapsed >= duration)
         {
-            entity.cooldowns.Remove(this);
+            system.Cooldowns.Remove(this);
         }
     }
 

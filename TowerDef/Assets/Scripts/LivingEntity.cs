@@ -7,25 +7,17 @@ using Effects;
 using UnityEngine;
 
 // a living entity
-public abstract class LivingEntity : Entity, IDamagable, IMoveable, IEffectable, IHasStats
+public abstract class LivingEntity : Entity, IDamagable, IMoveable, IHasStats
 {
     public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
-    [HideInInspector]
     private bool isAlive = true;
     public AgentController Controller { get; set; }
-    // status effects & cooldowns
-    [Header("Status Effects")]
-    public List<StatusEffect> statusEffects = new List<StatusEffect>(10);
-    [Header("Status Effect Cooldowns")]
-    public List<Cooldown> cooldowns = new List<Cooldown>(5);
     // Stats
     [HideInInspector]
     public float Health { get; set; }
     public float MaxHealth { get; set; }
 
     public Stat MovementSpeed;
-
-    public EnemySpawner spawner;
 
     public Stat FireResistance;
 
@@ -50,7 +42,7 @@ public abstract class LivingEntity : Entity, IDamagable, IMoveable, IEffectable,
         
         IsAlive = true;
         Controller = GetComponent<AgentController>();
-        UpdateStats();
+        OnStatChanged();
     }
 
     public Stat GetStat(AttributeEnum atrributeType)
@@ -80,28 +72,13 @@ public abstract class LivingEntity : Entity, IDamagable, IMoveable, IEffectable,
         return stat;
     }
 
-    private void UpdateCooldowns()
-    {
-        if (cooldowns.Count > 0)
-        {
-            float deltaTime = Time.deltaTime;
-            for (int i = 0; i < cooldowns.Count; i++)
-            {
-                Cooldown cd = cooldowns[i];
-                cd.UpdateCooldown(deltaTime , this );
-            }
-        }
-    }
 
-    public void Update()
-    {
-        UpdateCooldowns();
-    }
 
     public virtual void TakeDamage(float amount)
     {
         if (Health - amount <= 0)
         {
+            Health = 0;
             IsAlive = false;
             StartCoroutine(Die(0));
             OnStatChanged();
@@ -129,89 +106,6 @@ public abstract class LivingEntity : Entity, IDamagable, IMoveable, IEffectable,
     public void UpdateStats()
     {
         OnStatChanged();
-    }
-
-    public void AddStatusEffect(StatusEffectData effectData)
-    {
-        if (effectData == null) return;
-        StatusEffectData newEffectData = effectData;
-        // check to see if enemy has debuff types that are opposites to each other , if so absorb them into a lesser or greater effect
-        var absorbedEffect = ElementComboManager.instance.CanAbsorbEffect(this, newEffectData.elementType);
-
-        if (absorbedEffect != null)
-        {
-            newEffectData = absorbedEffect;
-        }
-
-        for (int i = 0; i < statusEffects.Count; i++)
-        {
-            StatusEffect e = statusEffects[i];
-            if (e.name == newEffectData.name)
-            {
-                if(e is StackableEffect)
-                {
-                    var stackEffect = e as StackableEffect;
-                    stackEffect.AddToStack(); 
-                    return;
-                }
-                return;
-            }
-        }
-
-        if (IsDebuffOnCooldown(newEffectData.name))
-        {
-            Debug.Log(newEffectData.name + " is on cooldown");
-            return;
-        }
-
-        newEffectData.Initialize(this);
-
-        StatusEffect effect = newEffectData.effect;
-        statusEffects.Add(effect);
-        effect.BeginEffect();
-    }
-
-    public void RemoveStatusEffect(StatusEffect effect)
-    {
-        if (statusEffects.Remove(effect))
-        {
-            //    Debug.Log("Removed effect: " + statusEffect.name);
-        }
-        else
-        {
-            //    Debug.Log("Couldnt remove effect , didnt exist");
-        }
-    }
-
-    public void RegisterDebuffCooldown(Cooldown cooldown)
-    {
-        if (!CheckIfCooldownExists(cooldown.effectName))
-        {
-            cooldowns.Add(cooldown);
-        }
-    }
-    public bool CheckIfCooldownExists(string effectName)
-    {
-        for (int i = 0; i < cooldowns.Count; i++)
-        {
-            Cooldown cd = cooldowns[i];
-            if (cd.effectName == effectName)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    public bool IsDebuffOnCooldown(string name)
-    {
-        if (CheckIfCooldownExists(name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public void AddStatModifer(StatModifer modifer, AttributeEnum attributeType)

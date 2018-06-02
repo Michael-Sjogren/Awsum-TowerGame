@@ -11,6 +11,7 @@ namespace Buildings {
 public class Tower : Entity {
 		
 		[Header("Tower Attributes")]
+        [SerializeField]
 		private GameObject currentTarget = null;
 		public IPlacementArea placementArea { get; private set; }
 		/// Gets the grid position for this tower on the 
@@ -99,7 +100,7 @@ public class Tower : Entity {
 
 		private void SearchForTarget()
 		{
-			if(EnemySpawner.enemies.Count > 0) 
+			if(GameManager.instance.enemies.Count > 0) 
 			{
 				currentTarget = GetClosestEnemy();
 			}
@@ -149,9 +150,9 @@ public class Tower : Entity {
 			float minDist = Range.Value;
 			Vector3 currentPos = transform.position;
 
-			for (int i = EnemySpawner.enemies.Count -1; i >= 0; i--)
+			for (int i = GameManager.instance.enemies.Count - 1; i >= 0; i--)
 			{
-				Enemy e = EnemySpawner.enemies[i];
+				Enemy e = GameManager.instance.enemies[i];
 				if(e == null) return null;
 				GameObject o = e.gameObject;
 				float dist = Vector3.Distance(o.transform.position, currentPos);
@@ -166,21 +167,16 @@ public class Tower : Entity {
 
 		public void Upgrade()
 		{
-			Player player = PlayerManager.Instance.player;
 			if( (level + 1 <= maxLevel) ) 
 			{
-				if(player.CanAfford(GetUpgradePrice())) 
-				{
 					TowerLevel data = levelData[level-1];
 					level++;
-					player.BuyItem(GetUpgradePrice());
 					Range.AddModifer(data.RangeIncrease);
 					Damage.AddModifer(data.DamageIncrease);
 					FireRate.AddModifer(data.FireRateIncrease);
                     hasPickedPerk = false;
                     OnTowerChanged();
                     UpdateSelectionCircleRadius();
-                }
 			}
 		}
         public TowerLevel GetUpgradeData()

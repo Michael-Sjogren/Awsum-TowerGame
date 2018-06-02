@@ -19,6 +19,14 @@ public class Player : MonoBehaviour , IDamagable
     public float Health {get{return health;} set {health = (int)value;}}
     public float MaxHealth { get; set; }
 
+    [SerializeField]
+    private GameObject coinPrefab;
+    [SerializeField]
+    private int coinDropAmount = 3;
+    private Coroutine coinDropRoutine;
+    [SerializeField]
+    private AudioEvent playerHurtAudio;
+
     void Start()
     {
         input = InputManager.Instance;
@@ -95,6 +103,57 @@ public class Player : MonoBehaviour , IDamagable
             return input.GetAxis(InputAction.SubHorizontal);
         }
         return 0;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            if(coinDropRoutine == null)
+            {
+                if(playerMoney >= 3)
+                {
+                    coinDropRoutine = StartCoroutine(DropCoins());
+                }
+            }
+        }
+    }
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (coinDropRoutine == null)
+            {
+                if (playerMoney >= 3)
+                {
+                    coinDropRoutine = StartCoroutine(DropCoins());
+                }
+            }
+        }
+    }
+
+    public IEnumerator DropCoins()
+    {
+        Coin[] coins = new Coin[coinDropAmount];
+        playerHurtAudio.Play(this.GetComponent<AudioSource>());
+        for (int i = 0; i < coinDropAmount; i++)
+        {
+            var obj = Instantiate(coinPrefab , transform.position ,Quaternion.identity);
+            var coin = obj.GetComponent<Coin>();
+            coin.enabled = false;
+            coin.SetRadius(0f);
+            coins[i] = coin;
+            BuyItem(1);
+        }
+
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < coins.Length; i++)
+        {
+            var coin = coins[i];
+            coin.SetRadius(coin.pickupRadius);
+            coin.enabled = true;
+        }
+        coinDropRoutine = null;
     }
 
     public Vector2 GetMenuSelectionAxis()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProjectileLauncher : MonoBehaviour , ILauncher
 {
-    public AuidoEvent fireAudioEvent;
+    public AudioEvent fireAudioEvent;
     public GameObject projectilePrefab;
     public GameObject firePoint;
     private Stat Damage;

@@ -42,7 +42,7 @@ public class TimedAttributeEffect : Debuff
         yield return new WaitForSeconds(duration);
         entity.RemoveStatModifer(modifer , attriEnum);
         StopParticleEffect(ParticleSystemStopBehavior.StopEmitting);
-        entity.RegisterDebuffCooldown( new Cooldown(reapplyCooldown , data.name) );
+        entity.GetComponent<StatusEffectSystem>().RegisterDebuffCooldown( new Cooldown(reapplyCooldown , data.name) );
         EndEffect();
         yield return null;
     }

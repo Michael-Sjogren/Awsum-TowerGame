@@ -14,7 +14,7 @@ MonoBehaviour:
   name: Builder
   unitIcon: {fileID: 0}
   health: 100
-  moveSpeed: 5
+  moveSpeed: 4
   armor: 20
   fireResistance: 100
   waterResistance: 100

@@ -10,7 +10,7 @@ public class ElementComboManager : Singleton<ElementComboManager>
 	[SerializeField]
 	private ElementCombineableData elementComboData;
 
-	public StatusEffectData CanAbsorbEffect( LivingEntity entity ,  ElementType elementType) 
+	public StatusEffectData CanAbsorbEffect( StatusEffectSystem system ,  ElementType elementType) 
 	{
 		// get list of opposites for this elementType
 		OppositeGroup[] opposites = null;
@@ -25,9 +25,9 @@ public class ElementComboManager : Singleton<ElementComboManager>
 
 		if(opposites == null) return null;
 		// loop over current effects on enemy
-		for (int i = entity.statusEffects.Count - 1; i >= 0 ; i--)
+		for (int i = system.StatusEffects.Count - 1; i >= 0 ; i--)
 		{
-			StatusEffect effect = entity.statusEffects[i];
+			StatusEffect effect = system.StatusEffects[i];
 			// check if any of the oppsites match the current effects element
 			for(int j = 0; j < opposites.Length; j++) 
 			{

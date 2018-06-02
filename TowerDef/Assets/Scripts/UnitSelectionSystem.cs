@@ -4,7 +4,6 @@ using Buildings;
 using System;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Camera))]
 public class UnitSelectionSystem : MonoBehaviour
 {
     [HideInInspector]
@@ -17,11 +16,11 @@ public class UnitSelectionSystem : MonoBehaviour
     public delegate void BuildingEventHandler(Tower unit);
     public UnitEventHandler OnUnitChanged = delegate {};
     public BuildingEventHandler OnBuildingChanged = delegate {};
-    private Camera cam;
+    [SerializeField]
+    private Camera mainCam;
 
     void Start()
     {
-        cam = this.GetComponent<Camera>();
     }
     public void Update()
     {
@@ -40,7 +39,7 @@ public class UnitSelectionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit raycastHit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out raycastHit, 500f, selectablesLayermask) && !IsOverUI() )
             {
                 LivingEntity entity = raycastHit.transform.GetComponent<LivingEntity>();

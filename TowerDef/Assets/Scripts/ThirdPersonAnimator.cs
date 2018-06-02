@@ -23,14 +23,13 @@ public class ThirdPersonAnimator : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		Vector3 move = agent.desiredVelocity;
-		if (move.magnitude > 1f) move.Normalize();
-		move = transform.InverseTransformDirection(move);
+		Vector3 velocity = agent.desiredVelocity;
+		Vector3 move = transform.InverseTransformDirection(velocity.normalized);
 		
 		//float forwardAmount = Mathf.Repeat( animator.GetCurrentAnimatorStateInfo(0).normalizedTime + .2f, 1);
 		float turnAmount = Mathf.Atan2(move.x, move.z);
-		animator.SetFloat("Forward", move.z , 0.1f, Time.deltaTime);
-		animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+		animator.SetFloat("Forward", move.normalized.z , 0.12f, Time.deltaTime);
+		animator.SetFloat("Turn", turnAmount, 0.12f, Time.deltaTime);
 		//animator.SetBool("Crouch", m_Crouching);
 		//animator.SetBool("OnGround", m_IsGrounded);
 	}

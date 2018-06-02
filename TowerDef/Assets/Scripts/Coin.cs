@@ -17,19 +17,28 @@ public class Coin : MonoBehaviour
 	[MinMaxRange(1f , 50f)]
 	public RangedFloat forceVertical;
 	public AudioSource audioSource;
-	public AuidoEvent coinDropSound;
+	public AudioEvent coinDropSound;
 	public float lifeTime = 10f;
 	public float despawnVisualQueueTimeStart = 12;
     private Coroutine routine;
 	private GameObject target;
+   
 	public float coinMoveSpeed = 5f;
+    public float pickupRadius = 2f;
 
     // Use this for initialization
     void Start () 
 	{
 		rb = GetComponent<Rigidbody>();
-	}
-
+        SetRadius(pickupRadius);    
+        target = null;
+        this.transform.SetParent(GameManager.instance.coinContainer.transform);
+    }
+    public void SetRadius(float radius)
+    {
+        this.GetComponent<SphereCollider>().radius = radius;
+        target = null;
+    }
     private void Jump()
     {
 		if(rb != null) 
@@ -104,10 +113,20 @@ public class Coin : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		CheckIfPlayerIsInRange(other.gameObject);
+		CheckIfPlayerCollided(other.gameObject);
 	}
 
-    private void CheckIfPlayerIsInRange(GameObject other)
+    void OnTriggerExit(Collider other)
+    {
+        CheckIfPlayerCollided(other.gameObject);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        CheckIfPlayerCollided(other.gameObject);
+    }
+
+    private void CheckIfPlayerCollided(GameObject other)
     {
         if (other.CompareTag("Player") /* || other.CompareTag("Tower") */ )
         {
@@ -117,20 +136,23 @@ public class Coin : MonoBehaviour
 
     private void MoveToTarget(GameObject gameObject)
     {
-        Vector3 dir = target.transform.position - transform.position;
-        float distThisFrame = coinMoveSpeed * Time.deltaTime;
-        if(dir.magnitude <= distThisFrame) 
+        if(target != null)
         {
-			// award player
-			Player player = PlayerManager.Instance.player;
-			AudioSource source = target.GetComponent<AudioSource>();
-			player.ReciveMoney(1);
-			coinDropSound.Play(source);
-            Destroy(this.gameObject);
-            return;
-        }
+            Vector3 dir = target.transform.position - transform.position;
+            float distThisFrame = coinMoveSpeed * Time.deltaTime;
+            if(dir.magnitude <= distThisFrame) 
+            {
+			    // award player
+			    Player player = PlayerManager.Instance.player;
+			    AudioSource source = target.GetComponent<AudioSource>();
+			    player.ReciveMoney(1);
+			    coinDropSound.Play(source);
+                Destroy(this.gameObject);
+                return;
+            }
         
-        this.transform.rotation = Quaternion.LookRotation(dir , transform.up);
-        this.transform.Translate(dir.normalized * distThisFrame , Space.World );
+            this.transform.rotation = Quaternion.LookRotation(dir , transform.up);
+            this.transform.Translate(dir.normalized * distThisFrame , Space.World );
+        }
     }
 }

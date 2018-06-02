@@ -26,15 +26,29 @@ public class GUITowerSelectSystem : MonoBehaviour
     private TextMeshProUGUI optionAText;
     [SerializeField]
     private TextMeshProUGUI optionBText;
-
+    private Player player;
     private PerkLevel perkLevel;
 
+    private void Start()
+    {
+        player = PlayerManager.Instance.player;
+    }
     public void Update()
     {
         if (tower != null)
         {
-            Vector2 targetScreenPos = mainCamera.WorldToScreenPoint(tower.transform.position + tower.transform.up * 4);
-            transform.position = targetScreenPos;
+
+            Vector3 targetPos = tower.transform.position + Vector3.up * tower.GetComponent<Collider>().bounds.size.y;
+            transform.position = targetPos;
+            
+            if (!player.CanAfford(tower.GetUpgradePrice()) && upgradeButton.interactable)
+            {
+                upgradeButton.interactable = false;
+            }
+            else if (player.CanAfford(tower.GetUpgradePrice()) && !upgradeButton.interactable)
+            {
+                upgradeButton.interactable = true;
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -66,9 +80,13 @@ public class GUITowerSelectSystem : MonoBehaviour
             DisableUpgradeButtonForMaxLevel();
             return;
         }
-        tower.Upgrade();
-        UpdatePerkOptions();    
-        upgradePriceText.SetText(tower.GetUpgradePrice().ToString());
+        if (player.CanAfford(tower.GetUpgradePrice()))
+        {
+            player.BuyItem(tower.GetUpgradePrice());
+            tower.Upgrade();
+            UpdatePerkOptions();    
+            upgradePriceText.SetText(tower.GetUpgradePrice().ToString());
+        }
         
     }
 

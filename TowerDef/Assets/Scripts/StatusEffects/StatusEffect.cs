@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Effects
 {
     [System.Serializable]
-    public abstract class StatusEffect
+    public class StatusEffect
     {
         public string name;
         public ElementType elementType;
@@ -27,7 +27,10 @@ namespace Effects
             this.entity = entity;
         }
 
-        public abstract void BeginEffect();
+        public virtual void BeginEffect()
+        {
+
+        }
 
         public virtual void EndEffect()
         {
@@ -54,7 +57,7 @@ namespace Effects
 
         private void RemoveSelf()
         {
-            entity.RemoveStatusEffect(this);
+            entity.GetComponent<StatusEffectSystem>().RemoveStatusEffect(this);
         }
     }
 }

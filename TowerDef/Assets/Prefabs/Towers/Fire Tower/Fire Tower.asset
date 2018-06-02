@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fire Tower
   unitIcon: {fileID: 0}
-  buyCost: 25
-  sellPrice: 9
+  buyCost: 40
+  sellPrice: 16
   towerDescription: Fires fireballs at the enemy applying a burning effect that deals
     damage over time.
   maxLevel: 0
-  Damage: 18
-  FireRate: 0.6
+  Damage: 28
+  FireRate: 0.7
   Range: 7
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}

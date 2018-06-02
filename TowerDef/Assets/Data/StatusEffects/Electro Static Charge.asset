@@ -18,7 +18,6 @@ MonoBehaviour:
   applySoundEffect: {fileID: 0}
   reapplyCooldown: 0
   effectLifeTime: 5
-  tickAmount: 1
   maxStacks: 3
   modifer:
     Value: -0.05

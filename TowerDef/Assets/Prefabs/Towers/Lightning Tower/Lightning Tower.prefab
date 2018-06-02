@@ -226,8 +226,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309020299199982}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.54, y: 0.42, z: 29.38}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.54, y: 0.42, z: 58.379997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4083525860876478}
@@ -621,8 +621,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 2}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 2, y: 3.7526217, z: 2}
+  m_Center: {x: 0, y: 1.8763108, z: 0}
 --- !u!82 &82519580297867744
 AudioSource:
   m_ObjectHideFlags: 1
@@ -10127,7 +10127,7 @@ MonoBehaviour:
   farClipRange: 5
   nearClipRange: 0.1
   heightOffset: 1.5
-  circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
+  circleMaterial: {fileID: 2100000, guid: e070596f09344a940ace078aeb883cb7, type: 2}
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 4294960638
@@ -11243,6 +11243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114730930392300710}
   data: {fileID: 11400000, guid: 1b99a487398ca374c9ee27b3e1aa0007, type: 2}
+  currentTarget: {fileID: 0}
   FireRate:
     BaseValue: 0
     value: 0
@@ -11256,12 +11257,13 @@ MonoBehaviour:
   sellPrice: 0
   maxLevel: 0
   perkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
+  hasPickedPerk: 0
   levelData: []
   upgradeTime: 5
   buildTime: 5
   progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
     type: 2}
-  distanceAboveTower: 4
+  distanceAboveTower: 5
 --- !u!198 &198398378878002234
 ParticleSystem:
   m_ObjectHideFlags: 1

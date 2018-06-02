@@ -1,0 +1,11 @@
+newmtl Tiled_Rock
+bump TiledRock_Normal.tif
+Kd 0.3396226 0.3396226 0.3396226
+d 1
+
+newmtl Small_Stones
+map_Kd SmallStones_Albedo.tif
+bump SmallStones_Normal.tif
+Kd 0.4056604 0.4056604 0.4056604
+d 1
+

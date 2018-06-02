@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> 
@@ -13,16 +14,78 @@ public class GameManager : Singleton<GameManager>
 	
 	public bool gameOver = false;
     public bool won = false;
-    public int enemiesLeft = 0;
+    private int enemiesLeft = 0;
+    private int totalEnemies;
+    public Camera cam;
+    [HideInInspector]
+    public GameObject coinContainer;
+    [HideInInspector]
+    public GameObject enemyContainer;
+    public List<Enemy> enemies;
+
+    public int TotalEnemies
+    {
+        get
+        {
+            return totalEnemies;
+        }
+        set
+        {
+            totalEnemies += value;
+            enemiesLeft = totalEnemies;
+        }
+    }
+
+    public int EnemiesLeft
+    {
+        get
+        {
+            return enemiesLeft;
+        }
+
+        set
+        {
+            enemiesLeft = value;
+            if(enemiesLeft <= 0 && hasGameStarted && PlayerManager.Instance.player.Health > 0)
+            {
+                GameOver(true);
+            }
+            else if (enemiesLeft > 0 && hasGameStarted && PlayerManager.Instance.player.Health <= 0)
+            {
+                GameOver(false);
+            }
+        }
+    }
 
     void Start()
 	{
-		UnPauseGame();
+        enemies = new List<Enemy>(50);
+        coinContainer = new GameObject("Coins");
+        enemyContainer = new GameObject("Enemies");
+
+        UnPauseGame();
 	}
+
+    public void ChangeSoundEffectsVolume(Slider volumeSlider)
+    {
+        AudioListener.volume = volumeSlider.value;
+    }
 
     public void DisableCameraRotation()
     {
         isCameraRotatable = false;
+    }
+    public void AddEnemy(Enemy enemy)
+    {
+        enemies.Add(enemy);
+    } 
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        if (enemies.Remove(enemy))
+        {
+            EnemiesLeft--;
+        }
     }
 
     public void UnPauseGame()

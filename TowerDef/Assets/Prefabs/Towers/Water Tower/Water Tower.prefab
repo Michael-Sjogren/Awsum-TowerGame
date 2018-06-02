@@ -229,8 +229,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904491100368590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: 0, z: 29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4389613380208552}
@@ -386,8 +386,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3.5, z: 2}
-  m_Center: {x: 0, y: 1.75, z: 0}
+  m_Size: {x: 2, y: 4.71161, z: 2}
+  m_Center: {x: 0, y: 2.355805, z: 0}
 --- !u!82 &82087955321955264
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3665,6 +3665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114802953203292264}
   data: {fileID: 11400000, guid: 7210c00295626214aa6de8c9143f7fbe, type: 2}
+  currentTarget: {fileID: 0}
   FireRate:
     BaseValue: 0
     value: 0
@@ -3678,12 +3679,13 @@ MonoBehaviour:
   sellPrice: 0
   maxLevel: 0
   perkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}
+  hasPickedPerk: 0
   levelData: []
   upgradeTime: 5
   buildTime: 5
   progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
     type: 2}
-  distanceAboveTower: 6
+  distanceAboveTower: 5
 --- !u!114 &114802953203292264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3700,7 +3702,7 @@ MonoBehaviour:
   farClipRange: 5
   nearClipRange: 0.1
   heightOffset: 1.5
-  circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
+  circleMaterial: {fileID: 2100000, guid: e070596f09344a940ace078aeb883cb7, type: 2}
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 4294960638
@@ -3715,7 +3717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f28cd1e50a7c9e41a1a2feaa5ca789c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireAudioEvent: {fileID: 0}
+  fireAudioEvent: {fileID: 11400000, guid: 4688569f56d103740b62ec4718bf261f, type: 2}
   projectilePrefab: {fileID: 1555346860139770, guid: 483cf83eaa36ece46a89e8a981d3b814,
     type: 2}
   firePoint: {fileID: 1298684452592610}

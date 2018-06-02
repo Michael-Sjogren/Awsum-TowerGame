@@ -14,6 +14,8 @@ public class BuildSpotSelectionSystem : MonoBehaviour
     private Color inRangeColor;
     [SerializeField]
     private Color outOfRangeColor;
+    [SerializeField]
+    private Camera mainCamera;
 
     private SingleTowerPlacementArea currentTile;
 
@@ -21,7 +23,7 @@ public class BuildSpotSelectionSystem : MonoBehaviour
     {
         if(tile != null)
         {
-            if(!tile.IsOccupied())
+            if(!tile.IsOccupied() && !buildMenu.isMenuShowing)
             {
                 Outline outlineSystem = tile.GetComponentInChildren<Outline>();
                 outlineSystem.enabled = true;
@@ -81,9 +83,9 @@ public class BuildSpotSelectionSystem : MonoBehaviour
     SingleTowerPlacementArea GetTileAtRayHit()
     {
         SingleTowerPlacementArea tile = null;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if(Physics.Raycast(ray , out hitInfo , 500f , placeableLayer ) && !IsOverUI())
+        if(Physics.SphereCast(ray.origin , .5f , ray.direction , out hitInfo , 500f , placeableLayer , QueryTriggerInteraction.Collide ) && !IsOverUI())
         {
             tile = hitInfo.transform.GetComponent<SingleTowerPlacementArea>();
         }

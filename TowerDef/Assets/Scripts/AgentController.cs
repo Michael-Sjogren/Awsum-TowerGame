@@ -15,13 +15,14 @@ public class AgentController : MonoBehaviour
 	private LivingEntity movableEntity;
 	private NavMeshAgent agent;
 
-	public float maxStoppingDistanceFromGoal;
+	public float maxDistanceFromGoal = 1f;
 
     // Use this for initialization
     void Start () {
 		agent = GetComponent<NavMeshAgent>();
 		movableEntity = GetComponent<LivingEntity>();
-		movableEntity.OnStatChanged += OnMovementSpeedUpdated;
+        movableEntity.OnStatChanged += OnMovementSpeedUpdated;
+        OnMovementSpeedUpdated();
 	}
 	
 	// Update is called once per frame
@@ -33,26 +34,30 @@ public class AgentController : MonoBehaviour
 	public void OnMovementSpeedUpdated()
 	{
 		agent.speed = movableEntity.GetMovementSpeed().Value;
-		Debug.Log(movableEntity.GetMovementSpeed().Value);
 	}
 
 	public void Move(Vector3 target)
 	{
 		if(agent.SetDestination(target))
 		{
-			float distance = Vector3.Distance(transform.position , target);
-			if(distance <= maxStoppingDistanceFromGoal ) 
+            agent.isStopped = false;
+            float distance = Vector3.Distance(transform.position , target);
+			if(distance <= maxDistanceFromGoal ) 
 			{
 				if(OnReachedDestination != null)
 					OnReachedDestination();
 			}
-		}else {
-			Debug.Log("Cant go there");
-		}
+		
+        }
 	}
 
 	void OnDisable()
 	{
 		movableEntity.OnStatChanged -= OnMovementSpeedUpdated;
 	}
+
+    internal void StopMoving()
+    {
+        agent.isStopped = true;
+    }
 }

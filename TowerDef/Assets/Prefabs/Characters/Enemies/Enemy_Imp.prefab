@@ -73,9 +73,10 @@ GameObject:
   - component: {fileID: 114842365322107082}
   - component: {fileID: 114911746174971444}
   - component: {fileID: 82118951349004576}
+  - component: {fileID: 114706495052167678}
   m_Layer: 14
   m_Name: Enemy_Imp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1278,8 +1279,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1042743185923454}
   m_LocalRotation: {x: -0, y: -0.7071062, z: -0, w: 0.7071074}
-  m_LocalPosition: {x: 9.000702, y: 0, z: 29.450989}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.3798285, y: 0, z: 28.948597}
+  m_LocalScale: {x: 1.4109384, y: 1.4109387, z: 1.4109387}
   m_Children:
   - {fileID: 4689551105508286}
   - {fileID: 224281704566261312}
@@ -1552,6 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 114039871470718910}
   entity: {fileID: 114827470191299438}
+  healthbarContainer: {fileID: 1082275745872574}
 --- !u!114 &114490809704299712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1594,6 +1596,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114706495052167678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042743185923454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68353c80157dda1469d0eb044a8f83f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusEffects: []
+  cooldowns: []
 --- !u!114 &114827470191299438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1607,6 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114911746174971444}
   data: {fileID: 11400000, guid: 7eebd2e48c395c14a982bc8357173bc6, type: 2}
+  statusEffects: []
   cooldowns: []
   MovementSpeed:
     BaseValue: 0
@@ -1709,10 +1725,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
+  m_Radius: 0.35
+  m_Height: 0.75
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!137 &137552745090584882
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1842,7 +1858,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1042743185923454}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.25
   m_Speed: 2.8
   m_Acceleration: 5
   avoidancePriority: 50
@@ -1851,7 +1867,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.75
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0

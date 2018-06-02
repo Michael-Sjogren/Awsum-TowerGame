@@ -21,12 +21,9 @@ GameObject:
   - component: {fileID: 4173092823743460}
   - component: {fileID: 20535474593903918}
   - component: {fileID: 124021891129098922}
-  - component: {fileID: 81332014745815978}
-  - component: {fileID: 114113881998333958}
-  - component: {fileID: 114347610832397230}
-  - component: {fileID: 114090059678692824}
   - component: {fileID: 114455242421519784}
   - component: {fileID: 114814745365597916}
+  - component: {fileID: 81390707372259364}
   m_Layer: 15
   m_Name: Game Camera
   m_TagString: MainCamera
@@ -40,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713871402281412}
-  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
-  m_LocalPosition: {x: 13, y: 12, z: 24}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20535474593903918
 Camera:
   m_ObjectHideFlags: 1
@@ -71,7 +68,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967263
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -83,57 +80,13 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81332014745815978
+--- !u!81 &81390707372259364
 AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713871402281412}
   m_Enabled: 1
---- !u!114 &114090059678692824
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713871402281412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8852cce89cc6cb94c8fc185f5c2673a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionSystem: {fileID: 114347610832397230}
-  friendlyTag: Player
-  walkableLayer:
-    serializedVersion: 2
-    m_Bits: 2560
---- !u!114 &114113881998333958
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713871402281412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eda5699f7caac44380b14be34af62a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 25
---- !u!114 &114347610832397230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713871402281412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4df3bcb04d7914e85a4ac95f7f0c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entitySelected: {fileID: 0}
-  buildingSelected: {fileID: 0}
-  selectablesLayermask:
-    serializedVersion: 2
-    m_Bits: 16384
 --- !u!114 &114455242421519784
 MonoBehaviour:
   m_ObjectHideFlags: 1

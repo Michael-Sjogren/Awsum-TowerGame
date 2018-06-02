@@ -417,8 +417,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.625, z: 2}
-  m_Center: {x: 0, y: 1.3, z: 0}
+  m_Size: {x: 2, y: 3.579733, z: 2}
+  m_Center: {x: 0, y: 1.7898664, z: 0}
 --- !u!82 &82874400346933100
 AudioSource:
   m_ObjectHideFlags: 1
@@ -13646,7 +13646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f28cd1e50a7c9e41a1a2feaa5ca789c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireAudioEvent: {fileID: 0}
+  fireAudioEvent: {fileID: 11400000, guid: 0c2fa8d26070d7c45bd18ac836c7be17, type: 2}
   projectilePrefab: {fileID: 1555346860139770, guid: 53d0e4967d3fa9e4dbc7d36c35588776,
     type: 2}
   firePoint: {fileID: 1350147536410440}
@@ -13663,6 +13663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114484425116786042}
   data: {fileID: 11400000, guid: 739349b8f6af508469daf6d88923d17e, type: 2}
+  currentTarget: {fileID: 0}
   FireRate:
     BaseValue: 0
     value: 0
@@ -13767,7 +13768,7 @@ MonoBehaviour:
   farClipRange: 5
   nearClipRange: 0.1
   heightOffset: 1.5
-  circleMaterial: {fileID: 2100000, guid: 195244c5471875343b82e8356a3a0885, type: 2}
+  circleMaterial: {fileID: 2100000, guid: e070596f09344a940ace078aeb883cb7, type: 2}
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 4294960638

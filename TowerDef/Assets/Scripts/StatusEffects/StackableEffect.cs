@@ -29,33 +29,40 @@ public class StackableEffect : StatusEffect , ITimedEffect
         modifer = data.modifer;
         attrributeType =  data.attriEnum;
         maxStacksEffect = data.maxStackEffect;
-        Timer = new System.Diagnostics.Stopwatch();
+        Timer = new Stopwatch();
     }
 
 
     public void AddToStack()
     {
-        if(stacks.Count <= maxStacks) 
+        if(stacks.Count < maxStacks) 
         {
             var newModifer = new StatModifer(modifer.Value , modifer.Type , modifer.Order , modifer.Source );
             entity.AddStatModifer( newModifer, attrributeType);
             stacks.Push(newModifer);
-            float value = entity.GetStat(attrributeType).Value;
+            UnityEngine.Debug.Log(stacks.Count);
+        }
+        else if(stacks.Count >= maxStacks)
+        {
+            StatusEffectData effect = maxStacksEffect;
+            entity.GetComponent<StatusEffectSystem>().AddStatusEffect(effect);
+            EndEffect();
         } 
     }
 
     public override void BeginEffect()
     {
+        AddToStack();
         coroutine = entity.StartCoroutine(DoEffectOverTime());
     }
+
     public void UpdateEffectLifeTime(float deltaTIme)
     {
         if (stacks.Count >= maxStacks)
         {
             StatusEffectData effect = maxStacksEffect;
-            entity.AddStatusEffect(effect);
+            entity.GetComponent<StatusEffectSystem>().AddStatusEffect(effect);
             EndEffect();
-            return;
         }
     }
 
@@ -69,10 +76,12 @@ public class StackableEffect : StatusEffect , ITimedEffect
     {
         while (EffectLifeTime >= ElapsedTime)
         {
+            UpdateEffectLifeTime(Time.deltaTime);
             yield return null;
         }
         Timer.Reset();
         Timer.Stop();
+
         if (stacks.Count > 0)
         {
             StatModifer modifer = stacks.Pop();
@@ -85,6 +94,7 @@ public class StackableEffect : StatusEffect , ITimedEffect
         {
             EndEffect();
         }
+
         yield return null;
     }
 }

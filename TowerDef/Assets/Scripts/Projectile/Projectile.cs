@@ -56,7 +56,8 @@ public class Projectile : MonoBehaviour
                 enemy.TakeDamage(damage);
                 if(projectileData.effectData != null) 
                 {
-                    enemy.AddStatusEffect(projectileData.effectData);
+
+                    enemy.GetComponent<StatusEffectSystem>().AddStatusEffect(projectileData.effectData);
                 }
                 projectileEffect.Stop(true , ParticleSystemStopBehavior.StopEmittingAndClear );
             }

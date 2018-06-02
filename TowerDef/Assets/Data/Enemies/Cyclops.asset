@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42fb54e1cdf63a34b9848f947336c59e, type: 3}
+  m_Name: Cyclops
+  m_EditorClassIdentifier: 
+  name: Cyclops
+  unitIcon: {fileID: 0}
+  health: 250
+  moveSpeed: 2
+  armor: 25
+  fireResistance: 100
+  waterResistance: 100
+  lightningResistance: 100
+  frostResistance: 100
+  earthResitance: 100
+  dropReward: 3

@@ -10,6 +10,7 @@ public class UITowerBuildMenu : MonoBehaviour
     private SingleTowerPlacementArea placementArea;
     [SerializeField]
     private GameObject container;
+    public bool isMenuShowing;
 
     private Player player;
 
@@ -17,17 +18,20 @@ public class UITowerBuildMenu : MonoBehaviour
     {
         player = PlayerManager.Instance.player;
         container.SetActive(false);
+        isMenuShowing = false;
     }
 
     public void SetTargetPlacementArea(SingleTowerPlacementArea placementArea)
     {
         this.placementArea = placementArea;
         container.SetActive(true);
+        isMenuShowing = true;
     }
 
     public void HideBuildMenu()
     {
         container.SetActive(false);
+        isMenuShowing = false;
     }
 
     public void BuyTower(TowerData data , GameObject towerPrefab )
@@ -53,8 +57,8 @@ public class UITowerBuildMenu : MonoBehaviour
     {
         if(placementArea != null)
         {
-            Vector2 targetScreenPos = Camera.main.WorldToScreenPoint(placementArea.transform.position);
-            transform.position = targetScreenPos;
+            Vector3 targetPos = placementArea.transform.position + Vector3.up * 2.5f;
+            transform.position = targetPos;
         }
     }
 

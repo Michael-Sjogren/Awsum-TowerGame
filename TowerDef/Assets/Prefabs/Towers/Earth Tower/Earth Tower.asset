@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Earth Tower
   unitIcon: {fileID: 0}
-  buyCost: 20
+  buyCost: 45
   sellPrice: 5
-  towerDescription: 'No Description yet
+  towerDescription: 'In Development
 
 '
   maxLevel: 0
-  Damage: 22
+  Damage: 30
   FireRate: 0.6
   Range: 7
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}

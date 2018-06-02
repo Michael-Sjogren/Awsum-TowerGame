@@ -228,12 +228,7 @@ namespace TowerDefense.Buildings.Placement
         /// </summary>
         protected void SetUpGrid()
         {
-            PlacementTile tileToUse;
-#if UNITY_STANDALONE
-            tileToUse = placementTilePrefab;
-#else
-			tileToUse = placementTilePrefabMobile;
-#endif
+            PlacementTile tileToUse = placementTilePrefab;
 
             if (tileToUse != null)
             {

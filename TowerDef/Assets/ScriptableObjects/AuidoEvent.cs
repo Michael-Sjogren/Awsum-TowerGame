@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AuidoEvent : ScriptableObject 
+public abstract class AudioEvent : ScriptableObject 
 {
 	public abstract void Play(AudioSource source);
 }

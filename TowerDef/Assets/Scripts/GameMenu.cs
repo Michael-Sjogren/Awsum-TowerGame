@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMenu : MonoBehaviour 
 {
 	public GameObject menuPanel;
+	public GameObject optionsPanel;
 	// Use this for initialization
 	void Start () 
 	{
@@ -19,6 +20,16 @@ public class GameMenu : MonoBehaviour
 			ToggleMenu();
 		}
 	}
+
+    public void ShowOptionsPanel()
+    {
+        optionsPanel.SetActive(true);
+    }
+
+    public void HideOptionsPanel()
+    {
+        optionsPanel.SetActive(false);
+    }
 
 	public void ToggleMenu()
 	{
