@@ -1,5 +1,4 @@
-using Assets.ScriptableObjects.StatusEffectData;
-using Effects;
+using Assets.ScriptableObjects.StatusEffects;
 using ScriptableObjects.Enums;
 using UnityEngine;
 
@@ -10,17 +9,17 @@ public class ElementCombineableData : ScriptableObject
 }
 
 [System.Serializable]
-public class ElementGroup 
+public struct ElementGroup 
 {
-    public string name = "Element";
+    public string elementName;
     public ElementType element;
     public OppositeGroup[] opposites;
 }
 
 [System.Serializable]
-public class OppositeGroup
+public struct OppositeGroup
 {
-    public string name = "Opposite Element";
+    public string oppositeElementName;
     public ElementType oppositeElement;
-    public StatusEffectData resultingEffect;
+    public StatusEffect resultingEffect;
 }

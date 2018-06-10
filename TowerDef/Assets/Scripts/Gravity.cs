@@ -25,8 +25,12 @@ public class Gravity : MonoBehaviour
 
     void FixedUpdate()
     {
-		if(m_rb == null) return;
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
+
+		if(m_rb == null) return;
+            
         m_rb.AddForce(gravity, ForceMode.Acceleration);
+        
     }
+
 }

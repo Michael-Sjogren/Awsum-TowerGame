@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb228c2ea9bea7b4891c86f00800ddea, type: 3}
+  m_Name: Chain Lightning
+  m_EditorClassIdentifier: 
+  abillityName: Chain Lightning
+  abillityDescription: 
+  abillitySound: {fileID: 0}
+  abillityVisualEffect: {fileID: 114291751842167594, guid: 8b176665aec28d04da504d656b1571f5,
+    type: 2}
+  targetTag: Enemy
+  maxBounces: 4
+  radius: 3.5
+  bounceDamage: 35
+  percentageFallout: 5

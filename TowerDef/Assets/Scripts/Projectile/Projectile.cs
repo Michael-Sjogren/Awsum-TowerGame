@@ -1,71 +1,24 @@
-using Buildings;
+﻿
 using UnityEngine;
-using System;
 
-public class Projectile : MonoBehaviour  
+public abstract class Projectile : MonoBehaviour
 {
+
     public ProjectileData projectileData;
-    private GameObject target;
-    private float speed;
-    private Vector3 lastTargetPos;
-    private float damage;
-    private bool hasInitialized = false;
-    private ParticleSystem projectileEffect;
 
-    void Update()
-    {
-        if(hasInitialized) 
-        {
-            MoveToTarget();
-        }
-    }
+    protected LivingEntity target;
+    protected float damage;
+    protected VisualEffect projectileEffect;
 
-    public void SetTarget( GameObject target , float damage )
+    public virtual void SetTarget( LivingEntity target , float damage)
     {
         this.target = target;
         this.damage = damage;
-        Intitialize();
+        Fire();
     }
 
-    private void Intitialize()
-    {
-        speed = projectileData.speed;
-        hasInitialized = true;
+    public abstract void OnTargetHit();
 
-        projectileEffect = (Instantiate(projectileData.projectileEffect));
-        projectileEffect.transform.SetParent(this.transform);
-        projectileEffect.transform.localPosition = Vector3.zero;
-        projectileEffect.Play();
-    }
-
-    void MoveToTarget()
-    {
-        if(target != null) 
-        {
-            lastTargetPos = target.transform.position;
-        }
-
-        Vector3 dir =   lastTargetPos - transform.position;
-        float distThisFrame = speed * Time.deltaTime;
-
-        if(dir.magnitude <= distThisFrame) 
-        {
-            if(target != null) 
-            {
-                Enemy enemy = target.GetComponent<Enemy>();
-                enemy.TakeDamage(damage);
-                if(projectileData.effectData != null) 
-                {
-
-                    enemy.GetComponent<StatusEffectSystem>().AddStatusEffect(projectileData.effectData);
-                }
-                projectileEffect.Stop(true , ParticleSystemStopBehavior.StopEmittingAndClear );
-            }
-            Destroy(this.gameObject);
-            return;
-        } 
-        this.transform.rotation = Quaternion.LookRotation(dir , transform.up);
-        this.transform.Translate(dir.normalized * distThisFrame , Space.World );
-    }
+    public abstract void Fire();
 
 }

@@ -1,10 +1,10 @@
-using Assets.ScriptableObjects.StatusEffectData;
+
 using UnityEngine;
 
-[CreateAssetMenu(menuName="Projectiles/New Projectile" , fileName="New Projectile")]
-public class ProjectileData : ScriptableObject {
-    public float speed;
-    public ParticleSystem projectileEffect;
-    public ParticleSystem projectileHitEffect;
-    public StatusEffectData effectData;
+[CreateAssetMenu(menuName="Projectiles/New Simple Projectile" , fileName="New Simple Projectile")]
+public abstract class ProjectileData : ScriptableObject
+{
+    public VisualEffect projectileEffect;
+    public VisualEffect projectileHitEffect;
+    public Ability ability;
 }

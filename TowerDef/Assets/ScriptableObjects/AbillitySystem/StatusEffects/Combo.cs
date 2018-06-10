@@ -12,6 +12,6 @@ namespace Assets.ScriptableObjects.StatusEffectData
             public ElementType EffectB;
 
             [SerializeField]
-            private StatusEffectData createdEffect;
+            private Ability resultingAbillity;
         }
     }

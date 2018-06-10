@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4038681613573942}
   - component: {fileID: 198491445716000840}
   - component: {fileID: 199623753190047374}
+  - component: {fileID: 114003290482527806}
   m_Layer: 0
   m_Name: FrostBall
   m_TagString: Untagged
@@ -72,6 +73,18 @@ Transform:
   m_Father: {fileID: 4038681613573942}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114003290482527806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1515781162391214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee55756f5358c9428293bbd81619e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopBehavior: 0
 --- !u!198 &198151274402553318
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4615,7 +4628,7 @@ ParticleSystem:
   stopAction: 2
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0

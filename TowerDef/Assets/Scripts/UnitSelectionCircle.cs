@@ -25,6 +25,7 @@ public class UnitSelectionCircle : MonoBehaviour {
 	public LayerMask ignoreLayers;
 	private Projector projector;
 	private GameObject projectorObject;
+
 	void Start ()
     {
         projectorObject = new GameObject("UnitCircle");
@@ -34,7 +35,6 @@ public class UnitSelectionCircle : MonoBehaviour {
         projectorObject.AddComponent(typeof(Projector));
         projector = projectorObject.GetComponent<Projector>();
         projectorObject.SetActive(false);
-
         projector.aspectRatio = 1;
         projector.orthographic = true;
         UpdateCircle();
@@ -42,6 +42,10 @@ public class UnitSelectionCircle : MonoBehaviour {
 
     public void UpdateCircle()
     {
+        if (projectorObject == null)
+        {
+            Start();
+        }
         projector.orthographicSize = radius;
         projector.material = circleMaterial;
         projector.farClipPlane = farClipRange;
@@ -52,11 +56,19 @@ public class UnitSelectionCircle : MonoBehaviour {
 
     public void DisableCiricle()
 	{
-		projectorObject.SetActive(false);
+        if (projectorObject == null)
+        {
+            Start();
+        }
+        projectorObject.SetActive(false);
 	}
 
 	public void EnableCiricle()
 	{
+        if (projectorObject == null)
+        {
+            Start();
+        }
 		projectorObject.SetActive(true);
 	}
 	

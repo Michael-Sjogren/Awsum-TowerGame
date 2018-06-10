@@ -16,6 +16,7 @@ public abstract class LivingEntity : Entity, IDamagable, IMoveable, IHasStats
     [HideInInspector]
     public float Health { get; set; }
     public float MaxHealth { get; set; }
+    public GameObject centerPosition;
 
     public Stat MovementSpeed;
 

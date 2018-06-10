@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a049a451afa2844ea123d38678e8412, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f5c962b7a2a5934787e49b70f23f2b9, type: 3}
   m_Name: Lightning Orb
   m_EditorClassIdentifier: 
-  speed: 8
-  projectileEffect: {fileID: 198112598030507090, guid: a1ba8e90962a162478e0cf0a67dcfcd6,
+  projectileEffect: {fileID: 114230364338658638, guid: a1ba8e90962a162478e0cf0a67dcfcd6,
     type: 2}
   projectileHitEffect: {fileID: 0}
-  effectData: {fileID: 11400000, guid: 8e0ea24f4d2948548ba8ac4e8ace0292, type: 2}
+  ability: {fileID: 0}
+  speed: 18

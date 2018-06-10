@@ -18,8 +18,8 @@ MonoBehaviour:
   towerDescription: Fires a frostball at the enemy, applies a chilled effect that
     slows enemies.
   maxLevel: 0
-  Damage: 15
-  FireRate: 0.5
-  Range: 5
+  Damage: 17
+  FireRate: 0.8
+  Range: 5.8
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}

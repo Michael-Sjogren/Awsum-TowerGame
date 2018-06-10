@@ -2168,8 +2168,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301176939822190}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.15, y: 0.267, z: 30.704}
+  m_LocalRotation: {x: -0, y: -0.48139817, z: -0, w: 0.87650204}
+  m_LocalPosition: {x: 6.1, y: 0.7, z: 34.8}
   m_LocalScale: {x: 0.7902112, y: 0.79021114, z: 0.79021114}
   m_Children:
   - {fileID: 4224458326048646}
@@ -2177,7 +2177,7 @@ Transform:
   - {fileID: 224993539319135098}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -57.553, z: 0}
 --- !u!4 &4749711628652726
 Transform:
   m_ObjectHideFlags: 1
@@ -2449,11 +2449,11 @@ Rigidbody:
   m_Mass: 4.5
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!82 &82564496366355440
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2651,10 +2651,10 @@ MonoBehaviour:
   farClipRange: 1
   nearClipRange: 0.1
   heightOffset: 0.5
-  circleMaterial: {fileID: 2100000, guid: e070596f09344a940ace078aeb883cb7, type: 2}
+  circleMaterial: {fileID: 2100000, guid: ed064bbf12b81ff418e96844dfff9358, type: 2}
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 4294960638
+    m_Bits: 4294960639
 --- !u!114 &114303053771711692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2666,11 +2666,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4494aa86f7ed02d499df7925b81e27ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoney: 100
+  playerMoney: 65
   moneyText: {fileID: 0}
   healthText: {fileID: 0}
-  health: 10
-  buildRange: 3
+  health: 15
+  buildRange: 2
   coinPrefab: {fileID: 1028146410048964, guid: 915c3da566994f144a613bfbea9cd25d, type: 2}
   coinDropAmount: 3
   playerHurtAudio: {fileID: 11400000, guid: f5344dfcaaf0685418f8c21ab87941c1, type: 2}
@@ -2931,7 +2931,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1301176939822190}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Speed: 1
   m_Acceleration: 34
   avoidancePriority: 50
@@ -2941,9 +2941,9 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.8
-  m_BaseOffset: 0
+  m_BaseOffset: -0.08
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!222 &222283861253802048
 CanvasRenderer:
   m_ObjectHideFlags: 1

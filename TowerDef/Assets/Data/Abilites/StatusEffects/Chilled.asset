@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8bed2ff1cf4b94c97c55915d8023d0, type: 3}
+  m_Name: Chilled
+  m_EditorClassIdentifier: 
+  abillityName: Chilled
+  abillityDescription: Slows the enemy by 45% in 5 seconds.
+  abillitySound: {fileID: 0}
+  abillityVisualEffect: {fileID: 114633031474930328, guid: d83f80ac9d29ce04b9dc42fe0b05bbdf,
+    type: 2}
+  elementType: {fileID: 11400000, guid: 877c93918185b20489161b424bdb3730, type: 2}
+  reapplyCooldown: 0
+  effectLifeTime: 5
+  attributeEnum: 1
+  Amount: -0.45
+  type: 300
+  isPersistent: 0

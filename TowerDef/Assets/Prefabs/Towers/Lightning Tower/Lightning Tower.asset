@@ -16,9 +16,10 @@ MonoBehaviour:
   buyCost: 25
   sellPrice: 12
   towerDescription: Fires a orb of lighning adding a Electrostatic charge , when the
-    enemy has 3 charges....
+    enemy has 3 charges they will be consumed resulting in a chain lightning effect
+    doing 55 damage to enemies nearby
   maxLevel: 0
-  Damage: 20
+  Damage: 18
   FireRate: 1.1
   Range: 5
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}

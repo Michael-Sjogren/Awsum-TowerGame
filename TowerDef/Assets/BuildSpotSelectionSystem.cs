@@ -17,17 +17,17 @@ public class BuildSpotSelectionSystem : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
 
-    private SingleTowerPlacementArea currentTile;
+    private BuildSpot currentBuildSpot;
 
-    void SetTileOutLineColor(SingleTowerPlacementArea tile)
+    void SetTileOutLineColor(BuildSpot spot)
     {
-        if(tile != null)
+        if(spot != null)
         {
-            if(!tile.IsOccupied() && !buildMenu.isMenuShowing)
+            if(!spot.IsOccupied && !buildMenu.isMenuShowing)
             {
-                Outline outlineSystem = tile.GetComponentInChildren<Outline>();
+                Outline outlineSystem = spot.GetComponent<Outline>();
                 outlineSystem.enabled = true;
-                if (buildMenu.IsPlayerInRange(tile.transform.position))
+                if (buildMenu.IsPlayerInRange(spot.transform.position))
                 {
                     outlineSystem.OutlineColor = inRangeColor;
                 }
@@ -42,34 +42,34 @@ public class BuildSpotSelectionSystem : MonoBehaviour
     void Update ()
     {
 
-        var tile = GetTileAtRayHit();
-        if (tile != null)
+        var spot = GetBuildSpotFromRay();
+        if (spot != null)
         {
-            if(currentTile != null && tile != currentTile)
+            if(currentBuildSpot != null && spot != currentBuildSpot)
             {
-                currentTile.GetComponentInChildren<Outline>().enabled = false;
+                currentBuildSpot.GetComponentInChildren<Outline>().enabled = false;
             }
-            currentTile = tile;
-            SetTileOutLineColor(currentTile);
+            currentBuildSpot = spot;
+            SetTileOutLineColor(currentBuildSpot);
         }
         else
         {
-            if (currentTile != null)
+            if (currentBuildSpot != null)
             {
-                currentTile.GetComponentInChildren<Outline>().enabled = false;
+                currentBuildSpot.GetComponentInChildren<Outline>().enabled = false;
             }
         }
 
         if (Input.GetMouseButtonDown(0) && !IsOverUI())
         {
-            SingleTowerPlacementArea newTile = GetTileAtRayHit();
-            if(newTile != null)
+            BuildSpot newSpot = GetBuildSpotFromRay();
+            if(newSpot != null)
             {
-                if(!newTile.IsOccupied())
+                if(!newSpot.IsOccupied)
                 {
-                    if(buildMenu.IsPlayerInRange(newTile.transform.position))
+                    if(buildMenu.IsPlayerInRange(newSpot.transform.position))
                     {
-                        buildMenu.SetTargetPlacementArea(newTile);    
+                        buildMenu.SetTargetBuildSpot(newSpot);    
                     }
                 }
             }
@@ -80,16 +80,16 @@ public class BuildSpotSelectionSystem : MonoBehaviour
         }
 	}
 
-    SingleTowerPlacementArea GetTileAtRayHit()
+    BuildSpot GetBuildSpotFromRay()
     {
-        SingleTowerPlacementArea tile = null;
+        BuildSpot spot = null;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         if(Physics.SphereCast(ray.origin , .5f , ray.direction , out hitInfo , 500f , placeableLayer , QueryTriggerInteraction.Collide ) && !IsOverUI())
         {
-            tile = hitInfo.transform.GetComponent<SingleTowerPlacementArea>();
+            spot = hitInfo.transform.GetComponent<BuildSpot>();
         }
-        return tile;
+        return spot;
     }
 
     private bool IsOverUI()

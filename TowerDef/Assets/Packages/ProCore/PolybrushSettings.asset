@@ -15,11 +15,13 @@ MonoBehaviour:
   - z_pref_lockBrushToFirst
   m_int_keys:
   - z_GIWorkflowMode
-  m_float_keys: []
+  m_float_keys:
+  - push_pull_effect
   m_string_keys: []
   m_Color_keys: []
   m_bool_values: 01
   m_int_values: 01000000
-  m_float_values: []
+  m_float_values:
+  - 1
   m_string_values: []
   m_Color_values: []

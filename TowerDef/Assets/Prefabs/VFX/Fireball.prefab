@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4637298881335582}
   - component: {fileID: 198917885394116816}
   - component: {fileID: 199339535409963204}
+  - component: {fileID: 114891803770254688}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -138,6 +139,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114891803770254688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898439757851104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee55756f5358c9428293bbd81619e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0
+  stopBehavior: 0
 --- !u!198 &198315336388720418
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4681,7 +4695,7 @@ ParticleSystem:
   stopAction: 2
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 0

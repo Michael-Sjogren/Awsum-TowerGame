@@ -35,14 +35,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4747141468762582}
   - component: {fileID: 114328611331736358}
-  - component: {fileID: 114657892005242686}
   - component: {fileID: 114441431962398768}
   - component: {fileID: 65339740304698224}
   - component: {fileID: 82095306955870734}
   - component: {fileID: 208787520940883590}
+  - component: {fileID: 114302727878768416}
   m_Layer: 16
   m_Name: Earth Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,6 +270,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114302727878768416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1206830311655172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dede8dfbf6b47945b6094d6f2723a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireAudioEvent: {fileID: 0}
+  projectilePrefab: {fileID: 1535275151118968, guid: 3b633727f2445b54f82a385be863a9a8,
+    type: 2}
+  firePoint: {fileID: 1170052583730596}
+  h: 1
 --- !u!114 &114328611331736358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,7 +319,8 @@ MonoBehaviour:
   buildTime: 5
   progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
     type: 2}
-  distanceAboveTower: 5
+  distanceAboveTower: 3
+  targetingMode: 0
 --- !u!114 &114441431962398768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10671,20 +10688,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114657892005242686
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1206830311655172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f28cd1e50a7c9e41a1a2feaa5ca789c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireAudioEvent: {fileID: 0}
-  projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 0}
 --- !u!208 &208787520940883590
 NavMeshObstacle:
   m_ObjectHideFlags: 1

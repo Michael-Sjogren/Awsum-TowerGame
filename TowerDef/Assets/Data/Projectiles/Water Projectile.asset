@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a049a451afa2844ea123d38678e8412, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f5c962b7a2a5934787e49b70f23f2b9, type: 3}
   m_Name: Water Projectile
   m_EditorClassIdentifier: 
-  speed: 12
-  projectileEffect: {fileID: 198352569433953984, guid: bc317a31f39f7664d8c385658f5d9e09,
+  projectileEffect: {fileID: 114397313738117772, guid: bc317a31f39f7664d8c385658f5d9e09,
     type: 2}
   projectileHitEffect: {fileID: 0}
-  effectData: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}
+  ability: {fileID: 11400000, guid: 13e9c5fa482109540a51b38830c97cad, type: 2}
+  speed: 18

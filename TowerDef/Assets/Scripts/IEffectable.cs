@@ -1,8 +1,7 @@
-using Assets.ScriptableObjects.StatusEffectData;
-using Effects;
+using Assets.ScriptableObjects.StatusEffects;
 
 public interface IEffectable
 {
-    void AddStatusEffect(StatusEffectData effectData);
+    void AddStatusEffect(StatusEffect effectData);
     void RemoveStatusEffect(StatusEffect effect);
 }

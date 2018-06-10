@@ -59,7 +59,8 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
 	{
-        enemies = new List<Enemy>(50);
+        if(enemies == null)
+            enemies = new List<Enemy>(50);
         coinContainer = new GameObject("Coins");
         enemyContainer = new GameObject("Enemies");
 

@@ -27,7 +27,7 @@ public class UITowerBuildOption : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if ( !player.CanAfford(GetBuyCost()) && button.interactable || data.name == "Earth Tower" )
+        if ( !player.CanAfford(GetBuyCost()) && button.interactable )
         {
             button.interactable = false;
         }

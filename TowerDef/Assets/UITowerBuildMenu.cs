@@ -1,13 +1,9 @@
-﻿using Buildings;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using TowerDefense.Buildings.Placement;
+﻿
 using UnityEngine;
 
 public class UITowerBuildMenu : MonoBehaviour
 {
-    private SingleTowerPlacementArea placementArea;
+    private BuildSpot currentBuildSpot;
     [SerializeField]
     private GameObject container;
     public bool isMenuShowing;
@@ -21,12 +17,7 @@ public class UITowerBuildMenu : MonoBehaviour
         isMenuShowing = false;
     }
 
-    public void SetTargetPlacementArea(SingleTowerPlacementArea placementArea)
-    {
-        this.placementArea = placementArea;
-        container.SetActive(true);
-        isMenuShowing = true;
-    }
+
 
     public void HideBuildMenu()
     {
@@ -39,25 +30,18 @@ public class UITowerBuildMenu : MonoBehaviour
         if (player.CanAfford(data.buyCost))
         {
             player.BuyItem(data.buyCost);
-            int x = (int)placementArea.transform.position.x;
-            int z = (int)placementArea.transform.position.z;
-            Vector2Int destination = new Vector2Int(x ,z);
-            GameObject towerObj = (Instantiate(towerPrefab, placementArea.transform.position ,  Quaternion.identity) as GameObject);
-            Tower tower = towerObj.GetComponent<Tower>();
-            int width = (int)towerObj.GetComponent<Collider>().bounds.size.x;
-            int depth = (int)towerObj.GetComponent<Collider>().bounds.size.z;
-            towerObj.GetComponent<Tower>().dimensions = new Vector2Int(width, depth);
+            var tower = currentBuildSpot.BuildTower(towerPrefab);
             tower.enabled = false;
-            tower.Initialize(placementArea, destination);
+            tower.InitializeTower(currentBuildSpot);
             HideBuildMenu();
         }
     }
 
     public void Update()
     {
-        if(placementArea != null)
+        if(currentBuildSpot != null)
         {
-            Vector3 targetPos = placementArea.transform.position + Vector3.up * 2.5f;
+            Vector3 targetPos = currentBuildSpot.transform.position + Vector3.up * 2.5f;
             transform.position = targetPos;
         }
     }
@@ -66,5 +50,12 @@ public class UITowerBuildMenu : MonoBehaviour
     {
         float distance = Vector3.Distance(player.transform.position, pos);
         return distance <= player.buildRange;
+    }
+
+    public void SetTargetBuildSpot(BuildSpot newSpot)
+    {
+        currentBuildSpot = newSpot;
+        container.SetActive(true);
+        isMenuShowing = true;
     }
 }

@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 208493567788855096}
   m_Layer: 16
   m_Name: Fire Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1097,6 +1097,7 @@ MonoBehaviour:
   progressbarPrefab: {fileID: 1182894630913908, guid: 85e1ca60ee12f6a4c9ab551e19f44812,
     type: 2}
   distanceAboveTower: 5
+  targetingMode: 1
 --- !u!114 &114891392496859966
 MonoBehaviour:
   m_ObjectHideFlags: 1

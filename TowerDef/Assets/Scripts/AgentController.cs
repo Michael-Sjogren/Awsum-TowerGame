@@ -14,7 +14,6 @@ public class AgentController : MonoBehaviour
 	public event AgentTargetHandler OnReachedDestination = delegate{};
 	private LivingEntity movableEntity;
 	private NavMeshAgent agent;
-
 	public float maxDistanceFromGoal = 1f;
 
     // Use this for initialization
@@ -28,7 +27,6 @@ public class AgentController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
 	}
 
 	public void OnMovementSpeedUpdated()

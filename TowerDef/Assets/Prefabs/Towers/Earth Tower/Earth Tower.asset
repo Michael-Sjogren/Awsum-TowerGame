@@ -19,8 +19,8 @@ MonoBehaviour:
 
 '
   maxLevel: 0
-  Damage: 30
-  FireRate: 0.6
-  Range: 7
+  Damage: 35
+  FireRate: 0.71
+  Range: 6
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}

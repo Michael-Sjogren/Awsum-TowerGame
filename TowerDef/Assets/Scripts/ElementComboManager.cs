@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.ScriptableObjects.StatusEffectData;
-using Effects;
+﻿
+using Assets.ScriptableObjects.StatusEffects;
 using ScriptableObjects.Enums;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ public class ElementComboManager : Singleton<ElementComboManager>
 	[SerializeField]
 	private ElementCombineableData elementComboData;
 
-	public StatusEffectData CanAbsorbEffect( StatusEffectSystem system ,  ElementType elementType) 
+	public StatusEffect CanAbsorbEffect( StatusEffectSystem system ,  ElementType elementType) 
 	{
 		// get list of opposites for this elementType
 		OppositeGroup[] opposites = null;
