@@ -6,5 +6,8 @@ public abstract class ProjectileData : ScriptableObject
 {
     public VisualEffect projectileEffect;
     public VisualEffect projectileHitEffect;
+
+    public AudioEvent hitSound;
+
     public Ability ability;
 }

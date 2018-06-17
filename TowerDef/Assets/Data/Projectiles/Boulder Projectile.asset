@@ -14,5 +14,6 @@ MonoBehaviour:
   projectileEffect: {fileID: 0}
   projectileHitEffect: {fileID: 114195110192381432, guid: 4c353ba7cd0ecc9419c75843eae702ed,
     type: 2}
+  hitSound: {fileID: 11400000, guid: 53bca1d1da306284db66e808b40080dd, type: 2}
   ability: {fileID: 0}
   splashRadius: 2

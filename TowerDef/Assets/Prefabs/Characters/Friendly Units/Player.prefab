@@ -2168,8 +2168,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301176939822190}
-  m_LocalRotation: {x: -0, y: -0.48139817, z: -0, w: 0.87650204}
-  m_LocalPosition: {x: 6.1, y: 0.7, z: 34.8}
+  m_LocalRotation: {x: -0, y: -0.03533941, z: -0, w: 0.99937534}
+  m_LocalPosition: {x: -5, y: 0.135, z: 13}
   m_LocalScale: {x: 0.7902112, y: 0.79021114, z: 0.79021114}
   m_Children:
   - {fileID: 4224458326048646}
@@ -2177,7 +2177,7 @@ Transform:
   - {fileID: 224993539319135098}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -57.553, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -4.05, z: 0}
 --- !u!4 &4749711628652726
 Transform:
   m_ObjectHideFlags: 1
@@ -2580,6 +2580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCiricle: {fileID: 114171515351521668}
   data: {fileID: 11400000, guid: 0ca68b9c9922eb0478f3172dc4610e21, type: 2}
+  centerPosition: {fileID: 0}
   MovementSpeed:
     BaseValue: 4
     value: 0
@@ -2666,7 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4494aa86f7ed02d499df7925b81e27ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoney: 65
+  playerMoney: 999999
   moneyText: {fileID: 0}
   healthText: {fileID: 0}
   health: 15

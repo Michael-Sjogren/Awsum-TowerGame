@@ -60,6 +60,11 @@ public class HomingProjectile : Projectile
             projectileData.ability.TriggerAbility(enemy.gameObject, enemy.centerPosition.transform.position);
         }
 
+        if(projectileData.hitSound != null)
+        {
+            projectileData.hitSound.Play(target.GetComponent<AudioSource>());
+        }
+
         StartCoroutine(projectileEffect.Stop(0));
     }
 }

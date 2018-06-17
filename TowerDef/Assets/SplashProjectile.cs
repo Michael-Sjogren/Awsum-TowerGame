@@ -53,6 +53,11 @@ public class SplashProjectile : Projectile
             }
         }
 
+        if (projectileData.hitSound != null)
+        {
+            projectileData.hitSound.Play(target.GetComponent<AudioSource>());
+        }
+
         StartCoroutine(vfx.Stop(vfx.lifeTime));
     }
 }

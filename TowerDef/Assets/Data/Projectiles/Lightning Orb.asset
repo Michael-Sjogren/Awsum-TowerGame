@@ -14,5 +14,5 @@ MonoBehaviour:
   projectileEffect: {fileID: 114230364338658638, guid: a1ba8e90962a162478e0cf0a67dcfcd6,
     type: 2}
   projectileHitEffect: {fileID: 0}
-  ability: {fileID: 0}
+  ability: {fileID: 11400000, guid: 8e0ea24f4d2948548ba8ac4e8ace0292, type: 2}
   speed: 18
