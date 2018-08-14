@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 114795036652046610}
   - component: {fileID: 82199893971622492}
   - component: {fileID: 114743400040918634}
+  - component: {fileID: 54961745312680956}
   m_Layer: 17
   m_Name: Test Dummy
   m_TagString: Enemy
@@ -208,6 +209,21 @@ Transform:
   m_Father: {fileID: 4113462764522598}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54961745312680956
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552751253317014}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &82199893971622492
 AudioSource:
   m_ObjectHideFlags: 1
@@ -628,7 +644,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1552751253317014}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.25
   m_Speed: 2.8
   m_Acceleration: 5
   avoidancePriority: 50
@@ -640,7 +656,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222097271200896948
 CanvasRenderer:
   m_ObjectHideFlags: 1

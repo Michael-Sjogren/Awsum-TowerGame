@@ -5,24 +5,20 @@ using UserInput;
 using System;
 using System.Collections;
 
-public class Player : MonoBehaviour , IDamagable
+public class Player : MonoBehaviour 
 {
-    public int playerMoney = 0;
     private Vector3 playerCursor;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI healthText;
     private IInputManager input;
     public bool IsAlive{get;set;}
-    public int health;
-    public float buildRange = 2f;
-
-    public float Health {get{return health;} set {health = (int)value;}}
-    public float MaxHealth { get; set; }
+    public float buildRange = 3f;
 
     [SerializeField]
     private GameObject coinPrefab;
     [SerializeField]
     private int coinDropAmount = 3;
+
     private Coroutine coinDropRoutine;
     [SerializeField]
     private AudioEvent playerHurtAudio;
@@ -31,9 +27,13 @@ public class Player : MonoBehaviour , IDamagable
     {
         input = InputManager.Instance;
         if(moneyText != null)
-            moneyText.SetText(((int)playerMoney).ToString());
+        {
+            moneyText.SetText(GameManager.instance.money.ToString());
+        }
         if(healthText != null)
-            healthText.SetText(((int)Health).ToString());
+        {
+            healthText.SetText(GameManager.instance.health.ToString());
+        }
     }
 
 
@@ -75,8 +75,8 @@ public class Player : MonoBehaviour , IDamagable
 
     public void ReciveMoney(int amount)
     {
-        playerMoney += amount;
-        moneyText.SetText(playerMoney.ToString());
+        GameManager.instance.money += amount;
+        moneyText.SetText(GameManager.instance.money.ToString());
     }
     public Vector3 GetPlayerCursor()
     {
@@ -85,8 +85,8 @@ public class Player : MonoBehaviour , IDamagable
 
     public void BuyItem(int cost)
     {
-        playerMoney -= cost;
-        moneyText.SetText(playerMoney.ToString());
+        GameManager.instance.money -= cost;
+        moneyText.SetText(GameManager.instance.money.ToString());
     }
 
     public float GetCameraControls()
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour , IDamagable
         {
             if(coinDropRoutine == null)
             {
-                if(playerMoney >= 3)
+                if(GameManager.instance.money >= 3)
                 {
                     coinDropRoutine = StartCoroutine(DropCoins());
                 }
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour , IDamagable
         {
             if (coinDropRoutine == null)
             {
-                if (playerMoney >= 3)
+                if (GameManager.instance.money >= 3)
                 {
                     coinDropRoutine = StartCoroutine(DropCoins());
                 }
@@ -183,12 +183,12 @@ public class Player : MonoBehaviour , IDamagable
     public void TakeDamage(float amount)
     {
         
-        if ( ((int) Health - amount) <= 0) 
+        if ( ((int)GameManager.instance.health - amount) <= 0) 
         {
          GameManager.instance.gameOver = true;
         }
-        Health -= amount;
-        healthText.SetText(( (int)Health).ToString());
+        GameManager.instance.health -= (int)amount;
+        healthText.SetText(GameManager.instance.health.ToString());
             
     }
 
@@ -199,11 +199,11 @@ public class Player : MonoBehaviour , IDamagable
 
     public bool CanAfford(int price)
     {
-        return playerMoney >= price;
+        return GameManager.instance.money >= price;
     }
 
     public float GetHealth()
     {
-        return Health;
+        return GameManager.instance.health;
     }
 }

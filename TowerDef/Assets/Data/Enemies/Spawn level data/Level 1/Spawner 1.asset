@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: Spawner 1
   m_EditorClassIdentifier: 
   spawnList:
-  - timeAfterWave: 35
-    timeBetweenSpawn: 0.5
-    amount: 25
+  - timeAfterWave: 25
+    timeBetweenSpawn: 0.35
+    amount: 40
     enemyPrefab: {fileID: 1179903419161144, guid: a0a6c58b7d6e0734cacfcefed11b9d00,
       type: 2}
   - timeAfterWave: 35
     timeBetweenSpawn: 0.75
-    amount: 35
+    amount: 50
     enemyPrefab: {fileID: 1773757128922362, guid: 36802288bf318c146b772360641d9f26,
       type: 2}
   - timeAfterWave: 15

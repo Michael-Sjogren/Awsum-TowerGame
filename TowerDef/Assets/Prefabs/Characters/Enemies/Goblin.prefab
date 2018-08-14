@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 114058296736437358}
   - component: {fileID: 114411601658935408}
   - component: {fileID: 82098763188781628}
+  - component: {fileID: 54460167851160460}
   m_Layer: 17
   m_Name: Goblin
   m_TagString: Enemy
@@ -1899,6 +1900,21 @@ Transform:
   m_Father: {fileID: 4856995374959774}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54460167851160460
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179903419161144}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &82098763188781628
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2365,7 +2381,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1179903419161144}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.25
   m_Speed: 2.8
   m_Acceleration: 5
   avoidancePriority: 50
@@ -2377,7 +2393,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222353084440050880
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
@@ -16,12 +15,20 @@ public class GameManager : Singleton<GameManager>
     public bool won = false;
     private int enemiesLeft = 0;
     private int totalEnemies;
+
+    [HideInInspector]
+    public int health;
+    [HideInInspector]
+    public int money;
+
     public Camera cam;
     [HideInInspector]
     public GameObject coinContainer;
     [HideInInspector]
     public GameObject enemyContainer;
     public List<Enemy> enemies;
+
+    public LevelData levelData;
 
     public int TotalEnemies
     {
@@ -46,11 +53,11 @@ public class GameManager : Singleton<GameManager>
         set
         {
             enemiesLeft = value;
-            if(enemiesLeft <= 0 && hasGameStarted && PlayerManager.Instance.player.Health > 0)
+            if(enemiesLeft <= 0 && hasGameStarted && GameManager.instance.health > 0)
             {
                 GameOver(true);
             }
-            else if (enemiesLeft > 0 && hasGameStarted && PlayerManager.Instance.player.Health <= 0)
+            else if (enemiesLeft > 0 && hasGameStarted && GameManager.instance.health <= 0)
             {
                 GameOver(false);
             }
@@ -60,10 +67,23 @@ public class GameManager : Singleton<GameManager>
     void Start()
 	{
         if(enemies == null)
+        {
             enemies = new List<Enemy>(50);
+        }
         coinContainer = new GameObject("Coins");
         enemyContainer = new GameObject("Enemies");
-
+        if(levelData != null)
+        {
+            foreach(Level level in levelData.listOfLevels)
+            {
+                if(level.sceneName == SceneManager.GetActiveScene().name)
+                {
+                    health = level.health;
+                    money = level.startingMoney;
+                    break;
+                }
+            }
+        }
         UnPauseGame();
 	}
 

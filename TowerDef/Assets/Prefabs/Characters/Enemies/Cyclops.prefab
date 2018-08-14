@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 114962120626388690}
   - component: {fileID: 114437830024490716}
   - component: {fileID: 82748555179866910}
+  - component: {fileID: 54065519953177522}
   m_Layer: 17
   m_Name: Cyclops
   m_TagString: Enemy
@@ -238,6 +239,21 @@ Transform:
   m_Father: {fileID: 4452508903766382}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54065519953177522
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856965058915278}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &82748555179866910
 AudioSource:
   m_ObjectHideFlags: 1
@@ -706,7 +722,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1856965058915278}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 2.8
   m_Acceleration: 5
   avoidancePriority: 50
@@ -718,7 +734,7 @@ NavMeshAgent:
   m_Height: 3
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!222 &222213355629294368
 CanvasRenderer:
   m_ObjectHideFlags: 1
