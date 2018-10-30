@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: 7c759236e111d1549970f8c77e3cb776
-timeCreated: 1499050168
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Chest
     100002: Eye_L
@@ -160,10 +158,13 @@ ModelImporter:
     7400000: WizardRig|default
     7400002: WizardRig|fireball
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -177,14 +178,29 @@ ModelImporter:
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'Upperarm_L' has translation animation that
       will be discarded.\n\t'Upperarm_R' has translation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'WizardRig|default':\n\tLeftLowerArm
+      average position error 3.6 mm and maximum position error 3.6 mm at time 0: 0
+      (0.0%) Frame 0\n\tRightLowerArm average position error 3.6 mm and maximum position
+      error 3.6 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip
+      'WizardRig|fireball':\n\tLeftUpperArm average position error 25.1 mm and maximum
+      position error 33.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average position
+      error 25.1 mm and maximum position error 33.2 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand
+      average position error 25.1 mm and maximum position error 33.1 mm at time 0:
+      0 (0.0%) Frame 0\n\tRightUpperArm average position error 70.4 mm and maximum
+      position error 73.0 mm at time 0:11 (45.8%) Frame 11\n\tRightLowerArm average
+      position error 71.8 mm and maximum position error 79.1 mm at time 0:10 (41.7%)
+      Frame 10\n\tRightHand average position error 70.4 mm and maximum position error
+      73.0 mm at time 0:10 (41.7%) Frame 10\n"
     animationDoRetargetingWarnings: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: WizardRig|default
@@ -552,22 +568,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.009999999
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

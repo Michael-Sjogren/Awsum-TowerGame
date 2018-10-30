@@ -12,8 +12,18 @@ namespace UserInput
         private int _maxNumberOfPlayers = 1;
         [SerializeField]
         private string _jumpAxis = "Jump";
+
         [SerializeField]
-        private string _attackAxis = "Attack";
+        private string _abillityAxis1 = "Abillity1";
+        [SerializeField]
+        private string _abillityAxis2 = "Abillity2";
+        [SerializeField]
+        private string _abillityAxis3 = "Abillity3";
+        [SerializeField]
+        private string _abillityAxis4 = "Abillity4";
+        [SerializeField]
+        private string _abillityAxis5 = "Abillity5";
+
         [SerializeField]
         private string _mainHorizontalAxis = "MainHorizontal";
         [SerializeField]
@@ -43,25 +53,28 @@ namespace UserInput
             SetInstance(this);
 
             _actions = new Dictionary<int, string>();
+            AddAction(InputAction.Jump, _playerAxisPrefix + _jumpAxis, _actions);
 
-            string prefix = !string.IsNullOrEmpty(_playerAxisPrefix) ? _playerAxisPrefix : string.Empty;
+            AddAction(InputAction.Abillity1, _playerAxisPrefix + _abillityAxis1, _actions);
+            AddAction(InputAction.Abillity2, _playerAxisPrefix + _abillityAxis2, _actions);
+            AddAction(InputAction.Abillity3, _playerAxisPrefix + _abillityAxis3, _actions);
+            AddAction(InputAction.Abillity4, _playerAxisPrefix + _abillityAxis4, _actions);
+            AddAction(InputAction.Abillity5, _playerAxisPrefix + _abillityAxis5, _actions);
 
-            AddAction(InputAction.Jump, prefix + _jumpAxis, _actions);
-            AddAction(InputAction.Attack, prefix + _attackAxis, _actions);
 
-            AddAction(InputAction.MainHorizontal, prefix + _mainHorizontalAxis, _actions);
-            AddAction(InputAction.MainVertical, prefix + _mainVerticalAxis, _actions);
+            AddAction(InputAction.MainHorizontal, _playerAxisPrefix + _mainHorizontalAxis, _actions);
+            AddAction(InputAction.MainVertical, _playerAxisPrefix + _mainVerticalAxis, _actions);
 
-            AddAction(InputAction.SubHorizontal, prefix + _subHorizontalAxis, _actions);
-            AddAction(InputAction.SubVertical, prefix + _subVerticalAxis, _actions);
+            AddAction(InputAction.SubHorizontal, _playerAxisPrefix + _subHorizontalAxis, _actions);
+            AddAction(InputAction.SubVertical, _playerAxisPrefix + _subVerticalAxis, _actions);
 
-            AddAction(InputAction.WheelMenu, prefix + _menuWheelAxis, _actions);
-            AddAction(InputAction.Pause, prefix + _pauseAxis, _actions);
+            AddAction(InputAction.WheelMenu, _playerAxisPrefix + _menuWheelAxis, _actions);
+            AddAction(InputAction.Pause, _playerAxisPrefix + _pauseAxis, _actions);
 
-            AddAction(InputAction.Interact, prefix + _interactAxis, _actions);
-            AddAction(InputAction.Submit, prefix + _submitAxis, _actions);
+            AddAction(InputAction.Interact, _playerAxisPrefix + _interactAxis, _actions);
+            AddAction(InputAction.Submit, _playerAxisPrefix + _submitAxis, _actions);
 
-            AddAction(InputAction.Cancel, prefix + _cancelAxis, _actions);
+            AddAction(InputAction.Cancel, _playerAxisPrefix + _cancelAxis, _actions);
 
         }
 
@@ -69,6 +82,7 @@ namespace UserInput
         {
             playerControl = ReInput.players.GetPlayer(0);
         }
+
         void Update()
         {
             Controller controller = playerControl.controllers.GetLastActiveController();
