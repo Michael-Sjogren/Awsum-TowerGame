@@ -12,16 +12,17 @@ public class Enemy : LivingEntity
     // TODO move this to an interface?
     [HideInInspector]
     public Transform target;
-    public GameObject coinPrefab;
-     [HideInInspector]
+    [HideInInspector]
     public bool reachedGoal = false;
-     [HideInInspector]
+    [HideInInspector]
     public int goldDropReward;
+    private AudioSource source;
+    public SimpleAudioEvent coinDropSound;
 
     public override void Start()
     {
         base.Start();
-        
+        source = GetComponent<AudioSource>();
         var data = UnitData as EnemyData;
         data.Initialize(this);
 
@@ -56,11 +57,8 @@ public class Enemy : LivingEntity
         
         if(!reachedGoal) 
         {
-            for(int i = 0; i < goldDropReward; i++) 
-            {
-                Instantiate( coinPrefab , this.transform.position + Vector3.up * 1.5f , Quaternion.identity );
-            }
             PlayerManager.Instance.player.ReciveMoney(goldDropReward);
+            coinDropSound.Play(PlayerManager.Instance.player.GetComponent<AudioSource>());
         }
         GameManager.instance.RemoveEnemy(this);
         Destroy(this.gameObject);

@@ -30,7 +30,16 @@ public class ThirdPersonAnimator : MonoBehaviour
 		float turnAmount = Mathf.Atan2(move.x, move.z);
 		animator.SetFloat("Forward", move.normalized.z , 0.12f, Time.deltaTime);
 		animator.SetFloat("Turn", turnAmount, 0.12f, Time.deltaTime);
-		//animator.SetBool("Crouch", m_Crouching);
+        if (agent.velocity.Equals(Vector3.zero))
+        {
+            moving = false;
+        }
+        else if (!agent.velocity.Equals(Vector3.zero))
+        {
+            moving = true;
+        }
+        
+		animator.SetBool("Moving", moving);
 		//animator.SetBool("OnGround", m_IsGrounded);
 	}
 }

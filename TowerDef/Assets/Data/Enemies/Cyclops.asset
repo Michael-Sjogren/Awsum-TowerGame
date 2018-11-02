@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cyclops
   unitIcon: {fileID: 0}
-  health: 250
+  health: 350
   moveSpeed: 2
   armor: 25
   fireResistance: 100
@@ -21,4 +21,4 @@ MonoBehaviour:
   lightningResistance: 100
   frostResistance: 100
   earthResitance: 100
-  dropReward: 3
+  dropReward: 10
