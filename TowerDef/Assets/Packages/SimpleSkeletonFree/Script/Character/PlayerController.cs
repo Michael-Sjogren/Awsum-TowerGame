@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UserInput;
 
 public class PlayerController : MonoBehaviour
@@ -20,14 +21,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!IsOverUI())
         {
-            var ray = GameManager.instance.cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray , out hit , groundLayer ))
+            if (Input.GetMouseButton(0))
             {
-                MoveToMouse(hit.point);
+                var ray = GameManager.instance.cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray , out hit , groundLayer ))
+                {
+                    MoveToMouse(hit.point);
+                }
             }
         }
     }
@@ -36,6 +40,11 @@ public class PlayerController : MonoBehaviour
     {
         agent.speed = entity.MovementSpeed.Value;
         agent.SetDestination(worldPoint);
+    }
+
+    private bool IsOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }
 
