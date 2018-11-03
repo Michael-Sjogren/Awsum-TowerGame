@@ -7,13 +7,32 @@ public class RTSCamera : MonoBehaviour {
 
 	private IInputManager input;
 	public float speed = 5f;
+    [SerializeField]
+    private GameObject target;
 	public void Start()
 	{
+        
 		input = InputManager.Instance;
 	}
+
+    private void FollowTarget()
+    {
+        Vector3 pos = this.transform.position;
+        Vector3 newPos = new Vector3(
+                                        target.transform.position.x 
+                                    ,   pos.y
+                                    ,   target.transform.position.z 
+                                    );
+        this.transform.position = newPos;
+    }
+
 	void LateUpdate()
 	{
-		Move();
+        if(target != null)
+        {
+            FollowTarget();
+        }
+		//Move();
 	}
 
 	void Move()

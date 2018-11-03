@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
             {
                 if(GameManager.instance.money >= 3)
                 {
-                    coinDropRoutine = StartCoroutine(DropCoins());
+                 //   coinDropRoutine = StartCoroutine(DropCoins());
                 }
             }
         }
@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
             {
                 if (GameManager.instance.money >= 3)
                 {
-                    coinDropRoutine = StartCoroutine(DropCoins());
+                  //  coinDropRoutine = StartCoroutine(DropCoins());
                 }
             }
         }
