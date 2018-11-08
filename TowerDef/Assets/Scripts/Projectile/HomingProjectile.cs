@@ -25,7 +25,7 @@ public class HomingProjectile : Projectile
         projectileEffect = (Instantiate(data.projectileEffect));
         projectileEffect.transform.SetParent(transform);
         projectileEffect.transform.localPosition = Vector3.zero;
-        projectileEffect.Play();
+        projectileEffect.Play(false);
     }
 
     void MoveToTarget()
@@ -65,6 +65,6 @@ public class HomingProjectile : Projectile
             projectileData.hitSound.Play(target.GetComponent<AudioSource>());
         }
 
-        StartCoroutine(projectileEffect.Stop(0));
+        StartCoroutine(projectileEffect.Stop(0 , ParticleSystemStopAction.Destroy));
     }
 }

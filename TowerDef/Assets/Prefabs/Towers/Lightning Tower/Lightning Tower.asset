@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -15,12 +15,11 @@ MonoBehaviour:
   unitIcon: {fileID: 0}
   buyCost: 25
   sellPrice: 12
-  towerDescription: "Fires lightning orbs which adds a electrostatic charge. When
-    3 charges are applied it triggers a chain lightning effect \n, consuming the charges
-    in the process."
+  towerDescription: Fires lightning. When 3 charges are applied it triggers an additional
+    chain lightning effect , consuming the charges in the process.
   maxLevel: 0
   Damage: 18
-  FireRate: 1.1
+  FireRate: 0.78
   Range: 5
   towerLevelData: {fileID: 11400000, guid: bb00831fb5824414f869e9e0564ec6e6, type: 2}
   towerPerkTreeData: {fileID: 11400000, guid: 66600090548a7b4459ed465b29ef57ba, type: 2}

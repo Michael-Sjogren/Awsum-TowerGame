@@ -15,7 +15,7 @@ public class ChainLightningAbiliy : Ability
 
         if (effect != null)
         {
-            effect.Play();
+            effect.Play(true);
         }
     }
 
@@ -23,7 +23,7 @@ public class ChainLightningAbiliy : Ability
     {
         if (effect != null)
         {
-            effect.Stop(0);
+            effect.Stop(0 , ParticleSystemStopAction.Destroy);
         }
     }
 
@@ -63,7 +63,7 @@ public class ChainLightningAbiliy : Ability
 
         var lightningEffect = Instantiate(abillityVisualEffect, center, Quaternion.identity) as LightningVisualEffect;
         lightningEffect.targets = targetsToHit;
-        lightningEffect.Play();
+        lightningEffect.Play(true);
 
         for (int i = 0; i < targets.Count; i++)
         {

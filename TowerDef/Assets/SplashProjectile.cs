@@ -19,7 +19,7 @@ public class SplashProjectile : Projectile
             projectileEffect = (Instantiate(projectileData.projectileEffect));
             projectileEffect.transform.SetParent(transform);
             projectileEffect.transform.localPosition = Vector3.zero;
-            projectileEffect.Play();
+            projectileEffect.Play(false);
 
         }
         splashRadius = data.splashRadius;
@@ -61,7 +61,7 @@ public class SplashProjectile : Projectile
             }
         }
 
-        StartCoroutine(vfx.Stop(vfx.lifeTime));
+        StartCoroutine(vfx.Stop(vfx.lifeTime , ParticleSystemStopAction.Destroy));
     }
 }
 

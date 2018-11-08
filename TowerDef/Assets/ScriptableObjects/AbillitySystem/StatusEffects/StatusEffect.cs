@@ -23,7 +23,7 @@ namespace Assets.ScriptableObjects.StatusEffects
 
         public override void PlayVisualEffect(VisualEffect effect)
         {
-            effect.Play();
+            effect.Play(false);
         }
 
         protected virtual void AddVisualEffectAndInstantiate(LivingEntity entity)
@@ -53,7 +53,7 @@ namespace Assets.ScriptableObjects.StatusEffects
             if (effect != null)
             {
                 var visualEffect = effect.GetComponent<VisualEffect>();
-                visualEffect.StartCoroutine(visualEffect.Stop(0));    
+                visualEffect.StartCoroutine(visualEffect.Stop(0 , ParticleSystemStopAction.Destroy));    
             }
            // system.RemoveVisualEffect(this);
         }

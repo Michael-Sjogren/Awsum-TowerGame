@@ -14,6 +14,7 @@ public class TowerData : UnitData
 	public int maxLevel; 
 	[Header("Tower Stats")]
 	public float Damage;
+    [Tooltip("Second´/ Fire Rate = cooldown")]
 	public float FireRate;
 	public float Range;
 	[Header("Level Data")]

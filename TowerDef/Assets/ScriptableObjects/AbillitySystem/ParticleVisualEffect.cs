@@ -8,14 +8,15 @@ public class ParticleVisualEffect : VisualEffect
     public ParticleSystemStopBehavior stopBehavior = ParticleSystemStopBehavior.StopEmittingAndClear;
     // Use this for initialization
 
-    public override void Play()
+    public override void Play(bool destroy)
     {
         GetComponent<ParticleSystem>().Play();
     }
 
-    public override IEnumerator Stop(float delay)
+    public override IEnumerator Stop(float delay, ParticleSystemStopAction stopAction)
     {
         yield return new WaitForSeconds(delay);
         GetComponent<ParticleSystem>().Stop(true , stopBehavior);
     }
+
 }

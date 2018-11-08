@@ -40,11 +40,11 @@ public class ExplostionAbility : Ability
 
     public override void StopVisualEffect(VisualEffect vfx)
     {
-        vfx.StartCoroutine(vfx.Stop(vfx.lifeTime));
+        vfx.StartCoroutine(vfx.Stop(vfx.lifeTime , ParticleSystemStopAction.Destroy));
     }
 
     public override void PlayVisualEffect(VisualEffect effect)
     {
-        effect.Play();
+        effect.Play(false);
     }
 }
